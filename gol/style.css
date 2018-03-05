@@ -1,0 +1,130 @@
+*{
+	margin:0px;
+	padding:0px;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: arial;
+	color: #353535;
+}
+html{
+	height:400px;
+	width:600px;
+	margin:5px;
+}
+body{
+	background-color:#c0c0c0;
+	width:100%;
+	height:100%;
+}
+#frame{
+	height:100%;
+	width:100%;
+	margin:auto auto;
+	background-color:#c0c0c0;
+
+}
+#upper{
+	overflow:hidden;
+	margin-bottom:5px;
+	float:left;
+}
+#upper > #drawfield{
+	background-color:#e8e8e8;
+	width:400px;
+	height:400px;
+}
+#upper > #info{
+	float:left;
+	width:595px;
+	height:360px;
+	margin-left:5px;
+}
+#upper > #info > #text {
+	border:2px solid #b8cfe5;
+	margin:5px;
+	height:calc(100% - 5px);
+	position:relative;
+}
+
+#upper > #info > #text > h1{
+	position: absolute;
+	display: block;
+	background-color: #c0c0c0;
+	padding: 2px;
+	top: -10px;
+	left: 5px;
+}
+#upper > #info > #text > div{
+	margin-top:50px;
+	padding:5px;
+}
+
+#upper > #info > #control {
+	margin:0px 3px;
+	overflow:hidden;
+}
+
+#lower > .left button, #upper > button {
+    background: linear-gradient(#fff, #CCE5F2);
+    border: 1px solid #73A7C1;
+    padding: 5px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 0px 0px;
+    cursor: pointer;
+	border-radius:1px;
+}
+
+#lower > .left button:hover{
+	background: linear-gradient(#CCE5F2, #fff);
+}
+
+#lower {
+	float:left;
+	height:350px;
+	margin-left:5px;
+}
+
+#lower > .left > div{
+	background-color: #6F6F6F;
+	padding:5px;
+	margin-bottom:5px;
+	position: relative;
+}
+
+#lower > .left > div > h1{
+	color:#fff;
+	font-weight: bold;
+}
+
+#lower > .left > div > #indicator{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 10px;
+	height: 10px;
+	background-color:#FA5858;
+}
+
+#lower > #resultWindow{
+	border:2px solid #b8cfe5;
+	height:100%;
+	width:calc(100% - 9px);
+	position:relative;	
+}
+#lower > #resultWindow > h1{
+	position: absolute;
+	display: block;
+	background-color: #c0c0c0;
+	padding: 2px;
+	top: -10px;
+	left: 5px;
+}
+#lower > #resultWindow > #resultChart{
+	height: calc(100% - 20px);
+	width: calc(100% - 20px);
+	background-color: #f7f7f7;
+	margin: 10px;
+
+}

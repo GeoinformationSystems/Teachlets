@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="js/appobject.js"></script>
+		<script src="js/pointobject.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/helpwindow.js"></script>
+	</head>
+	<body>
+	<div id="frame">
+		<div id="upper">
+			<canvas id="drawfield" width="400" height="400">
+			</canvas><br>
+		</div>
+		<div id="lower">
+			<div class="left">
+				<div>
+					<h1>Steuerung</h1>
+				</div>
+				<div>
+					<button name="resetRaster" style="margin:0px;">Zeichenfläche leeren</button><br>
+					<button name="showhelp" style="margin:5px 0px 0px;">Hilfe einblenden</button>
+				</div>
+				<div style="margin-top:15px;">
+					<h1>Simulationen</h1>
+				</div>
+				<div>
+					<h1>Manuell</h1>
+					<button name="run">Einen Schritt simulieren</button>
+				</div>
+				<div>
+					<h1>Automatisiert</h1>
+					<button name="runAuto">Simulation start/stop</button>
+					<div style="overflow:hidden; margin:7.5px 0px 5px;">
+						<div style="float:left; color:#B0B0B0;">Bilder pro Sekunde:</div>
+						<div style="float:left; color:#B0B0B0; margin-left:5px;" id="fps">10</div>
+					</div>
+					<input type="range" min="1" max="20" step="1" value="10" id="fpsswitcher" style="width:100%;">
+					<div style="overflow:hidden;">
+						<div style="float:left; color:#B0B0B0;">1</div>
+						<div style="float:right; color:#B0B0B0;">20</div>
+					</div>
+					<div id="indicator"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
