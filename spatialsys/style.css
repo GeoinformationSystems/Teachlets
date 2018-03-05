@@ -1,0 +1,139 @@
+*{
+	margin:0px;
+	padding:0px;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: arial;
+	color: #353535;
+}
+html{
+	width:850px;
+	height:500px;
+	margin:5px;
+}
+body{
+	background-color:#c0c0c0;
+}
+#frame{
+	width:100%;
+	height:100%;
+	margin:auto auto;
+	background-color:#c0c0c0;
+
+}
+#upper{
+	overflow:hidden;
+	margin-bottom:5px;
+}
+#upper > #drawfield{
+	background-color:#e8e8e8;
+	width:700px;
+	height:500px;
+	float:left;
+}
+#upper > #info{
+	float:left;
+	width:400px;
+	margin-left:5px;
+}
+#upper > #info > #text {
+	border:2px solid #b8cfe5;
+	margin:5px;
+	height:calc(100% - 5px);
+	position:relative;
+	background: #fff;
+}
+
+#upper > #info > #text > h1{
+	padding:5px;
+	margin-top:10px;
+	margin-bottom:20px;
+	text-decoration:underline;
+}
+#upper > #info > #text > div{
+	margin-top:20px;
+	padding:5px;
+}
+
+#upper > #info > #control {
+	margin:0px 3px;
+	overflow:hidden;
+}
+
+#upper > #info > #menu {
+	margin: 5px;
+    margin-bottom: 5px;
+	margin-bottom: -10px;
+	border: 2px solid #b8cfe5;
+	display: inline-block;
+}
+
+#upper > #info > #menu button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+#upper > #info > #control > button {
+    background: linear-gradient(#fff, #CCE5F2);
+    border: 1px solid #73A7C1;
+    padding: 5px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+	border-radius:1px;
+}
+
+#upper > #info > #control > input[type="text"] {
+    background: #fff;
+    border: 1px solid #73A7C1;
+    padding: 5px 5px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: default;
+	border-radius:1px;
+}
+
+#upper > #info > #control > button:hover{
+	background: linear-gradient(#CCE5F2, #fff);
+}
+
+#lower {
+	margin-top:10px;
+	width:100%;
+	height:350px;
+}
+
+#lower > #resultWindow{
+	border:2px solid #b8cfe5;
+	height:100%;
+	width:calc(100% - 9px);
+	position:relative;	
+}
+#lower > #resultWindow > h1{
+	position: absolute;
+	display: block;
+	background-color: #c0c0c0;
+	padding: 2px;
+	top: -10px;
+	left: 5px;
+}
+#lower > #resultWindow > #resultChart{
+	height: calc(100% - 20px);
+	width: calc(100% - 20px);
+	background-color: #f7f7f7;
+	margin: 10px;
+
+}
+#map{
+	float: right;
+	width: calc(100% - 405px);
+	height: 350px;
+	background-color: #fff;
+	margin-top: 5px;
+}

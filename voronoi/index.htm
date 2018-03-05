@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!-- Voronoi Algo by http://www.raymondhill.net/voronoi/rhill-voronoi.html !-->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="js/rhill-voronoi.js"></script>
+		<script src="js/helpwindow.js"></script>
+		<link rel="stylesheet" href="style/style.css" type="text/css">
+	</head>
+	<body onload="Voronoi.init();" data-gr-c-s-loaded="true">
+		<div id="upper">
+			<canvas id="voronoiCanvas" style="cursor:crosshair" width="800" height="600"></canvas>
+		</div>
+		<div id="lower">
+			<center>
+				<input id="voronoiClearSites" value="Zeichenfläche leeren" onclick="Voronoi.clearSites();" type="button"></input>
+				<button name="showhelp">Hilfe einblenden</button>
+			</center>
+		</div>
+	</body>
+</html>

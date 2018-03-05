@@ -1,0 +1,130 @@
+*{
+	margin:0px;
+	padding:0px;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: arial;
+	color: #353535;
+}
+body{
+	background-color:#c0c0c0;
+	margin:5px;
+}
+#frame{
+	width:800px;
+	height:800px;
+	margin:auto auto;
+	background-color:#c0c0c0;
+
+}
+#upper{
+	overflow:hidden;
+	margin-bottom:5px;
+}
+#upper > #drawfield{
+	background-color:#e8e8e8;
+	width:400px;
+	height:400px;
+	float:left;
+}
+#upper > #info{
+	float:left;
+	width:calc(100% - 405px);
+	padding-left:5px;
+	height:367px;
+}
+#upper > #info > #text {
+	border:2px solid #b8cfe5;
+	border-top:5px solid #b8cfe5;
+	height:calc(100% - 1px);
+	position:relative;
+	background:#fff;
+	overflow-y:scroll;
+}
+
+#upper > #info > #text > h1{
+	position: absolute;
+	display: block;
+	background-color: #c0c0c0;
+	padding: 2px;
+	top: -10px;
+	left: 5px;
+}
+#upper > #info > #text > div{
+	display:none;
+	line-height: 18px;
+	font-weight: normal;
+	font-size: 13px;
+	margin:10px;
+}
+
+#upper > #info > #taskheader {
+	overflow:hidden;
+}
+
+#upper > #info > #taskheader > button{
+	border:2px solid #b8cfe5;
+	margin:0px;
+	padding: 5px 10px;
+	float:left;
+	margin-bottom:-2px;
+	margin-right:-2px;
+	background-color:transparent;
+	cursor:pointer;
+}
+
+#control {
+	margin:0px 3px;
+	overflow:hidden;
+}
+
+#control > button, #control > select {
+    background: linear-gradient(#fff, #CCE5F2);
+    border: 1px solid #73A7C1;
+    padding: 5px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+	border-radius:1px;
+}
+
+#control > button:hover{
+	background: linear-gradient(#CCE5F2, #fff);
+}
+
+#control > select{
+	background: #fff !important;
+}
+
+#lower {
+	margin-top:10px;
+	width:100%;
+}
+
+#lower > #resultWindow{
+	border:2px solid #b8cfe5;
+	height:200px;
+	position:relative;
+	margin-top: 10px;
+}
+#lower > #resultWindow > h1{
+	position: absolute;
+	display: block;
+	background-color: #c0c0c0;
+	padding: 2px;
+	top: -10px;
+	left: 5px;
+}
+#lower > #resultWindow > #resultNotComp{
+	height: calc(100% - 40px);
+	width: calc(100% - 40px);
+	background-color: #f7f7f7;
+	margin: 10px;
+	padding:10px;
+	line-height: 18px;
+	font-weight: normal;
+	font-size: 13px;
+	
+}
