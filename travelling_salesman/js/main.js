@@ -18,17 +18,7 @@ function containsOnlyNull(array2d){
 
 }
 
-function getMiddlePoint(p1,p2){
-	return new POINT(
-		(p1.getX() + p2.getX())/2,
-		(p1.getY() + p2.getY())/2
-	);
-}
-
 $(function() {	
-	var germanyBBox = [2];
-		germanyBBox[0] = new POINT(5.98865807458, 47.3024876979);
-		germanyBBox[1] = new POINT(15.0169958839, 54.983104153);
 	
 	//source: https://www.laengengrad-breitengrad.de/adresse-zu-laengengrad-breitengrad-gps-koordinaten
 	var stations = [
@@ -58,17 +48,18 @@ $(function() {
 		["Bremen",8.800843, 53.076725]
 	];
 	
-	var printSize = [493,653]; //imagesize
-	
-	myApp = new APP('map', germanyBBox, printSize, stations);
+	myApp = new APP('map', stations, 'mapid');
 	
 	$("button").click(function(){
 		var clicked = $(this).attr("name");
 		
-		if(clicked.localeCompare("run") == 0){
-			//myApp.run();		
+		if(clicked.localeCompare("run") == 0){	
 			myApp.simAnnealing();
 		}
+		
+		if(clicked.localeCompare("runAnimated") == 0){	
+			intervalId = myApp.simAnnealingAnimated(10);
+		}		
 		
 		if(clicked.localeCompare("reset") == 0){
 			myApp.reset();

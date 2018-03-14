@@ -1,11 +1,10 @@
-function APP(elemId, germanyBBox, screenSizeBox, stations){
+function APP(elemId, stations, mapId){
 	this.elemId=elemId;
 	this.resetStations = stations;
 	this.networkLocations, this.stationList;
-	this.transform = new TRANSFORM(germanyBBox,screenSizeBox);
+	this.mapObject = L.map(mapId);
+	this.mapObject.on('click', this.onClickEvent);	
 	this.reset();
-	this.repaint();
-	this.addOnClickListener(elemId);
 }
 
 APP.prototype.reset = function(){
@@ -15,35 +14,23 @@ APP.prototype.reset = function(){
 	$.each(this.resetStations, function(index, station){
 		thisAppInstance.addStation(station[1],station[2],station[0]);
 	});
+	
+	this.mapObject.eachLayer(function (layer) {
+		myApp.mapObject.removeLayer(layer);
+	});	
+
 	this.repaint();
 }
 
-APP.prototype.addOnClickListener = function(elem){
-	var thisAppInstance = this;
-	$("#"+elem).click(function(e){
-		var x = e.pageX - this.offsetLeft;
-		var y = e.pageY - this.offsetTop;
-		thisAppInstance.onClickEvent(x,y);
-	});	
-}
 
-APP.prototype.onClickEvent = function(x,y){
-	var closest = false;
-	if(this.networkLocations.length == 0) this.repaint();
-	var point = this.transform.invertTransformPoint(new POINT(x,y));
-	this.addNewLocation(point);
-}
+APP.prototype.onClickEvent = function(e){	
+	var point = new POINT(e.latlng.lng,e.latlng.lat);
+	
+	var circle = L.marker([point.getY(), point.getX()], {
+		
+	}).addTo(myApp.mapObject);
 
-APP.prototype.addNewLocation = function(point){
-	this.networkLocations.push(
-		point
-	);
-	point = this.transform.transformPoint(point);
-	ctx.fillStyle="red";
-	ctx.beginPath();	
-	ctx.rect(point.getX()-4, point.getY()-4, 8, 8);
-	ctx.closePath();
-	ctx.fill();		
+	myApp.networkLocations.push(point);
 }
 
 APP.prototype.addStation = function(x,y,name){
@@ -52,62 +39,31 @@ APP.prototype.addStation = function(x,y,name){
 	);	
 }
 
-APP.prototype.getStationByName = function(name){
-	var result = false;
-	$.each(this.stationList, function(index, station){
-		if(station.getName().toUpperCase() === name.toUpperCase()){
-			result = station;
-			return true;
-		}
-	});
-	return result;
-}
-
-APP.prototype.drawStations = function(array,color){
-	var transform = this.transform;
-	ctx.fillStyle=color;
-	$.each(array, function(index, station){
-		ctx.beginPath();	
-		var point = transform.transformPoint(station.getLocation());
-		ctx.arc(point.getX(), point.getY(), 5, 0, Math.PI*2, true);
-		ctx.fillText(station.getName(),point.getX()+7,point.getY()+4);
-		ctx.closePath();
-		ctx.fill();		
-	});		
-}
-
 APP.prototype.repaint = function(){
-	canvas = document.getElementById(this.elemId);
-    ctx = canvas.getContext("2d");
+	this.mapObject.setView([50,10], 6);
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		id: 'mapbox.streets'
+	}).addTo(this.mapObject);
 	
-	canvas.height = this.transform.getScreenHeight();
-	canvas.width = this.transform.getScreenWidth();	
-	
-	var background = new Image();
-	background.src = "img/Karte_Deutschland.jpg";
-	
-	var thisAppInstance = this;
-	background.onload = function(){
-		ctx.drawImage(background,0,0, thisAppInstance.transform.getScreenWidth(), thisAppInstance.transform.getScreenHeight());
-		//syncronous
-		thisAppInstance.drawStations(thisAppInstance.stationList,"#ffffff");
-		var array = [];
-		$.each(thisAppInstance.startStopPath, function(index, stationName){
-			array.push(thisAppInstance.getStationByName(stationName));
-		});
-		thisAppInstance.drawStations(array,"#000");
+	/*
+		//shows stations
+		var map = this.mapObject;
+		
+		$.each(this.stationList, function(index, station){	
+			var point = station.getLocation();
+		
+			var circle = L.circle([point.getY(), point.getX()], {
+				color: 'transparent',
+				fillColor: 'green',
+				fillOpacity: 0.75,
+				radius: 5000
+			}).addTo(map);	
+		});	
+	*/
+};
 
-		$.each(thisAppInstance.networkLocations, function(index, point){
-			point = thisAppInstance.transform.transformPoint(point);
-			ctx.fillStyle="red";
-			ctx.beginPath();	
-			ctx.rect(point.getX()-4, point.getY()-4, 8, 8);
-			ctx.closePath();
-			ctx.fill();		
-		});
-	};
-}
-
+/*
 APP.prototype.run = function(){
 	if(this.networkLocations.length < 2){
 		alert("[ERROR] Es werden mindestens 2 Punkte benötigt.");
@@ -286,17 +242,12 @@ APP.prototype.run = function(){
 	} while (!containsOnlyNull(matrix));	
 	
 	if(! this.checkIfFinal(result)){
-		//result = this.reprocess(result);
+		result = this.reprocess(result);
 	}
 	
 	this.drawConnections(result);
 }
 
-APP.prototype.simAnnealing = function(){
-	var instance = new SA(this.networkLocations, 10000, 0.005);
-	var connections = instance.run();
-	this.drawConnections(connections);
-}
 
 APP.prototype.checkIfFinal = function(array){
 	var start = array[0][0];
@@ -321,18 +272,52 @@ APP.prototype.checkIfFinal = function(array){
 	return true;
 }
 
-APP.prototype.drawConnections = function(array){
+*/
+
+APP.prototype.simAnnealing = function(){
+	var instance = new SA(this.networkLocations, 1000, 0.000001, 1000);
+	var connections = instance.run();
+	this.redrawConnections(connections);
+}
+
+APP.prototype.simAnnealingAnimated = function(ms){
+	var instance = new SA(this.networkLocations, 1000, 0.000001, 1000);
+	
+	var id = setInterval(function(){ 
+		var result = instance.runOneStep();
+		
+		if(result){
+			myApp.redrawConnections(result);
+		} else {
+			clearInterval(id);
+		}
+	}, ms);
+
+	return id;
+}
+
+
+APP.prototype.redrawConnections = function(array){
 	var allPoints = this.networkLocations;
-	ctx.strokeStyle = "#2EFEF7";
-	var transform = this.transform;
+	
+	//removing all polylines if exist
+	var map = this.mapObject;
+    for(i in map._layers){
+        if(map._layers[i]._path != undefined) {
+            map.removeLayer(map._layers[i]);
+        }
+    }	
 		
 	$.each(array, function(index, connection){	
-		var pointa = transform.transformPoint(allPoints[connection[0]])
-		var pointb = transform.transformPoint(allPoints[connection[1]]);
-		ctx.beginPath();
-		ctx.moveTo(pointa.getX(),pointa.getY());
-		ctx.lineTo(pointb.getX(),pointb.getY());
-		ctx.closePath();
-		ctx.stroke();
+		var pointa = allPoints[connection[0]]
+		var pointb = allPoints[connection[1]];
+
+		var latlngs = [
+			[pointa.getY(),pointa.getX()],
+			[pointb.getY(),pointb.getX()]
+		];
+		var polyline = L.polyline(latlngs,{
+			color: 'blue'
+		}).addTo(myApp.mapObject);		
 	});	
 }

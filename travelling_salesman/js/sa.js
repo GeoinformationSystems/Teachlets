@@ -1,9 +1,11 @@
-function SA(points, sigma, rv){
+function SA(points, sigma, rv, to){
 	this.pointlist = points;
 	this.circle = this.createCircle();
 	this.distancesMatrix = this.createDistancesMatrix();
 	this.sigma = sigma;
 	this.sigmaReductionValue = rv;
+	this.stableTimeOut = to;
+	this.toCounter = this.stableTimeOut;
 }
 
 SA.prototype.createDistancesMatrix = function(){
@@ -17,7 +19,7 @@ SA.prototype.createDistancesMatrix = function(){
 			if(r == c){
 				matrix[r][c] = null;
 			} else {
-				matrix[r][c] = parseFloat(parseInt(calculateDifferance(this.pointlist[r],this.pointlist[c])*100000) / parseFloat(100000));
+				matrix[r][c] = parseInt(calculateDifferance(this.pointlist[r],this.pointlist[c])*1000);
 			}
 		}
 	}
@@ -63,12 +65,27 @@ SA.prototype.calculateTotalDistance = function(array){
 }
 
 SA.prototype.run = function(){
-	console.log(JSON.stringify(this.circle));
-	while(this.sigma > 1){
-		this.optimizeCircle();
+	while(this.sigma > 1 && this.toCounter > 0){
+		if(this.optimizeCircle()){
+			this.toCounter = this.stableTimeOut;
+		} else {
+			this.toCounter--;
+		}
 	}
-	console.log(JSON.stringify(this.circle));
 	return this.circle;
+}
+
+SA.prototype.runOneStep = function(){
+	if(this.sigma > 1 && this.toCounter > 0){
+		if(this.optimizeCircle()){
+			this.toCounter = this.stableTimeOut;
+		} else {
+			this.toCounter--;
+		}
+		return this.circle;
+	} else {
+		return false;
+	}
 }
 
 SA.prototype.optimizeCircle = function(){
@@ -76,8 +93,12 @@ SA.prototype.optimizeCircle = function(){
 	
 	cityA = this.getNewRandomCityChecked([0]);
 	cityB = this.getNewRandomCityChecked([0,cityA]);
+		
+	var newCircle = [];
 	
-	var newCircle = this.circle;
+	for(var i=0; i<this.circle.length; i++){
+		newCircle[i] = [this.circle[i][0],this.circle[i][1]];
+	}
 	
 	for(var i=0; i<newCircle.length; i++){
 		if(newCircle[i][0] == cityA){
@@ -92,32 +113,38 @@ SA.prototype.optimizeCircle = function(){
 			newCircle[i][1] = cityA;
 		}	
 	}
+
+	
+	var checker = this.checkIfValidSwitch(newCircle);
+	
+	if(checker){
+		this.circle = [];
+		for(var i=0; i<newCircle.length; i++){
+			this.circle[i] = [newCircle[i][0],newCircle[i][1]];
+		}
+	}
 	
 	this.sigma *= 1-this.sigmaReductionValue;
 	
-	if(this.checkIfValidSwitch(newCircle)){
-		this.circle = newCircle;
-	} else {
-		return false;
-	}
-	
-	return true;
+	return checker;
 }
 
 SA.prototype.checkIfValidSwitch = function(newCircle){
 	var currentDistance = this.calculateTotalDistance(this.circle);
 	var newDistance = this.calculateTotalDistance(newCircle);
 	
-	if(newDistance < currentDistance) return true;
+	if(newDistance < currentDistance) {
+			return true;
+	}
 	
 	var delta = -1 * (newDistance - currentDistance);
-	
+		
 	var checker = Math.exp(delta / this.sigma);
 	
 	if(checker > Math.random()){
 		return true;
 	} else {
-		return false
+		return false;
 	}
 }
 
