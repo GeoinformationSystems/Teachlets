@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="js/appobject.js"></script>
+		<script src="js/pointobject.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/helpwindow.js"></script>
+	</head>
+	<body>	
+	<div id="frame">
+		<h1>
+			Lauflängenkodierung
+		</h1>
+		<div id="lower">
+			<canvas id="drawfield" width="600" height="600"></canvas>			
+		</div>
+		<div id="upper">
+			<div id="info">
+				<h1>Steuerung</h1>
+				<div style="">
+					<select id="examplesSelect">
+						<option value="0" selected>Beispiel laden</option>
+						<option value="1">Beispiel 1</option>
+						<option value="2">Beispiel 2</option>
+						<option value="3">Beispiel 3</option>
+					</select>
+					<button name="resetRaster" >Zeichenfläche leeren</button>
+					<button name="run">Kodierung berechnen</button>
+				</div>
+
+				<h1>Ausgabe ohne Komprimierung</h1>
+				<div id="resultNotComp"></div>
+
+				<h1>Ausgabe mit Komprimierung</h1>
+				<div>
+					<div id="taskheader">
+						<button name="rlc_fest" id="rlc_fest">RLC - fest</button>
+						<button name="rlc_var" id="rlc_var">RLC - variabel</button>
+					</div>
+					<div id="resultWindow">
+						<div id="text">
+							<div id="resultRLCf"></div>
+							<div id="resultRLCv"></div>
+						</div>
+					</div>	
+				</div>
+			
+			</div>
+		</div>
+	</div>	
+	
+	</body>
+</html>

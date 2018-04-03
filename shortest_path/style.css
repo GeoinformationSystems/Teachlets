@@ -2,116 +2,63 @@
 	margin:0px;
 	padding:0px;
 	font-size: 12px;
-	font-weight: bold;
+	font-weight: normal;
 	font-family: arial;
 	color: #353535;
 }
 body{
-	background-color:#c0c0c0;
+	background-color:#fff;
 	margin:5px;
 }
+
 #frame{
-	width:850px;
-	height:500px;
-	margin:auto auto;
-	background-color:#c0c0c0;
-
-}
-#upper{
-	overflow:hidden;
-	margin-bottom:5px;
-}
-#upper > #drawfield{
-	background-color:#e8e8e8;
-	width:700px;
-	height:500px;
-	float:left;
-}
-#upper > #info{
-	float:left;
-	width:350px;
-	margin-left:5px;
-}
-#upper > #info > #text {
-	border:2px solid #b8cfe5;
-	margin:5px;
-	height:calc(100% - 5px);
-	position:relative;
+	width:600px;
+	height:calc(100% - 60px);
+	margin:20px auto;
+	padding:10px;
 }
 
-#upper > #info > #text > h1{
-	position: absolute;
+#frame > h1 {
 	display: block;
-	background-color: #c0c0c0;
-	padding: 2px;
-	top: -10px;
-	left: 5px;
-}
-#upper > #info > #text > div{
-	margin-top:40px;
-	padding:5px;
-}
-
-#upper > #info > #control {
-	margin:0px 3px;
-	overflow:hidden;
-}
-
-#upper > #info > #control > button {
-    background: linear-gradient(#fff, #CCE5F2);
-    border: 1px solid #73A7C1;
-    padding: 5px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    cursor: pointer;
-	border-radius:1px;
-}
-
-#upper > #info > #control > input[type="text"] {
-    background: #fff;
-    border: 1px solid #73A7C1;
-    padding: 5px 5px;
-    text-align: left;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    cursor: default;
-	border-radius:1px;
-}
-
-#upper > #info > #control > button:hover{
-	background: linear-gradient(#CCE5F2, #fff);
+	margin-bottom: 10px;
+	padding: 5px 10px;
+	font-size: 20px;
+	color: #434343;
+	border-bottom: 2px solid #009688;
 }
 
 #lower {
-	margin-top:10px;
-	width:100%;
-	height:350px;
+  float: right;
 }
-
-#lower > #resultWindow{
-	border:2px solid #b8cfe5;
-	height:100%;
-	width:calc(100% - 9px);
-	position:relative;	
+#upper {
+  float: left;
+  width: 285px;
+  margin-right: 15px;
 }
-#lower > #resultWindow > h1{
-	position: absolute;
-	display: block;
-	background-color: #c0c0c0;
-	padding: 2px;
-	top: -10px;
-	left: 5px;
+#info h1 {
+  background-color: #009688;
+  border-top-left-radius: 3px;
+  padding: 5px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  border-top-right-radius: 3px;
 }
-#lower > #resultWindow > #resultChart{
-	height: calc(100% - 20px);
-	width: calc(100% - 20px);
-	background-color: #f7f7f7;
-	margin: 10px;
-
+#info >div {
+  background-color: #eeeeee;
+  padding: 5px;
+  margin-bottom: 10px;
 }
-#map{
-	float:right;
+#info > div button {
+  display: inherit;
+  background-color: #fff;
+  border: none;
+  padding: 5px;
+  margin: 5px;
+  min-width: 150px;
+  cursor: pointer;
+  font-weight: bold;
+}
+#drawfield {
+    background-color: #ececec;
 }

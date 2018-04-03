@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- Voronoi Algo by http://www.raymondhill.net/voronoi/rhill-voronoi.html !-->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="js/rhill-voronoi.js"></script>
+		<link rel="stylesheet" href="style/style.css" type="text/css">
+	</head>
+	<body onload="Voronoi.init();" data-gr-c-s-loaded="true">
+	<div id="frame">
+		<h1>
+			Voronoi-Triangulation
+		</h1>
+		<div id="lower">
+			<canvas id="voronoiCanvas" style="cursor:crosshair" width="600" height="700"></canvas>
+		</div>
+		<div id="upper">
+			<div id="info">
+				<h1>Hilfe zum Programm</h1>
+				<div style="font-style: italic;">
+					Klicken Sie die Zeichenfläche an einer beliebigen Stelle an um einen neuen Punkt für die Triangulation festzulegen.
+				</div>
+				
+				<h1>Steuerung</h1>
+				<div style="">
+					<input id="voronoiClearSites" value="Zeichenfläche leeren" onclick="Voronoi.clearSites();" type="button"></input>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

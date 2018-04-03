@@ -91,7 +91,7 @@ MODEL.prototype.repaint = function(){
 		
 		for(r=0; r < this.raster.getRows(); r++){
 			for(c=0; c < this.raster.getCols(); c++){
-				var value = ((this.raster.getValue(r, c) - minValue) * factor);
+				var value = parseInt((this.raster.getValue(r, c) - minValue) * factor);
 
 				ctx.fillStyle="rgb("+value+", 0, "+(255 - value)+")";
 				ctx.fillRect(c*this.raster.getCellSize(),r*this.raster.getCellSize(),this.raster.getCellSize(),this.raster.getCellSize()); 

@@ -2,67 +2,70 @@
 	margin:0px;
 	padding:0px;
 	font-size: 12px;
-	font-weight: bold;
+	font-weight: normal;
 	font-family: arial;
 	color: #353535;
 }
 body{
-	background-color:#c0c0c0;
+	background-color:#fff;
 	margin:5px;
 }
+
 #frame{
-	width:800px;
-	height:800px;
-	margin:auto auto;
-	background-color:#c0c0c0;
-
-}
-#upper{
-	overflow:hidden;
-	margin-bottom:5px;
-}
-#upper > #drawfield{
-	background-color:#e8e8e8;
-	width:400px;
-	height:400px;
-	float:left;
-}
-#upper > #info{
-	float:left;
-	width:calc(100% - 405px);
-	padding-left:5px;
-	height:367px;
-}
-#upper > #info > #text {
-	border:2px solid #b8cfe5;
-	border-top:5px solid #b8cfe5;
-	height:calc(100% - 1px);
-	position:relative;
-	background:#fff;
-	overflow-y:scroll;
+	width:600px;
+	height:calc(100% - 60px);
+	margin:20px auto;
+	padding:10px;
 }
 
-#upper > #info > #text > h1{
-	position: absolute;
+#frame > h1 {
 	display: block;
-	background-color: #c0c0c0;
-	padding: 2px;
-	top: -10px;
-	left: 5px;
-}
-#upper > #info > #text > div{
-	display:none;
-	line-height: 18px;
-	font-weight: normal;
-	font-size: 13px;
-	margin:10px;
+	margin-bottom: 10px;
+	padding: 5px 10px;
+	font-size: 20px;
+	color: #434343;
+	border-bottom: 2px solid #009688;
 }
 
-#upper > #info > #taskheader {
+#lower {
+  float: right;
+}
+#upper {
+  float: left;
+  width: 285px;
+  margin-right: 15px;
+}
+#info h1 {
+  background-color: #009688;
+  border-top-left-radius: 3px;
+  padding: 5px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: normal;
+  border-top-right-radius: 3px;
+}
+#info >div {
+  background-color: #eeeeee;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+#info > div > button, #info > div > select {
+  display: inherit;
+  background-color: #fff;
+  border: none;
+  padding: 5px;
+  margin: 5px;
+  min-width: 150px;
+  cursor: pointer;
+  font-weight: bold;
+}
+#drawfield {
+    background-color: #ececec;
+}
+#taskheader{
 	overflow:hidden;
 }
-
-#upper > #info > #taskheader > button{
+#taskheader > button{
 	border:2px solid #b8cfe5;
 	margin:0px;
 	padding: 5px 10px;
@@ -72,59 +75,16 @@ body{
 	background-color:transparent;
 	cursor:pointer;
 }
-
-#control {
-	margin:0px 3px;
-	overflow:hidden;
-}
-
-#control > button, #control > select {
-    background: linear-gradient(#fff, #CCE5F2);
-    border: 1px solid #73A7C1;
-    padding: 5px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    cursor: pointer;
-	border-radius:1px;
-}
-
-#control > button:hover{
-	background: linear-gradient(#CCE5F2, #fff);
-}
-
-#control > select{
-	background: #fff !important;
-}
-
-#lower {
-	margin-top:10px;
-	width:100%;
-}
-
-#lower > #resultWindow{
-	border:2px solid #b8cfe5;
-	height:200px;
-	position:relative;
-	margin-top: 10px;
-}
-#lower > #resultWindow > h1{
-	position: absolute;
-	display: block;
-	background-color: #c0c0c0;
-	padding: 2px;
-	top: -10px;
-	left: 5px;
-}
-#lower > #resultWindow > #resultNotComp{
-	height: calc(100% - 40px);
-	width: calc(100% - 40px);
-	background-color: #f7f7f7;
-	margin: 10px;
-	padding:10px;
-	line-height: 18px;
-	font-weight: normal;
-	font-size: 13px;
-	
+#resultWindow {
+	border: 2px solid #b8cfe5;
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-top-color: rgb(184, 207, 229);
+	border-top: 5px solid #b8cfe5;
+	height: calc(100% - 1px);
+	position: relative;
+	background: #fff;
+	overflow-y: scroll;
+	max-height: 263px;
+	padding: 5px;
 }

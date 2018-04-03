@@ -11,46 +11,46 @@
 	</head>
 	<body>
 	<div id="frame">
+		<h1>
+			Quadtree - Algorithmus
+		</h1>
 		<div id="upper">
-			<canvas id="drawfield" width="400" height="400">
-			</canvas>
 			<div id="info">
-				<div id="text">
-					<h1>Wie funktioniert der Algorithmus</h1>
-					<div>
-						Der Quadtree - Algorithmus ermittelt die Anzahl von markierten (schwarzen) Feldern
-						auf der Zeichenfläche. Ist diese Anzahl kleiner 1 oder beinhaltet die Fläche nur
-						markierte Felder so wird ausschließlich ein Wurzelknoten in einem Baum erzeugt. <br>
-						<br> 
-						Dieser Knoten ist
-						weiß, wenn die Felder weiß sind bzw. schwarz, wenn alle Felder der Zeichenfläche schwarz sind.
-						Ist auf der Zeichenfläche eine Anzahl von Feldern größer bzw. gleich 1 und kleiner als die
-						Gesamtmenge alle Felder markiert so wird die Zeichenfläche in vier gleichgroße Quadranten
-						unterteilt. <br>
-						<br>
-						Diese neuen Teilflächen werden unter einen Wurzelknoten sortiert angeordnet. Der
-						Quadrant links oben wird im Baum ganz links dargestellt, der Quadrant rechts oben daneben. Es
-						folgen die Flächen rechts unten und links unten.<br> 
-						(Quadranten im Uhrzeigersinn, links oben beginnend)<br>
-						<br>
-						Die neuen Quadranten werden wieder bezüglich
-						der Anzahl der markierten Felder überprüft. Und nach obiger Regel unterteilt oder nicht.
-					</div>
+				<h1>Erklärung der Funktionsweise</h1>
+				<div style="font-style: italic;">
+					Der Quadtree - Algorithmus ermittelt die Anzahl von markierten (schwarzen) Feldern
+					auf der Zeichenfläche. Ist diese Anzahl kleiner 1 oder beinhaltet die Fläche nur
+					markierte Felder so wird ausschließlich ein Wurzelknoten in einem Baum erzeugt. <br>
+					<br> 
+					Dieser Knoten ist
+					weiß, wenn die Felder weiß sind bzw. schwarz, wenn alle Felder der Zeichenfläche schwarz sind.
+					Ist auf der Zeichenfläche eine Anzahl von Feldern größer bzw. gleich 1 und kleiner als die
+					Gesamtmenge alle Felder markiert so wird die Zeichenfläche in vier gleichgroße Quadranten
+					unterteilt. <br>
+					<br>
+					Diese neuen Teilflächen werden unter einen Wurzelknoten sortiert angeordnet. Der
+					Quadrant links oben wird im Baum ganz links dargestellt, der Quadrant rechts oben daneben. Es
+					folgen die Flächen rechts unten und links unten.<br> 
+					(Quadranten im Uhrzeigersinn, links oben beginnend)<br>
+					<br>
+					Die neuen Quadranten werden wieder bezüglich
+					der Anzahl der markierten Felder überprüft. Und nach obiger Regel unterteilt oder nicht.
 				</div>
-				<div id="control">
+				
+				<h1>Steuerung</h1>
+				<div style="">
 					<button name="runQuad" >Kodierung berechnen</button>
 					<button name="resetRaster" >Zeichenfläche leeren</button>
-					<button name="showhelp" style="float: right;">Hilfe</button>
 				</div>
 			</div>
 		</div>
 		<div id="lower">
-			<div id="resultWindow">
-				<h1>Ausgabe des Baumes</h1>
-				<div id="resultChart">
-				</div>
-			</div>
+			<canvas id="drawfield" width="300" height="300"></canvas>
 		</div>
+		<div style="clear:left;">
+			<h2>Ausgabe des Baumes</h1>
+			<div id="resultChart"></div>
+		</div>			
 	</div>
 	</body>
 </html>

@@ -82,11 +82,11 @@ var Voronoi = {
 	pow: self.Math.pow,
 	PI: self.Math.PI,
 	isNaN: self.isNaN,
-	DEFAULT_CANVAS_WIDTH: 800,
-	DEFAULT_CANVAS_HEIGHT: 600,
+	DEFAULT_CANVAS_WIDTH: 300,
+	DEFAULT_CANVAS_HEIGHT: 700,
 	canvas: null,
 	canvasMargin: 0,
-	bbox: {xl:0,xr:800,yt:0,yb:600},
+	bbox: {xl:0,xr:300,yt:0,yb:700},
 
 	//
 	// Objects

@@ -1,0 +1,53 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="">	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
+	
+	<script src="js/app.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/point.js"></script>
+	<script src="js/station.js"></script>
+	<script src="js/transform.js"></script>
+	<script src="js/sa.js"></script>
+</head>
+<body>
+	<div id="frame">
+		<h1>
+			Problem des Handlungsreisenden
+		</h1>
+		<div id="lower">
+			<div id="mapid" style="width: 600px; height: 700px"></div>
+		</div>
+		<div id="upper">
+			<div id="info">
+				<h1>Erklärung der Funktionsweise</h1>
+				<div style="font-style: italic;">
+					Beim Travelling-Salesman-Problem (auch Problem des Handlungsreisenden) geht man davon aus, dass ein Handlungsreisender n viele Städte anfahren und anschließend wieder zur Startstadt zurückkehren möchte. Gesucht ist dann eine Route, welche die Reiseentferungen minimiert.<br>
+					<br>
+					Da es für dieses Problem noch keine exakten, effizienten Algorithmen gibt, wurde die kürzeste Route hier mit einem heuristischen Optimierungsverfahren, dem so genannten Simulated Annealing, ermittelt. Dabei wird versucht, ausgehend von einer beliebigen Route, durch geeignete Abänderung zu einer kürzeren Lösung zu gelangen, wobei allerdings auch Verschlechterungen um bis zu einem bestimmten Toleranzwert akzeptiert werden. Dies wird solange durchgeführt, wobei der Toleranzwert kontinuierlich verringert wird, bis keine Abänderung mehr zu einer Verbesserung führt und somit ein Optimum gefunden ist.<br>
+					<br>
+					Das Travelling-Salesman-Problem findet z.B. Anwendung in der Tourenplanung und Logistik.
+				</div>
+				
+				<h1>Hilfe zum Programm</h1>
+				<div style="font-style: italic;">
+					Klicken Sie auf die Karte um einen zu besuchenden Standort festzulegen. Starten Sie dann den Algorithmus, wenn Sie mind. 2 Standorte angelegt haben.<br>
+					Sie können die Karte mit gedrückter, linken Maustaste verschieben sowie mit dem Scrollrad rein und raus zoomen.
+				</div>
+				
+				<h1>Steuerung</h1>
+				<div style="">
+					<button name="run">Algorithmus starten</button>
+					<button name="reset">Karte säubern</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

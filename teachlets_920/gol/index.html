@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" href="style.css" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="js/appobject.js"></script>
+		<script src="js/pointobject.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/helpwindow.js"></script>
+	</head>
+	<body>
+	<div id="frame">
+		<h1>
+			Turingmaschine "game of life"
+		</h1>
+		<div id="lower">
+			<canvas id="drawfield" width="600" height="600"></canvas>
+		</div>
+		<div id="upper">
+			<div id="info">				
+				<h1>Hilfe zum Programm</h1>
+				<div style="font-style: italic;">
+					Tragen Sie auf der großen grauen Fläche mit der Maus Punkte ein (durch Klicken).<br>
+					<br>
+					Starten Sie anschließend die automatische Simulation oder simulieren Sie nur den nächsten Schritt
+					indem Sie auf die jeweiligen Button klicken.<br>
+					<br>
+					Im Anschluss wird gemäß den folgenden Regeln der Automat durchgeführt:<br>
+					<br>
+					- Jede Zelle kann entweder lebendig oder tot sein<br>
+					- Die Zelle der Folgegeneration bleibt am leben, wenn in ihren direkten Umgebungszellen 2 oder 3 Zellen lebend sind.<br>
+					- Die Zelle der Folgegeneration wird lebendig, wenn in ihren direkten Umgebungszellen genau 3 Zellen lebendig sind.<br>
+					- In allen anderen Fällen stirbt die Zelle oder bleibt tot.
+				</div>
+				
+				<h1>Steuerung</h1>
+				<div style="">
+					<button name="resetRaster" style="margin:0px;">Zeichenfläche leeren</button>
+				</div>
+				
+				<h1>Simulationen</h1>
+				<div style="">
+					<button name="run">Einen Schritt simulieren</button>
+					<div style="overflow:hidden;">
+						<button name="runAuto" style="float:left;">Auto-Simulation start/stop</button>
+						<div id="indicator"></div>
+					</div>
+					<div style="overflow:hidden; margin:5px;">
+						<div style="float:left; color:#6E6E6E;">Bilder pro Sekunde:</div>
+						<div style="float:left; color:#6E6E6E; margin-left:5px;" id="fps">10</div>
+					</div>
+					<div style="overflow:hidden; margin:5px;">
+						<input type="range" min="1" max="20" step="1" value="10" id="fpsswitcher" style="width:100%;">
+						<div style="overflow:hidden; width:100%;">
+							<div style="float:left; color:#6E6E6E;">1</div>
+							<div style="float:right; color:#6E6E6E;">20</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	</body>
+</html>

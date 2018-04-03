@@ -1,0 +1,51 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="js/model.js"></script>
+	<script src="js/pointobject.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/raster.js"></script>
+	<script src="js/station.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+	<div id="frame">
+		<h1>
+			Inverse Distance Weighting
+		</h1>
+		<div id="lower">
+			<canvas id="drawfield" width="600" height="700"></canvas>
+		</div>
+		<div id="upper">
+			<div id="info">
+				<h1>Erklärung der Funktionsweise</h1>
+				<div style="font-style: italic;">
+					Bitte erstellen Sie zu Beginn eine beliebige Anzahl an Stationen. Klicken Sie dazu auf die linke Rasterfläche an dem gewünschten Punkt. Sie werden aufgefordert einen Wert für diese Station einzugeben.<br>
+					Starten Sie den IDW-Algorithmus mittels dem Button "Run IDW".<br>
+					<br>
+					In dem Raster wird der Wert jeder Zelle als räumlich gewichtetes Mittel der Werte der umliegenden Stationen bestimmt.<br>
+					Sie haben die Möglichkeit die Anzahl dieser Station zu limitieren.<br>
+					<br>
+					Niedrige Werte werden mit Blau dargestellt. Hohe Werte mir Rot.<br>
+					Das Raster ist 600px breit und 700px hoch. Jede Zelle ist 10px breit und hoch.<br>
+					Der Mittelpunkt der Zelle wird zur Berechnung der Distanz genutzt.
+				</div>
+				
+				<h1>Hilfe zum Programm</h1>
+				<div style="font-style: italic;">
+					Klicken Sie die Zeichenfläche an einer beliebigen Stelle an um eine neue Station mit einem Wert anzulegen.
+				</div>
+				
+				<h1>Steuerung</h1>
+				<div style="">
+					<input type="text" placeholder="Anzahl genutzter Stationen" id="limiter">
+					<button name="runIdw" >Run IDW</button>
+					<button name="resetAll" >Zeichenfläche leeren</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
