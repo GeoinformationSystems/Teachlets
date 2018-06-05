@@ -12,11 +12,13 @@ $(function() {
 			timeoutInstance = setInterval(function(){
 				myAppInstance.proceedGrid();
 			}, timout);
-			$('#indicator').css("background-color", "#D0FA58");
+            $('#autorun_button').html('Auto-Simulation stop');
+			// $('#indicator').css("background-color", "#D0FA58");
 		} else {
 			clearInterval(timeoutInstance);
 			timeoutInstance = null;
-			$('#indicator').css("background-color", "#FA5858");
+            $('#autorun_button').html('Auto-Simulation start');
+			// $('#indicator').css("background-color", "#FA5858");
 		}
 		
 		if(force === true) resetInterval();

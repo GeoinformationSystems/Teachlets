@@ -5,6 +5,9 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<script type="text/javascript" src="js/rhill-voronoi.js"></script>
 		<link rel="stylesheet" href="style/style.css" type="text/css">
+		<script src="https://www.tu-dresden.de/++resource++iframe_integration.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="https://www.tu-dresden.de/++resource++iframe_integration.css" />
 	</head>
 	<body onload="Voronoi.init();" data-gr-c-s-loaded="true">
 	<div id="frame">
@@ -12,7 +15,7 @@
 			Voronoi-Triangulation
 		</h1>
 		<div id="lower">
-			<canvas id="voronoiCanvas" style="cursor:crosshair" width="600" height="700"></canvas>
+			<canvas id="voronoiCanvas" style="cursor:crosshair" width="900" height="700"></canvas>
 		</div>
 		<div id="upper">
 			<div id="info">
@@ -20,7 +23,7 @@
 				<div style="font-style: italic;">
 					Klicken Sie die Zeichenfläche an einer beliebigen Stelle an um einen neuen Punkt für die Triangulation festzulegen.
 				</div>
-				
+
 				<h1>Steuerung</h1>
 				<div style="">
 					<input id="voronoiClearSites" value="Zeichenfläche leeren" onclick="Voronoi.clearSites();" type="button"></input>

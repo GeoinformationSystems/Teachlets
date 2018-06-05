@@ -14,6 +14,10 @@ function mycompare(a,b) {
 	return 0;
 }
 
+function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
 $(function() {
 	myModel = new MODEL(10,"#drawfield"); //size defaultvalue uniqueid rows = colums
 	
@@ -21,7 +25,7 @@ $(function() {
 		var x = e.pageX - this.offsetLeft;
 		var y = e.pageY - this.offsetTop;
 		var value = prompt("Bitte geben Sie einen Wert für diese Station ein.", "0");
-		if(value != null) myModel.addStation(x,y,value);
+		if(value != null && isNumber(value)) myModel.addStation(x,y,value);
 	});
 	
 	$("button").click(function(){

@@ -77,7 +77,7 @@ APP.prototype.setValue = function(x,y,val){
 
 APP.prototype.refresh = function(){
 	var ctx = $(this.elemId).get(0).getContext("2d");
-	ctx.fillStyle="red";
+	ctx.fillStyle="#00305e";
 	for(var r=0; r < this.rows; r++){
 		for(var c=0; c < this.cols; c++){
 			if(this.data[r][c] == 0){

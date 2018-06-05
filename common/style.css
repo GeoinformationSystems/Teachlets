@@ -1,0 +1,99 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: 'Source Sans Pro', sans-serif;
+    /*color: #00305e;*/
+}
+
+body {
+    background-color: #fff;
+    margin: 5px;
+}
+
+#frame {
+    width: 600px;
+    height: calc(100% - 60px);
+    margin: 20px auto;
+    padding: 10px;
+}
+
+#frame > h1 {
+    display: block;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    font-size: 20px;
+    color: #434343;
+    border-bottom: 2px solid #00305e;
+}
+
+#lower {
+    float: right;
+}
+
+#upper {
+    float: left;
+    width: 265px;
+    margin-right: 15px;
+}
+
+#info h1 {
+    background-color: #00305e;
+    border-top-left-radius: 3px;
+    padding: 5px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: normal;
+    border-top-right-radius: 3px;
+}
+
+#info > div {
+    background-color: #f2f3f3;
+    /*padding: 5px;*/
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+#info button, #info select{
+    margin: 5px 20px;
+    width: calc(100% - 40px);
+}
+
+#info > div > div {
+    margin: 5px 20px;
+    width: calc(100% - 40px);
+}
+
+#rlc_fest, #rlc_var {
+    margin: 5px 0px !important;
+    width: 100% !important;
+}
+
+#drawfield {
+    background-color: #f2f3f3;
+}
+
+#info input {
+    margin: 5px 20px;
+    width: calc(100% - 40px);
+    display: inherit;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#resultChart{
+    width: 600px;
+}
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+}
+
+.help{
+    font-style: italic;
+    margin: 5px 20px;
+}

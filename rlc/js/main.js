@@ -4,9 +4,9 @@ $(function() {
 	
 	//start config
 	$('#resultRLCf').show();
-	$('#rlc_var').css("background","none");
-	$('#rlc_fest').css("background","#b8cfe5");	
-	
+	$('#rlc_var').css("background","#dd2727");
+	$('#rlc_fest').css("background","#b41c1c");
+
 	$("#drawfield").mousedown(function(e){
 		var x = e.pageX - this.offsetLeft;
 		var y = e.pageY - this.offsetTop;
@@ -57,15 +57,15 @@ $(function() {
 		if(clicked.localeCompare("rlc_fest") == 0){
 			$('#resultRLCf').show();
 			$('#resultRLCv').hide();
-			$('#rlc_var').css("background","none");
-			$('#rlc_fest').css("background","#b8cfe5");
+			$('#rlc_var').css("background","#dd2727");
+			$('#rlc_fest').css("background","#b41c1c");
 		}
 		
 		if(clicked.localeCompare("rlc_var") == 0){
 			$('#resultRLCv').show();
 			$('#resultRLCf').hide();
-			$('#rlc_fest').css("background","none");
-			$('#rlc_var').css("background","#b8cfe5");
+			$('#rlc_fest').css("background","#dd2727");
+			$('#rlc_var').css("background","#b41c1c");
 		}
 		
 		if(clicked.localeCompare("run") == 0){

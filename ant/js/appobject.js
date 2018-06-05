@@ -57,7 +57,7 @@ APP.prototype.refresh = function(){
 			if(this.data[r][c] == 0){
 				ctx.clearRect(c*this.cellSize,r*this.cellSize,this.cellSize,this.cellSize); 
 			} else {
-				ctx.fillStyle="#000";
+				ctx.fillStyle="#00305e";
 				ctx.fillRect(c*this.cellSize,r*this.cellSize,this.cellSize,this.cellSize); 
 			}
 		}

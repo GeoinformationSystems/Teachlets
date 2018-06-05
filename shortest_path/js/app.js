@@ -125,7 +125,7 @@ APP.prototype.drawStations = function(array,options){
 }
 
 APP.prototype.repaint = function(){
-	this.mapObject.setView([50,10], 6);
+
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
 		id: 'mapbox.streets'
@@ -144,6 +144,7 @@ APP.prototype.repaint = function(){
 			radius: 7500
 		}
 	);
+    this.mapObject.setView([50,10], 5);
 }
 
 APP.prototype.startDijkstra = function(){

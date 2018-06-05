@@ -82,11 +82,11 @@ var Voronoi = {
 	pow: self.Math.pow,
 	PI: self.Math.PI,
 	isNaN: self.isNaN,
-	DEFAULT_CANVAS_WIDTH: 300,
-	DEFAULT_CANVAS_HEIGHT: 500,
+	DEFAULT_CANVAS_WIDTH: 600,
+	DEFAULT_CANVAS_HEIGHT: 700,
 	canvas: null,
 	canvasMargin: 0,
-	bbox: {xl:0,xr:300,yt:0,yb:500},
+	bbox: {xl:0,xr:600,yt:0,yb:700},
 
 	//
 	// Objects
@@ -610,7 +610,7 @@ var Voronoi = {
 
 		// case: this is the most-likely case, where an existing beach section
 		// is split by the new beach section to insert.
-		// adding a new beach section in the middle of an existing one causes two new 
+		// adding a new beach section in the middle of an existing one causes two new
 		// transitions to appear -- but since both transitions involve the same two
 		// sites, only one single edge is created, and assigned to two beach front
 		// transitions (the 'edge' member of the beach section.)
@@ -671,7 +671,7 @@ var Voronoi = {
 		// if points l->c->r are clockwise, then center beach section does not
 		// converge, hence it can't end up as a vertex
 		if ((lSite.y-cSite.y)*(rSite.x-cSite.x)<=(lSite.x-cSite.x)*(rSite.y-cSite.y)) {return;}
-		// find circumscribed circle 
+		// find circumscribed circle
 		var circle=this.circumcircle(lSite,cSite,rSite);
 		// not valid if the bottom-most point of the circumcircle
 		// is above the sweep line
@@ -1076,7 +1076,7 @@ var Voronoi = {
 			if (r>t1) {return false;}
 			else if (r>t0) {t0=r;}
 			}
-		// bottom		
+		// bottom
 		q = this.bbox.yb-ay;
 		if (dy===0 && q<0) {return false;}
 		r = q/dy;
