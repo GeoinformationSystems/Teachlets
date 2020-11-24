@@ -1,14 +1,20 @@
-function APP(mapId, stations, network){
+function APP(myMap, myView, stations, network){
 	this.resetStations = stations;
 	this.resetNetwork = network;
 	this.stationList = [];
 	this.stationGrid = [];
 	this.startStopPath = [];
 	this.clickMinDifference = 0.075; //buffer arround stationpoint
-	this.mapObject = L.map(mapId);
-	this.mapObject.on('click', this.onClickEvent);			
+
+	this.myMap = myMap;
+	this.myView = myView;
+
+	this.myView.on("click", this.onClickEvent);
+
+	//this.mapObject = L.map(mapId);
+	//this.mapObject.on('click', this.onClickEvent);
 	this.reset();
-}
+};
 
 APP.prototype.reset = function(){
 	this.stationGrid = [];
@@ -21,25 +27,40 @@ APP.prototype.reset = function(){
 	$.each(this.resetNetwork, function(index, entry){
 		thisAppInstance.addConnection(entry[0],entry[1]);
 	});	
-	
-	this.mapObject.eachLayer(function (layer) {
-		myApp.mapObject.removeLayer(layer);
-	});		
+
+	this.myMap.findLayerById("station").removeAll();
+	this.myMap.findLayerById("connection").removeAll();
+
+	// this.mapObject.eachLayer(function (layer) {
+	// 	myApp.mapObject.removeLayer(layer);
+	// });
 	
 	this.repaint();
 }
 
-APP.prototype.onClickEvent = function(e){
-	var point = new POINT(e.latlng.lng,e.latlng.lat);
-	var closest = false;
-	
-	$.each(myApp.stationList, function(index, station){
-		if(closest === false || calculateDifferance(point,closest.getLocation()) > calculateDifferance(station.getLocation(),point)){
-			closest = station;
+APP.prototype.onClickEvent = function(event){
+
+	myApp.myView.hitTest(event).then(function (response) {
+		if (response.results.length) {
+			var nearStation = response.results.filter(function (result) {
+				return result.graphic.layer === myApp.myMap.findLayerById("station");
+			})
+			if(nearStation.length) {
+				myApp.setOrResetStartOrEndPoint(myApp.stationList[nearStation[0].graphic.attributes]);
+			}
 		}
-	});	
-	if(calculateDifferance(closest.getLocation(),point) > myApp.clickMinDifference) return false;
-	myApp.setOrResetStartOrEndPoint(closest);	
+	});
+
+	// var point = new POINT(e.latlng.lng,e.latlng.lat);
+	// var closest = false;
+	//
+	// $.each(myApp.stationList, function(index, station){
+	// 	if(closest === false || calculateDifferance(point,closest.getLocation()) > calculateDifferance(station.getLocation(),point)){
+	// 		closest = station;
+	// 	}
+	// });
+	// if(calculateDifferance(closest.getLocation(),point) > myApp.clickMinDifference) return false;
+	// myApp.setOrResetStartOrEndPoint(closest);
 }
 
 APP.prototype.setOrResetStartOrEndPoint = function(station){
@@ -54,8 +75,7 @@ APP.prototype.setOrResetStartOrEndPoint = function(station){
 		this.drawStations([station],{
 			color: 'black',
 			fillColor: 'red',
-			fillOpacity: 1,
-			radius: 7500
+			size: "12px"
 			}	
 		);
 	}
@@ -66,8 +86,7 @@ APP.prototype.setOrResetStartOrEndPoint = function(station){
 		this.drawStations([station],{
 			color: 'black',
 			fillColor: 'red',
-			fillOpacity: 1,
-			radius: 7500
+			size: "12px"
 			}	
 		);
 	}
@@ -102,34 +121,88 @@ APP.prototype.addConnection = function(cityA,cityB){
 }
 
 APP.prototype.drawConnections = function(array,options){
-	var map = this.mapObject;
-	$.each(array, function(index, connection){	
-		var pointa = connection.getA().getLocation();
-		var pointb = connection.getB().getLocation();
-		
-		var latlngs = [
-			[pointa.getY(),pointa.getX()],
-			[pointb.getY(),pointb.getX()]
-		];
-		var polyline = L.polyline(latlngs,options).addTo(map);			
+	var myLayer = this.myMap.findLayerById("connection");
+	$.each(array, function(index, connection){
+
+		require(["esri/Graphic"],function(Graphic){
+
+			var simpleLineSymbol = {
+				type: "simple-line",
+				color: options.color,
+				width: 2
+			};
+
+			var polyline = {
+				type: "polyline",
+				paths: [
+					[connection.getA().getLocation().getX(), connection.getA().getLocation().getY()],
+					[connection.getB().getLocation().getX(), connection.getB().getLocation().getY()]
+				]
+			};
+
+			var polylineGraphic = new Graphic({
+				geometry: polyline,
+				symbol: simpleLineSymbol
+			});
+
+			myLayer.add(polylineGraphic);
+
+			// var pointa = connection.getA().getLocation();
+			// var pointb = connection.getB().getLocation();
+			//
+			// var latlngs = [
+			// 	[pointa.getY(),pointa.getX()],
+			// 	[pointb.getY(),pointb.getX()]
+			// ];
+			// var polyline = L.polyline(latlngs,options).addTo(map);
+		});
 	});		
 }
 
 APP.prototype.drawStations = function(array,options){
-	var map = this.mapObject;
-	$.each(array, function(index, station){	
-		var point = station.getLocation();
-	
-		var circle = L.circle([point.getY(), point.getX()], options).addTo(map);	
-	});	
-}
+	var myLayer = this.myMap.findLayerById("station");
+	var sl = this.stationList;
+	$.each(array, function(index, station){
+
+		require(["esri/Graphic"],function(Graphic){
+
+			var point = {
+				type: "point",
+				longitude: station.location.getX(),
+				latitude: station.location.getY()
+			};
+
+			var simpleMarkerSymbol = {
+				type: "simple-marker",
+				color: options.fillColor,
+				size: options.size,
+				outline: {
+					color: options.color, // white
+					width: 1
+				}
+			};
+
+			var pointGraphic = new Graphic({
+				attributes: sl.indexOf(station),
+				geometry: point,
+				symbol: simpleMarkerSymbol
+			});
+
+			myLayer.add(pointGraphic);
+
+			//var point = station.getLocation();
+
+			//var circle = L.circle([point.getY(), point.getX()], options).addTo(map);
+		});
+	});
+};
 
 APP.prototype.repaint = function(){
 
-	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
-		id: 'mapbox.streets'
-	}).addTo(this.mapObject);
+	// L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+	// 	maxZoom: 18,
+	// 	id: 'mapbox.streets'
+	// }).addTo(this.mapObject);
 	
 	this.drawConnections(this.stationGrid,{
 			color: 'black',
@@ -138,13 +211,13 @@ APP.prototype.repaint = function(){
 	);
 	this.drawStations(this.stationList,{
 			color: 'black',
-			stroke: false,
-			fillColor: 'orange',
-			fillOpacity: 0.75,
-			radius: 7500
+			fillColor: [226, 119, 40, 0.75],	//3 color values, last one: opacity
+			size: "8px"
 		}
 	);
-    this.mapObject.setView([50,10], 5);
+	this.myView.center = [10.5, 51.1];
+	this.myView.zoom = 5;
+    // this.mapObject.setView([50,10], 5);
 }
 
 APP.prototype.startDijkstra = function(){
@@ -154,8 +227,7 @@ APP.prototype.startDijkstra = function(){
 		this.addConnection(ret[i][0],ret[i][1]);
 	}
 	this.drawConnections(this.stationGrid,{
-			color: 'red',
-			opacity: 1
+			color: 'red'
 		}
 	);
 }

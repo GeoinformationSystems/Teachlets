@@ -13,7 +13,7 @@ function getMiddlePoint(p1,p2){
 	);
 }
 
-$(function() {		
+require(["esri/Map","esri/views/MapView","esri/Graphic","esri/layers/GraphicsLayer"], function(Map, MapView, Graphic, GraphicsLayer) {
 	//source: https://www.laengengrad-breitengrad.de/adresse-zu-laengengrad-breitengrad-gps-koordinaten
 	var stations = [
 		["Dresden",13.7372621,51.0504088],
@@ -96,6 +96,24 @@ $(function() {
 			myApp.reset();
 		}
 	});
-	
-	myApp = new APP('mapid', stations, network);
+
+	var map = new Map({
+		basemap: "streets-vector"
+	});
+
+	var view = new MapView({
+		container: "mapid",
+		map: map
+	});
+
+	var connectionLayer = new GraphicsLayer({
+		id:"connection"
+	});
+	var stationLayer = new GraphicsLayer({
+		id:"station"
+	});
+
+	map.addMany([connectionLayer, stationLayer]);
+
+	myApp = new APP(map, view, stations, network);
 });
