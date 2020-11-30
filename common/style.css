@@ -13,13 +13,36 @@ body {
 }
 
 #frame {
-    width: 800px;
+    width: 90vw;
+    height: 100vh;
+    margin: 0px auto;
+    /* width: 800px;
     height: calc(100% - 60px);
-    margin: 20px auto;
-    padding: 10px;
+    padding: 10px; */
+}
+#header {
+    height:7vh;
+    margin-top:3vh;
 }
 
-#frame > h1 {
+#right {
+    float: right;
+    width:60vw;
+    height:90vh;
+}
+
+#left {
+    float: left;
+    width:calc(30vw - 15px);
+    height:90vh;
+    margin-right: 15px;
+}
+#info{
+    height:90vh;
+    overflow:auto;
+}
+
+#header > h1 {
     display: block;
     margin-bottom: 10px;
     padding: 5px 10px;
