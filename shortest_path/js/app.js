@@ -5,16 +5,11 @@ function APP(myMap, myView, stations, network){
 	this.stationGrid = [];
 	this.startStopPath = [];
 	this.clickMinDifference = 0.075; //buffer arround stationpoint
-
 	this.myMap = myMap;
 	this.myView = myView;
-
-	this.myView.on("click", this.onClickEvent);
-
-	//this.mapObject = L.map(mapId);
-	//this.mapObject.on('click', this.onClickEvent);
+	this.myView.on("click", this.onClickEvent);			
 	this.reset();
-};
+}
 
 APP.prototype.reset = function(){
 	this.stationGrid = [];
@@ -27,19 +22,15 @@ APP.prototype.reset = function(){
 	$.each(this.resetNetwork, function(index, entry){
 		thisAppInstance.addConnection(entry[0],entry[1]);
 	});	
-
+	
 	this.myMap.findLayerById("station").removeAll();
-	this.myMap.findLayerById("connection").removeAll();
-
-	// this.mapObject.eachLayer(function (layer) {
-	// 	myApp.mapObject.removeLayer(layer);
-	// });
+	
+	this.myMap.findLayerById("connection").removeAll();	
 	
 	this.repaint();
 }
 
 APP.prototype.onClickEvent = function(event){
-
 	myApp.myView.hitTest(event).then(function (response) {
 		if (response.results.length) {
 			var nearStation = response.results.filter(function (result) {
@@ -50,17 +41,6 @@ APP.prototype.onClickEvent = function(event){
 			}
 		}
 	});
-
-	// var point = new POINT(e.latlng.lng,e.latlng.lat);
-	// var closest = false;
-	//
-	// $.each(myApp.stationList, function(index, station){
-	// 	if(closest === false || calculateDifferance(point,closest.getLocation()) > calculateDifferance(station.getLocation(),point)){
-	// 		closest = station;
-	// 	}
-	// });
-	// if(calculateDifferance(closest.getLocation(),point) > myApp.clickMinDifference) return false;
-	// myApp.setOrResetStartOrEndPoint(closest);
 }
 
 APP.prototype.setOrResetStartOrEndPoint = function(station){
@@ -72,10 +52,10 @@ APP.prototype.setOrResetStartOrEndPoint = function(station){
 	
 	if(this.startStopPath.length == 0){
 		//new input
-		this.drawStations([station],{
-			color: 'black',
-			fillColor: 'red',
-			size: "12px"
+		this.drawStations([station],{		//Änderung Farbe angeklickter Punkte
+			color: [0, 37, 87],
+			fillColor: [204, 7, 30],
+			size: "8px"
 			}	
 		);
 	}
@@ -83,10 +63,10 @@ APP.prototype.setOrResetStartOrEndPoint = function(station){
 	if(this.startStopPath.indexOf(station.getName()) == -1){
 		this.startStopPath.push(station.getName());
 		
-		this.drawStations([station],{
-			color: 'black',
-			fillColor: 'red',
-			size: "12px"
+		this.drawStations([station], {				//Änderung Farbe angeklickter Punkte
+			color: [0, 37, 87],
+			fillColor: [204, 7, 30],
+			size: "8px"
 			}	
 		);
 	}
@@ -123,13 +103,12 @@ APP.prototype.addConnection = function(cityA,cityB){
 APP.prototype.drawConnections = function(array,options){
 	var myLayer = this.myMap.findLayerById("connection");
 	$.each(array, function(index, connection){
+	require(["esri/Graphic"],function(Graphic){
 
-		require(["esri/Graphic"],function(Graphic){
-
-			var simpleLineSymbol = {
+			var simpleLineSymbol = { 		
 				type: "simple-line",
-				color: options.color,
-				width: 2
+				width: 2,
+				color: options.color
 			};
 
 			var polyline = {
@@ -145,25 +124,15 @@ APP.prototype.drawConnections = function(array,options){
 				symbol: simpleLineSymbol
 			});
 
-			myLayer.add(polylineGraphic);
-
-			// var pointa = connection.getA().getLocation();
-			// var pointb = connection.getB().getLocation();
-			//
-			// var latlngs = [
-			// 	[pointa.getY(),pointa.getX()],
-			// 	[pointb.getY(),pointb.getX()]
-			// ];
-			// var polyline = L.polyline(latlngs,options).addTo(map);
-		});
+			myLayer.add(polylineGraphic);			
 	});		
+ });
 }
 
 APP.prototype.drawStations = function(array,options){
 	var myLayer = this.myMap.findLayerById("station");
 	var sl = this.stationList;
-	$.each(array, function(index, station){
-
+	$.each(array, function(index, station){	
 		require(["esri/Graphic"],function(Graphic){
 
 			var point = {
@@ -172,12 +141,12 @@ APP.prototype.drawStations = function(array,options){
 				latitude: station.location.getY()
 			};
 
-			var simpleMarkerSymbol = {
+			var simpleMarkerSymbol = {			
 				type: "simple-marker",
 				color: options.fillColor,
 				size: options.size,
 				outline: {
-					color: options.color, // white
+					color: options.color,
 					width: 1
 				}
 			};
@@ -188,36 +157,29 @@ APP.prototype.drawStations = function(array,options){
 				symbol: simpleMarkerSymbol
 			});
 
-			myLayer.add(pointGraphic);
-
-			//var point = station.getLocation();
-
-			//var circle = L.circle([point.getY(), point.getX()], options).addTo(map);
-		});
-	});
+			myLayer.add(pointGraphic);	
+	});	
+ });
 };
 
-APP.prototype.repaint = function(){
+APP.prototype.repaint = function () {
 
-	// L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-	// 	maxZoom: 18,
-	// 	id: 'mapbox.streets'
-	// }).addTo(this.mapObject);
-	
-	this.drawConnections(this.stationGrid,{
-			color: 'black',
-			opacity: 0.25
-		}
+	this.drawConnections(this.stationGrid, {	//Änderung Farbe Linie
+		color: [0, 37, 87],
+		//opacity: 0.25
+	}
 	);
-	this.drawStations(this.stationList,{
-			color: 'black',
-			fillColor: [226, 119, 40, 0.75],	//3 color values, last one: opacity
-			size: "8px"
-		}
+	this.drawStations(this.stationList, {		//Änderung Farbe Punkte
+		color: [0, 37, 87],
+		size: "8px",
+		//stroke: false,
+		fillColor: [0, 158, 224],
+		//fillOpacity: 0.20,
+		//radius: 7500
+	}
 	);
-	this.myView.center = [10.5, 51.1];
-	this.myView.zoom = 5;
-    // this.mapObject.setView([50,10], 5);
+	this.myView.center = [10.4541205, 51.164305];	
+	this.myView.zoom = 6;							
 }
 
 APP.prototype.startDijkstra = function(){
@@ -226,8 +188,9 @@ APP.prototype.startDijkstra = function(){
 	for(i=0;i<ret.length;i++){
 		this.addConnection(ret[i][0],ret[i][1]);
 	}
-	this.drawConnections(this.stationGrid,{
-			color: 'red'
+	this.drawConnections(this.stationGrid,{		//Änderung Farbe der kürzesten Linie
+			color: [211,39,39],
+			//opacity: 1
 		}
 	);
 }

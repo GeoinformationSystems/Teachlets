@@ -13,7 +13,7 @@ function getMiddlePoint(p1,p2){
 	);
 }
 
-require(["esri/Map","esri/views/MapView","esri/Graphic","esri/layers/GraphicsLayer"], function(Map, MapView, Graphic, GraphicsLayer) {
+require(["esri/Map","esri/views/MapView","esri/Graphic","esri/layers/GraphicsLayer"], function(Map, MapView, Graphic, GraphicsLayer) {		
 	//source: https://www.laengengrad-breitengrad.de/adresse-zu-laengengrad-breitengrad-gps-koordinaten
 	var stations = [
 		["Dresden",13.7372621,51.0504088],
@@ -96,14 +96,15 @@ require(["esri/Map","esri/views/MapView","esri/Graphic","esri/layers/GraphicsLay
 			myApp.reset();
 		}
 	});
-
+	
 	var map = new Map({
-		basemap: "streets-vector"
+		basemap: "streets-relief-vector",
 	});
 
 	var view = new MapView({
 		container: "mapid",
-		map: map
+		map: map,
+		center: [10.4541205,51.164305],
 	});
 
 	var connectionLayer = new GraphicsLayer({
@@ -112,8 +113,8 @@ require(["esri/Map","esri/views/MapView","esri/Graphic","esri/layers/GraphicsLay
 	var stationLayer = new GraphicsLayer({
 		id:"station"
 	});
-
+	
 	map.addMany([connectionLayer, stationLayer]);
-
+	
 	myApp = new APP(map, view, stations, network);
 });
