@@ -97,24 +97,24 @@ require(["esri/Map","esri/views/MapView","esri/Graphic","esri/layers/GraphicsLay
 		}
 	});
 	
-	var map = new Map({
+	var esriMap = new Map({
 		basemap: "streets-relief-vector",
 	});
 
-	var view = new MapView({
+	var esriView = new MapView({
 		container: "mapid",
-		map: map,
+		map: esriMap,
 		center: [10.4541205,51.164305],
 	});
 
-	var connectionLayer = new GraphicsLayer({
-		id:"connection"
+	var connectingLineLayer = new GraphicsLayer({
+		id:"connectingLine"
 	});
 	var stationLayer = new GraphicsLayer({
-		id:"station"
+		id:"stationsPoint"
 	});
 	
-	map.addMany([connectionLayer, stationLayer]);
+	esriMap.addMany([connectingLineLayer, stationLayer]);
 	
-	myApp = new APP(map, view, stations, network);
+	myApp = new APP(esriMap, esriView, stations, network);
 });

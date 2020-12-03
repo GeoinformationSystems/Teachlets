@@ -23,9 +23,9 @@ APP.prototype.reset = function(){
 		thisAppInstance.addConnection(entry[0],entry[1]);
 	});	
 	
-	this.myMap.findLayerById("station").removeAll();
+	this.myMap.findLayerById("stationsPoint").removeAll();
 	
-	this.myMap.findLayerById("connection").removeAll();	
+	this.myMap.findLayerById("connectingLine").removeAll();	
 	
 	this.repaint();
 }
@@ -34,7 +34,7 @@ APP.prototype.onClickEvent = function(event){
 	myApp.myView.hitTest(event).then(function (response) {
 		if (response.results.length) {
 			var nearStation = response.results.filter(function (result) {
-				return result.graphic.layer === myApp.myMap.findLayerById("station");
+				return result.graphic.layer === myApp.myMap.findLayerById("stationsPoint");
 			})
 			if(nearStation.length) {
 				myApp.setOrResetStartOrEndPoint(myApp.stationList[nearStation[0].graphic.attributes]);
@@ -101,9 +101,9 @@ APP.prototype.addConnection = function(cityA,cityB){
 }
 
 APP.prototype.drawConnections = function(array,options){
-	var myLayer = this.myMap.findLayerById("connection");
+	var myLayer = this.myMap.findLayerById("connectingLine");
 	$.each(array, function(index, connection){
-	require(["esri/Graphic"],function(Graphic){
+		require(["esri/Graphic"],function(Graphic){
 
 			var simpleLineSymbol = { 		
 				type: "simple-line",
@@ -125,12 +125,12 @@ APP.prototype.drawConnections = function(array,options){
 			});
 
 			myLayer.add(polylineGraphic);			
-	});		
- });
+		});		
+	});
 }
 
 APP.prototype.drawStations = function(array,options){
-	var myLayer = this.myMap.findLayerById("station");
+	var myLayer = this.myMap.findLayerById("stationsPoint");
 	var sl = this.stationList;
 	$.each(array, function(index, station){	
 		require(["esri/Graphic"],function(Graphic){
@@ -158,8 +158,8 @@ APP.prototype.drawStations = function(array,options){
 			});
 
 			myLayer.add(pointGraphic);	
-	});	
- });
+		});	
+	});
 };
 
 APP.prototype.repaint = function () {
