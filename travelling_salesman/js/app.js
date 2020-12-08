@@ -1,8 +1,11 @@
-function APP(mapId, stations){
+function APP(myMap, myView, stations){
 	this.resetStations = stations;
 	this.networkLocations, this.stationList;
-	this.mapObject = L.map(mapId);
-	this.mapObject.on('click', this.onClickEvent);	
+	//this.mapObject = L.map(mapId);
+	//this.mapObject.on('click', this.onClickEvent);
+	this.myMap = myMap;
+	this.myView = myView;
+	this.myView.on("click", this.onClickEvent);	
 	this.reset();
 }
 
@@ -11,40 +14,81 @@ APP.prototype.reset = function(){
 	this.networkLocations = [];
 	var thisAppInstance = this;
 	$.each(this.resetStations, function(index, station){
-		thisAppInstance.addStation(station[1],station[2],station[0]);
+		thisAppInstance.addStation(station[1], station[2], station[0]);		//station[i]?
 	});
 	
-	this.mapObject.eachLayer(function (layer) {
-		myApp.mapObject.removeLayer(layer);
-	});	
+	//this.mapObject.eachLayer(function (layer) {
+		//myApp.mapObject.removeLayer(layer);
+	//});	
+	this.myMap.findLayerById("stationsPoint").removeAll();	
+	this.myMap.findLayerById("connectingLine").removeAll();
 
 	this.repaint();
 }
 
+APP.prototype.onClickEvent = function (event) {					//irgendwo Punkte anklicken können
+	//var point = new POINT(e.latlng.lng,e.latlng.lat);
+	//var circle = L.marker([point.getY(), point.getX()], {
+	//}).addTo(myApp.mapObject);
+	//myApp.networkLocations.push(point);
 
-APP.prototype.onClickEvent = function(e){	
-	var point = new POINT(e.latlng.lng,e.latlng.lat);
-	
-	var circle = L.marker([point.getY(), point.getX()], {
-		
-	}).addTo(myApp.mapObject);
-
-	myApp.networkLocations.push(point);
+	//Inhalt fehlt noch
 }
 
-APP.prototype.addStation = function(x,y,name){
+APP.prototype.addStation = function (x, y, name) {		
 	this.stationList.push(
-		new STATION(x,y,name)
-	);	
+		new STATION(x, y, name)
+	);
 }
 
-APP.prototype.repaint = function(){
-	this.mapObject.setView([50,10], 5);
-	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
-		id: 'mapbox.streets'
-	}).addTo(this.mapObject);
-	
+APP.prototype.drawStations = function (array, options) {		
+	var myLayer = this.myMap.findLayerById("stationsPoint");
+	var sl = this.stationList;
+	$.each(array, function (index, station) {
+		require(["esri/Graphic"], function (Graphic) {
+
+			var point = {
+				type: "point",
+				longitude: station.location.getX(),
+				latitude: station.location.getY()
+			};
+
+			var simpleMarkerSymbol = {
+				type: "simple-marker",
+				color: options.fillColor,
+				size: options.size,
+				outline: {
+					color: options.color,
+					width: 1
+				}
+			};
+
+			var pointGraphic = new Graphic({
+				attributes: sl.indexOf(station),
+				geometry: point,
+				symbol: simpleMarkerSymbol
+			});
+
+			myLayer.add(pointGraphic);
+		});
+	});
+};
+
+APP.prototype.drawConnections = function (array, options) {		//Polygon der angeklickten Punkte zeichnen, mit circle?
+	var myLayer = this.myMap.findLayerById("connectingLine");
+	$.each(array, function (index, connection) {				//$.each(array, function (index, sa)?
+		require(["esri/Graphic"], function (Graphic) {
+			//Inhalt fehlt noch
+		});
+	});
+}
+
+APP.prototype.repaint = function () {
+	//this.mapObject.setView([50,10], 5);
+	//L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+	//maxZoom: 18,
+	//id: 'mapbox.streets'
+	//}).addTo(this.mapObject);
 	/*
 		//shows stations
 		var map = this.mapObject;
@@ -60,7 +104,18 @@ APP.prototype.repaint = function(){
 			}).addTo(map);	
 		});	
 	*/
-};
+
+	this.drawStations(this.stationList, {		//Änderung Farbe Punkte		
+		color: [0, 37, 87],
+		size: "8px",
+		//stroke: false,
+		fillColor: [0, 158, 224],
+		//fillOpacity: 0.20,
+		//radius: 7500
+	});
+	this.myView.center = [10.4541205, 51.164305];	
+	this.myView.zoom = 6;							
+}
 
 /*
 APP.prototype.run = function(){
@@ -300,7 +355,9 @@ APP.prototype.redrawConnections = function(array){
 	var allPoints = this.networkLocations;
 	
 	//removing all polylines if exist
-	var map = this.mapObject;
+
+	//var map = this.mapObject;
+	var map = this.myMap;
     for(i in map._layers){
         if(map._layers[i]._path != undefined) {
             map.removeLayer(map._layers[i]);
@@ -315,8 +372,10 @@ APP.prototype.redrawConnections = function(array){
 			[pointa.getY(),pointa.getX()],
 			[pointb.getY(),pointb.getX()]
 		];
-		var polyline = L.polyline(latlngs,{
+		//var polyline = L.polyline(latlngs,{
+		var polyline = myMap.polyline(latlngs, {
 			color: 'blue'
-		}).addTo(myApp.mapObject);		
+		//}).addTo(myApp.mapObject);
+		}).addTo(myApp.myMap);
 	});	
 }
