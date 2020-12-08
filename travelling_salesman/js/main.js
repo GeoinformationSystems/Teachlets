@@ -18,8 +18,8 @@ function containsOnlyNull(array2d){
 
 }
 
-$(function() {	
-	
+//$(function() {	
+require(["esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/GraphicsLayer"], function (Map, MapView, Graphic, GraphicsLayer) {		
 	//source: https://www.laengengrad-breitengrad.de/adresse-zu-laengengrad-breitengrad-gps-koordinaten
 	var stations = [
 		["Dresden",13.7372621,51.0504088],
@@ -47,22 +47,43 @@ $(function() {
 		["Osnabrück",8.045769, 52.277490],
 		["Bremen",8.800843, 53.076725]
 	];
-	
-	myApp = new APP('mapid', stations);
-	
-	$("button").click(function(){
+
+	$("button").click(function () {
 		var clicked = $(this).attr("name");
-		
-		if(clicked.localeCompare("run") == 0){	
+
+		if (clicked.localeCompare("run") == 0) {
 			myApp.simAnnealing();
 		}
-		
-		if(clicked.localeCompare("runAnimated") == 0){	
+
+		if (clicked.localeCompare("runAnimated") == 0) {
 			intervalId = myApp.simAnnealingAnimated(10);
-		}		
-		
-		if(clicked.localeCompare("reset") == 0){
+		}
+
+		if (clicked.localeCompare("reset") == 0) {
 			myApp.reset();
 		}
 	});
+
+	//myApp = new APP('mapid', stations);
+	var esriMap = new Map({
+		basemap: "streets-relief-vector",
+	});
+
+	var esriView = new MapView({
+		container: "mapid",
+		map: esriMap,
+		center: [10.4541205, 51.164305],
+	});
+
+	var stationLayer = new GraphicsLayer({
+		id: "stationsPoint"
+	});
+
+	var connectingLineLayer = new GraphicsLayer({
+		id: "connectingLine"
+	});
+
+	esriMap.addMany([stationLayer, connectingLineLayer]);
+
+	myApp = new APP(esriMap, esriView, stations);
 });
