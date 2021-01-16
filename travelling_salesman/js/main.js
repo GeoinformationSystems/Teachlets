@@ -79,11 +79,15 @@ require(["esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/Graphics
 		id: "stationsPoint"
 	});
 
+	var clickPointLayer = new GraphicsLayer({
+		id: "clickPoint"
+	});
+
 	var connectingLineLayer = new GraphicsLayer({
 		id: "connectingLine"
 	});
 
-	esriMap.addMany([stationLayer, connectingLineLayer]);
+	esriMap.addMany([stationLayer, clickPointLayer, connectingLineLayer]);
 
 	myApp = new APP(esriMap, esriView, stations);
 });

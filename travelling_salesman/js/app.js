@@ -21,6 +21,7 @@ APP.prototype.reset = function(){
 		//myApp.mapObject.removeLayer(layer);
 	//});	
 	this.myMap.findLayerById("stationsPoint").removeAll();	
+	this.myMap.findLayerById("clickPoint").removeAll();
 	this.myMap.findLayerById("connectingLine").removeAll();
 
 	this.repaint();
@@ -31,8 +32,109 @@ APP.prototype.onClickEvent = function (event) {					//irgendwo Punkte anklicken 
 	//var circle = L.marker([point.getY(), point.getX()], {
 	//}).addTo(myApp.mapObject);
 	//myApp.networkLocations.push(point);
+	myApp.myView.hitTest(event).then(function (response) {
+		if (response.results.length) {		//kopiert vom ShortestPath
+			var nearStation = response.results.filter(function (result) {
+				return result.graphic.layer === myApp.myMap.findLayerById("stationsPoint");
+			})
+			if (nearStation.length) {
+				myApp.setOrResetStartOrEndPoint(myApp.stationList[nearStation[0].graphic.attributes]); //station[i]?
+			}
+		}
+		/*require(["esri/widgets/Sketch/SketchViewModel","esri/Graphic"], function (SketchViewModel,Graphic) {*/
+			/*myView.when(function () {
+				var sketchVM = new SketchViewModel({
+					view: esriView,
+					layer: clickPointLayer
+				});
+				sketchVM.on("create", addGraphic);
+				function addGraphic(event) {
+					if (event.state === "complete") {
+						const cimSymbol = {
+							type: "cim",
+							data: {
+								type: "CIMSymbolReference",
+								symbol: getPointSymbolData()
+							}
+						};
+						clickPointLayer.remove(event.graphic);
+						const newPointsGraphic = new Graphic({
+							geometry: event.graphic.geometry,
+							symbol: cimSymbol
+						});
+						clickPointLayer.add(newPointsGraphic);
+						sketchVM.create("point");
+						setActiveButton(this);
+						pointType = "point";
+					}
+				}
+			});*/
 
-	//Inhalt fehlt noch
+			/*oder*/
+
+			/*esriView.on("click", function (evt) {
+				var graphic = new Graphic({
+					geometry: {
+						type: "point",
+						latitude: point.getX(),
+						longitude: point.getY(),
+					},
+					symbol: {
+						type: "simple-marker",
+						color: [226, 119, 40],
+						outline: {
+							color: [255, 255, 255],
+							width: 2,
+						},
+					}
+				});
+				esriView.graphics.removeAll();
+				esriView.graphics.add(graphic);
+			});*/
+
+			/*oder*/
+
+			/*var symbol = new SimpleMarkerSymbol(
+				SimpleMarkerSymbol.STYLE_CIRCLE,
+				12,
+				new SimpleLineSymbol(
+					SimpleLineSymbol.STYLE_NULL,
+					new Color([247, 34, 101, 0.9]),
+					1
+				),
+				new Color([207, 34, 171, 0.5])
+			);
+			esriMap.on("click", function (evt) {
+				esriMap.graphics.clear();
+				esriMap.graphics.add(new Graphic(evt.mapPoint, symbol));
+			});*/
+
+			/*oder*/
+
+			/*esriView.on("click", function (event) {
+				esriView.hitTest(event).then(function (response) {
+					var graphic = new Graphic({
+						geometry: {
+							type: "point",
+							latitude: point.getX(),
+							longitude: point.getY(),
+						},
+						symbol: {
+							type: "simple-marker",
+							color: [226, 119, 40],
+							outline: {
+								color: [255, 255, 255],
+								width: 2,
+							},
+						}
+					});
+					const graphic = response.results.filter(function (result) {
+						return result.graphic.layer === clickPointLayer;
+					})[0].graphic;
+				});
+			});*/
+		/*});*/
+	});
 }
 
 APP.prototype.addStation = function (x, y, name) {		
