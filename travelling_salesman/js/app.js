@@ -117,8 +117,7 @@ APP.prototype.simAnnealingAnimated = function(ms){
 APP.prototype.redrawConnections = function(calculatedConnections){
 	var allPoints = this.networkLocations;
 	var myLayer = this.myMap.findLayerById("connectingLine");
-	console.log(calculatedConnections);
-	console.log(allPoints);
+
 	// clear all lines
 	myLayer.removeAll();
 	
