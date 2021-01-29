@@ -44,31 +44,27 @@ APP.prototype.onClickEvent = function(event){
 }
 
 APP.prototype.setOrResetStartOrEndPoint = function(station){
-	
 	if(this.startStopPath.length == 2){
 		this.reset();
-		this.startStopPath = []; //reset;
+		this.startStopPath = [];		//reset;
 	}
 	
-	if(this.startStopPath.length == 0){
+	if (this.startStopPath.length == 0) {
 		//new input
-		this.drawStations([station],{		//Änderung Farbe angeklickter Punkte
-			color: [0, 37, 87],
+		this.drawStations([station], {		
+			color: [0, 37, 87],				//here change color of clicked points
 			fillColor: [204, 7, 30],
 			size: "8px"
-			}	
-		);
+		});
 	}
 	
-	if(this.startStopPath.indexOf(station.getName()) == -1){
+	if (this.startStopPath.indexOf(station.getName()) == -1) {
 		this.startStopPath.push(station.getName());
-		
-		this.drawStations([station], {				//Änderung Farbe angeklickter Punkte
-			color: [0, 37, 87],
+		this.drawStations([station], {				
+			color: [0, 37, 87],				//here change color of clicked points
 			fillColor: [204, 7, 30],
-			size: "8px"
-			}	
-		);
+			size: "8px"	
+		});
 	}
 	
 	if(this.startStopPath.length == 2){
@@ -164,20 +160,16 @@ APP.prototype.drawStations = function(array,options){
 
 APP.prototype.repaint = function () {
 
-	this.drawConnections(this.stationGrid, {	//Änderung Farbe Linie
-		color: [0, 37, 87],
-		//opacity: 0.25
-	}
-	);
-	this.drawStations(this.stationList, {		//Änderung Farbe Punkte
-		color: [0, 37, 87],
+	this.drawConnections(this.stationGrid, {	
+		color: [0, 37, 87],						// here change color of line
+	});
+
+	this.drawStations(this.stationList, {		
+		color: [0, 37, 87],						//here change color of points
 		size: "8px",
-		//stroke: false,
 		fillColor: [0, 158, 224],
-		//fillOpacity: 0.20,
-		//radius: 7500
-	}
-	);
+	});
+
 	this.myView.center = [10.4541205, 51.164305];	
 	this.myView.zoom = 6;							
 }
@@ -188,9 +180,8 @@ APP.prototype.startDijkstra = function(){
 	for(i=0;i<ret.length;i++){
 		this.addConnection(ret[i][0],ret[i][1]);
 	}
-	this.drawConnections(this.stationGrid,{		//Änderung Farbe der kürzesten Linie
-			color: [211,39,39],
-			//opacity: 1
+	this.drawConnections(this.stationGrid,{		
+			color: [211,39,39],					//here change color of shortest line
 		}
 	);
 }

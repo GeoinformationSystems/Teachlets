@@ -1,5 +1,5 @@
-// should be moved to the calculation in SA.js and maybe renamed "Differance"? :-)
-function calculateDifferance(p1,p2){
+// should be moved to the calculation in SA.js 
+function calculateDifference(p1,p2){
 	return Math.sqrt(
 		Math.pow((p2.getX() - p1.getX()),2)
 		+

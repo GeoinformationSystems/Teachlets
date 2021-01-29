@@ -55,9 +55,9 @@ APP.prototype.onClickEvent = function (event) {
 				latitude: point.getY(),
 				longitude: point.getX(),
 			},
-			symbol: {
+			symbol: {						
 				type: "simple-marker",
-				color: [0, 158, 224],
+				color: [0, 158, 224],				//here change color of points
 				size: "8px",
 				outline: {
 					color: [0, 37, 87],
@@ -136,10 +136,10 @@ APP.prototype.redrawConnections = function(calculatedConnections){
 						[pointb.getX(),pointb.getY()]
 					]
 				},
-				symbol: {
+				symbol: {							
 					type: "simple-line",
 					width: 2,
-					color: [0, 37, 87],
+					color: [0, 37, 87],				//here change color of line
 				}
 			});
 			// add line to layer 'connectingLine'
