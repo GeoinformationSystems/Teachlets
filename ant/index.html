@@ -1,63 +1,65 @@
-<html>
+﻿<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <link rel="stylesheet" href="../common/style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="https://www.tu-dresden.de/++resource++iframe_integration.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://www.tu-dresden.de/++resource++iframe_integration.css">
+
+    <title>Turingmaschine Ameise</title>
+
     <script src="js/appobject.js"></script>
     <script src="js/pointobject.js"></script>
     <script src="js/antsobject.js"></script>
     <script src="js/main.js"></script>
-    <script src="https://www.tu-dresden.de/++resource++iframe_integration.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://www.tu-dresden.de/++resource++iframe_integration.css"/>
 </head>
+
 <body>
-<div id="frame">
-    <h1>
-        Turingmaschine Ameise
-    </h1>
-    <div id="lower">
-        <canvas id="drawfield" width="300" height="300"></canvas>
-    </div>
-    <div id="upper">
-        <div id="info">
-            <div>
-                <h1>Steuerung</h1>
-                <button name="resetRaster">Zeichenfläche leeren</button>
+    <div id="frame">
+        <div id="header">
+            <h1><center><font>Turingmaschine Ameise</font></center></h1>
+        </div>
+        <div id="right">
+            <div id="drawfield">
             </div>
-
-            <div style="padding-bottom: 20px;"><h1>Simulationen</h1>
-                <button name="run">Einen Schritt simulieren</button>
-                <button id="autorun_button" name="runAuto" style="float:left;">Auto-Simulation start</button>
-                <div>Bilder pro Sekunde: <span id="fps">10</span></div>
-                <div>
-                    <input type="range" min="1" max="20" step="1" value="10" id="fpsswitcher" style="width:100%;">
-                    <!--<div>-->
-                    <div style="float:left;">1</div>
-                    <div style="float:right;">20</div>
-                    <!--</div>-->
+        </div>
+        <div id="left">
+            <div id="info">
+                <div style="height:50vh">
+                    <h1><font>Steuerung</font></h1>
+                    <button name="resetRaster"><font>Zeichenfläche leeren</font></button>
+                    <button name="run"><font>Einen Schritt simulieren</font></button>
+                    <button id="autorun_button" name="runAuto"><font>Auto-Simulation start</font></button>
+                    <div>Bilder pro Sekunde: <span id="fps">10</span></div>
+                    <div>
+                        <input type="range" min="1" max="20" step="1" value="10" id="fpsswitcher">
+                        <div style="float:left">1 </div>
+                        <div style="float:right">20 </div>
+                    </div>
+                </div>
+                <div style="height:38vh">
+                    <h1><font>Hilfe zum Programm</font></h1>
+                    <div class="help">
+                        <font>
+                            Tragen Sie auf der großen grauen Fläche durch Klicken mit der Maus Punkte ein.<br>
+                            <br>
+                            Starten Sie anschließend die automatische Simulation oder simulieren Sie nur den nächsten Schritt
+                            indem Sie auf die jeweiligen Button klicken.<br>
+                            <br>
+                            Im Anschluss wird gemäß den folgenden Regeln der Automat durchgeführt: 
+                            <ul>
+                                <li>Eine Ameise schaut zu Beginn in eine beliebige Richtung.</li>
+                                <li>Ist das Feld weiß: so färbt sie es schwarz und dreht sich um 90° nach rechts.</li>
+                                <li>Ist das Feld schwarz: so färbt sie es weiß und dreht sich um 90° nach links.</li>
+                                <li>Danach läuft sie ein Feld in die neue Blickrichtung.</li>
+                            </ul>
+                        </font>
+                    </div>
                 </div>
             </div>
-            <div><h1>Hilfe zum Programm</h1>
-                <div>
-                    Tragen Sie auf der großen grauen Fläche mit der Maus Punkte ein (durch Klicken).<br>
-                    <br>
-                    Starten Sie anschließend die automatische Simulation oder simulieren Sie nur den nächsten Schritt
-                    indem Sie auf die jeweiligen Button klicken.<br>
-                    <br>
-                    Im Anschluss wird gemäß den folgenden Regeln der Automat durchgeführt:
-                    <ul>
-                        <li>Eine Ameise schaut zu Beginn in eine beliebige Richtung.</li>
-                        <li>Ist das Feld weiß: so färbt sie es schwarz und dreht sich um 90° nach rechts.</li>
-                        <li>Ist das Feld schwarz: so färbt sie es weiß und dreht sich um 90° nach links.</li>
-                        <li>Danach läuft sie ein Feld in die neue Blickrichtung.</li>
-                    </ul>
-                </div>
-            </div>
-
-
         </div>
     </div>
-</div>
 </body>
 </html>
