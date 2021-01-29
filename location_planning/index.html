@@ -1,0 +1,67 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <link rel="stylesheet" href="../common/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script src="https://www.tu-dresden.de/++resource++iframe_integration.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://www.tu-dresden.de/++resource++iframe_integration.css">
+
+    <title>Standortplanung</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.17/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.17/"></script>
+
+    <!--space for js files-->
+
+</head>
+
+<body>
+    <div id="frame">
+        <div id="header">
+            <h1><center><font>Standortplanung</font></center></h1>
+        </div>
+        <div id="right">
+            <div id="mapid">
+            </div>
+        </div>
+        <div id="left">
+            <div id="info">
+                <div style="height:44vh">
+                    <h1><font>Erklärung der Funktionsweise</font></h1>
+                    <div class="help">
+                        <font>
+                            Bei der Standortplanung wird der optimale Standort gesucht, von dem aus n viele Städte mit minimalen
+                            Wegekosten erreicht werden können.<br>
+                            <br>
+                            Dafür wird die Methode des kleinsten umschließenden Kreises angewendet, bei der ein Kreis mit
+                            minimalem Radius ermittelt wird, der alle n Städte einschließt. Der Mittelpunkt dieses Kreises bildet 
+                            den optimalen Standort, da von diesem Punkt aus die Distanz zu den am weitesten entfernten
+                            Städten minimal ist.<br>
+                            <br>
+                            Standortplanung bzw. die Suche nach dem optimalen Standort findet z.B. Anwendung bei der Planung 
+                            von Feuerwehren, Schulen usw. 
+                        </font>
+                    </div>
+                </div>
+                <div style="height:44vh">
+                    <h1><font>Steuerung</font></h1>
+                    <div class="help">
+                        <font>
+                            Der optimale Standort und der umschließende Kreis werden angezeigt.
+                        </font>
+                    </div>
+                    <button name="reset"><font>Beispiel starten</font></button>
+                    <button name="reset"><font>Algorithmus starten</font></button>
+                    <div class="help">
+                        <font>
+                            Um neue Städte zu setzen, den obersten Button klicken!
+                        </font>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
