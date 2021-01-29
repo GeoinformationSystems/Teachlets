@@ -102,7 +102,7 @@ require(["esri/Map","esri/views/MapView","esri/Graphic","esri/layers/GraphicsLay
 	});
 
 	var esriView = new MapView({
-		container: "mapid",
+		container: "content",
 		map: esriMap,
 		center: [10.4541205,51.164305],
 	});
