@@ -68,14 +68,12 @@ APP.prototype.resetRaster = function () {
 }
 
 APP.prototype.printChart = function (treeData) {
-    console.log(treeData);
     // ************** Generate the tree diagram	 *****************
-    var margin = {top: 40, right: 120, bottom: 20, left: 120},
-        width = 960 - margin.right - margin.left,
-        height = 400 - margin.top - margin.bottom;
+    var margin = {top: 20, right: 20, bottom: 20, left: 20},
+        width = 500,
+        height = 400;
 
     var i = 0;
-
     var tree = d3.layout.tree().size([height, width]);
 
     self.diagonal = d3.svg.line().interpolate('linear')
@@ -87,8 +85,7 @@ APP.prototype.printChart = function (treeData) {
         });
 
     var svg = d3.select("body").append("svg")
-        .attr("width", width + margin.right + margin.left)
-        .attr("height", height + margin.top + margin.bottom)
+		.attr("style", 'display:block; margin: auto;')
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     root = treeData[0];
@@ -103,13 +100,13 @@ APP.prototype.printChart = function (treeData) {
         nodes.forEach(function (d) {
             d.y = d.depth * 100;
         });
+		
         // Declare the nodes…
         var node = svg.selectAll("g.node")
             .data(nodes, function (d) {
                 return d.id || (d.id = ++i);
             });
         // Enter the nodes.
-
         var nodeEnter = node.enter().append("g")
             .attr("class", "node")
             .attr("transform", function (d) {
@@ -128,7 +125,6 @@ APP.prototype.printChart = function (treeData) {
                 else
                     return "#fff";
             });
-        // .style("fill", "#00305e");
 
         // Declare the links…
         var link = svg.selectAll("path.link")
@@ -150,6 +146,11 @@ APP.prototype.printChart = function (treeData) {
     }
 
     $("svg").appendTo("#resultChart");
+	
+	// Update the width and height using the size of the contents
+	var  bbox = $("svg")[0].getBBox();
+	$("svg")[0].setAttribute("width", bbox.x + bbox.width + bbox.x);
+	$("svg")[0].setAttribute("height", bbox.y + bbox.height + bbox.y);
 }
 
 APP.prototype.printGrid = function (data, step, origin) {
