@@ -110,9 +110,31 @@ body {
     padding: 5px;
     cursor: pointer;
 }
+#info .tab {
+	padding: 5px 0px;
+	margin: 0px;
+	width:calc(50% - 3px);
+	display: inline-block;
+	border: 1px solid #404040;
+	border-bottom: 0px solid #404040;
+    border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	background-color: #999;
+	transition: background-color .25s ease-out,color .25s ease-out;
+	color: rgb(0,48,94);
+}
 
-#resultChart{
-    width: 600px;
+#info .tab:focus, #info .tab.active {
+	outline:0;
+	background-color: #f3f3f3;
+	transition: background-color .25s ease-out,color .25s ease-out;
+}
+
+#info .textOutput {
+	border: 1px solid #404040;
+	border-top: 0px solid #404040;
+	font-style: normal;
+	font-size: 0.8em;
 }
 
 .link {

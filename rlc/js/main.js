@@ -1,11 +1,16 @@
 $(function() {
+	// resize canvas to fill parent (keep square)
+	var canvas = $("#drawfield");
+	var minSize = Math.min(canvas.parent().width(), canvas.parent().height());
+	canvas[0].width=minSize;
+	canvas[0].height=minSize;
+	
 	var myAppInstance = new APP(16,0,"#drawfield"); //size defaultvalue uniqueid rows = colums
 	var block;
 	
 	//start config
-	$('#resultRLCf').show();
-	$('#rlc_var').css("background","#dd2727");
-	$('#rlc_fest').css("background","#b41c1c");
+	$('#rlc_fest').addClass("active");
+	$('#resultRLCv').hide();
 
 	$("#drawfield").mousedown(function(e){
 		var x = e.pageX - this.offsetLeft;
@@ -57,15 +62,19 @@ $(function() {
 		if(clicked.localeCompare("rlc_fest") == 0){
 			$('#resultRLCf').show();
 			$('#resultRLCv').hide();
-			$('#rlc_var').css("background","#dd2727");
-			$('#rlc_fest').css("background","#b41c1c");
+			$('#rlc_fest').addClass("active");
+			$('#rlc_var').removeClass("active");
+			// $('#rlc_var').css("background","#dd2727");
+			// $('#rlc_fest').css("background","#b41c1c");
 		}
 		
 		if(clicked.localeCompare("rlc_var") == 0){
 			$('#resultRLCv').show();
 			$('#resultRLCf').hide();
-			$('#rlc_fest').css("background","#dd2727");
-			$('#rlc_var').css("background","#b41c1c");
+			$('#rlc_fest').removeClass("active");
+			$('#rlc_var').addClass("active");
+			// $('#rlc_fest').css("background","#dd2727");
+			// $('#rlc_var').css("background","#b41c1c");
 		}
 		
 		if(clicked.localeCompare("run") == 0){
