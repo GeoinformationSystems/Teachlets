@@ -19,7 +19,15 @@ function isNumber(n) {
 }
 
 $(function() {
-	myModel = new MODEL(10,"#drawfield"); //size defaultvalue uniqueid rows = colums
+	// resize canvas to fill parent (keep square)
+	var cellSize = 10;
+	var canvas = $("#drawfield");
+	var minSize = Math.min(canvas.parent().width(), canvas.parent().height());
+	canvas[0].width=Math.round(minSize/cellSize)*cellSize;
+	canvas[0].height=Math.round(minSize/cellSize)*cellSize;
+
+	
+	myModel = new MODEL(cellSize,"#drawfield"); //size defaultvalue uniqueid rows = colums
 	
 	$("#drawfield").click(function(e){
 		var x = e.pageX - this.offsetLeft;

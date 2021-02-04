@@ -1,12 +1,10 @@
-﻿<html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <link rel="stylesheet" href="../common/style.css" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-    <script src="https://www.tu-dresden.de/++resource++iframe_integration.js"></script>
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://www.tu-dresden.de/++resource++iframe_integration.css">
 
     <title>Inverse Distance Weighting</title>
 
@@ -21,49 +19,33 @@
 <body>
     <div id="frame">
         <div id="header">
-            <h1><center><font>Inverse Distance Weighting</font></center></h1>
+            <h1>Inverse Distance Weighting</h1>
         </div>
-        <div id="right">
-            <div id="drawfield">
-            </div>
+        <div id="content">
+            <canvas id="drawfield"></canvas>
         </div>
-        <div id="left">
-            <div id="info">
-                <div style="height:36vh">
-                    <h1><font>Steuerung</font></h1>
-                    <input type="text" placeholder="Anzahl genutzter Stationen" id="limiter">
-                    <button name="runIdw"><font>Run IDW</font></button>
-                    <button name="resetAll"><font>Zeichenfläche leeren</font></button>
-                </div>
-                <div style="height:29vh">
-                    <h1><font>Erklärung der Funktionsweise</font></h1>
-                    <div class="help">
-                        <font>
-                            Bitte erstellen Sie zu Beginn eine beliebige Anzahl an Stationen. Klicken Sie dazu auf die linke
-                            Rasterfläche an dem gewünschten Punkt. Sie werden aufgefordert einen Wert für diese Station
-                            einzugeben.<br>
-                            <br>
-                            Starten Sie den IDW-Algorithmus mittels dem Button "Run IDW".<br>
-                            <br>
-                            In dem Raster wird der Wert jeder Zelle als räumlich gewichtetes Mittel der Werte der umliegenden
-                            Stationen bestimmt. Sie haben die Möglichkeit die Anzahl dieser Station zu limitieren.<br>
-                            <br>
-                            Niedrige Werte werden mit Blau dargestellt. Hohe Werte mir Rot. Das Raster ist 300px breit und 300px hoch.
-                            Jede Zelle ist 10px breit und hoch. Der Mittelpunkt der Zelle wird zur Berechnung der Distanz genutzt.
-                        </font>
-                    </div>
-                </div>
-                <div style="height:21vh">
-                    <h1><font>Hilfe zum Programm</font></h1>
-                    <div class="help">
-                        <font>
-                            Klicken Sie die Zeichenfläche an einer beliebigen Stelle an, um eine neue Station mit einem Wert
-                            anzulegen.
-                        </font>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div id="info">
+			<div style="max-height:fit-content;">
+				<h1>Steuerung</h1>
+				<button name="runIdw">Run IDW</button>
+				<button name="resetAll">Zeichenfläche leeren</button>
+				<input type="text" placeholder="Anzahl genutzter Stationen" id="limiter">
+			</div>
+			<div style="max-height:none; flex:1;">
+				<h1>Hilfe zum Programm</h1>
+				<div class="help">
+					Klicken Sie auf die linke Rasterfläche, um eine Stationen zu erstellen. Sie werden aufgefordert einen Wert 
+					für diese Station einzugeben. Wiederholen Sie dies für eine beliebige Anzahl an Stationen.<br />
+					<br />
+					Starten Sie den IDW-Algorithmus mittels dem Button "Run IDW".<br />
+					<br />
+					In dem Raster wird der Wert jeder Zelle als räumlich gewichtetes Mittel der Werte der umliegenden
+					Stationen bestimmt. Sie haben die Möglichkeit die Anzahl dieser Station zu limitieren.<br />
+					<br />
+					Niedrige Werte werden mit Blau dargestellt. Hohe Werte mit Rot. Der Mittelpunkt der Zelle wird zur Berechnung der Distanz genutzt.
+				</div>
+			</div>
+		</div>
     </div>
 </body>
 </html>

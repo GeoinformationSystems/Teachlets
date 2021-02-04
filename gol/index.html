@@ -2,11 +2,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <link rel="stylesheet" href="../common/style.css" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-    <script src="https://www.tu-dresden.de/++resource++iframe_integration.js"></script>
+    
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://www.tu-dresden.de/++resource++iframe_integration.css">
 
     <title>Turingmaschine "Game of Life"</title>
 
@@ -19,47 +17,42 @@
 <body>
     <div id="frame">
         <div id="header">
-            <h1><center><font>Turingmaschine "Game of Life"</font></center></h1>
+            <h1>Turingmaschine "Game of Life"</h1>
         </div>
-        <div id="right">
-            <div id="drawfield">
-            </div>
+        <div id="content">
+            <canvas id="drawfield"></canvas>
         </div>
-        <div id="left">
-            <div id="info">
-                <div style="height:50vh">
-                    <h1><font>Steuerung</font></h1>
-                    <button name="resetRaster"><font>Zeichenfläche leeren</font></button>
-                    <button name="run"><font>Einen Schritt simulieren</font></button>
-                    <button name="runAuto" id="autorun_button"><font>Auto-Simulation start</font></button>
-                    <div>Bilder pro Sekunde: <span id="fps">10</span></div>
-                    <div>
-                        <input type="range" min="1" max="20" step="1" value="10" id="fpsswitcher">
-                        <div style="float:left">1</div>
-                        <div style="float:right">20</div>
-                    </div>
-                </div>
-                <div style="height:38vh">
-                    <h1><font>Hilfe zum Programm</font></h1>
-                    <div class="help">
-                        <font>
-                            Tragen Sie auf der großen grauen Fläche durch Klicken mit der Maus Punkte ein.<br>
-                            <br>
-                            Starten Sie anschließend die automatische Simulation oder simulieren Sie nur den nächsten Schritt
-                            indem Sie auf die jeweiligen Button klicken.<br>
-                            <br>
-                            Im Anschluss wird gemäß den folgenden Regeln der Automat durchgeführt:
-                            <ul>
-                                <li>Jede Zelle kann entweder lebendig oder tot sein</li>
-                                <li>Die Zelle der Folgegeneration bleibt am leben, wenn in ihren direkten Umgebungszellen 2 oder 3 Zellen lebend sind.</li>
-                                <li>Die Zelle der Folgegeneration wird lebendig, wenn in ihren direkten Umgebungszellen genau 3 Zellen lebendig sind.</li>
-                                <li>In allen anderen Fällen stirbt die Zelle oder bleibt tot.</li>
-                            </ul>
-                        </font>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div id="info">
+			<div style="max-height:fit-content;">
+				<h1>Steuerung</h1>
+				<button name="resetRaster">Zeichenfläche leeren</button>
+				<button name="run">Einen Schritt simulieren</button>
+				<button name="runAuto" id="autorun_button">Auto-Simulation start</button>
+				<div>Bilder pro Sekunde: <span id="fps">10</span></div>
+				<div>
+					<input type="range" min="1" max="20" step="1" value="10" id="fpsswitcher">
+					<div style="float:left">1</div>
+					<div style="float:right">20</div>
+				</div>
+			</div>
+			<div style="max-height:none; flex:1;">
+				<h1>Hilfe zum Programm</h1>
+				<div class="help">
+					Tragen Sie auf der großen grauen Fläche durch Klicken mit der Maus Punkte ein.<br>
+					<br>
+					Starten Sie anschließend die automatische Simulation oder simulieren Sie nur den nächsten Schritt
+					indem Sie auf die jeweiligen Button klicken.<br>
+					<br>
+					Im Anschluss wird gemäß den folgenden Regeln der Automat durchgeführt:
+					<ul>
+						<li>Jede Zelle kann entweder lebendig oder tot sein</li>
+						<li>Die Zelle der Folgegeneration bleibt am leben, wenn in ihren direkten Umgebungszellen 2 oder 3 Zellen lebend sind.</li>
+						<li>Die Zelle der Folgegeneration wird lebendig, wenn in ihren direkten Umgebungszellen genau 3 Zellen lebendig sind.</li>
+						<li>In allen anderen Fällen stirbt die Zelle oder bleibt tot.</li>
+					</ul>
+				</div>
+			</div>
+		</div>
     </div>
 </body>
 </html>
