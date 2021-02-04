@@ -21,18 +21,10 @@ body {
 #header > h1 {
     display: block;
     border-bottom: 2px solid #00305e;
-}
-
-<<<<<<< HEAD
-#header > h1 font {                     /*header-headline*/
-    color: rgb(0,48,94);                /*TUD Corporate Design: dark blue*/
-    font-size: 33px;
-=======
-#header > h1 font {                     /*Header-Überschift*/
-    color: rgb(0,48,94);                /*TUD Corporate Design: dunkelblau*/
+	color: rgb(0,48,94);                /*TUD Corporate Design: dark blue*/
     font-size: 4vh;
->>>>>>> 1c7d8450b2f6eb0ac3af5d1dc01a14789ba66695
-    font-style: normal;
+	font-style: normal;
+	text-align: center;
 }
 
 #info {
@@ -51,25 +43,15 @@ body {
     border-top-right-radius: 3px;
 }
 
-<<<<<<< HEAD
 #info h1 font {                         /*left-headline*/
-    font-size: 17px;
-=======
-#info h1 font {                         /*Left-Überschift*/
     font-size: 2vh;
->>>>>>> 1c7d8450b2f6eb0ac3af5d1dc01a14789ba66695
-    font-style: normal;
+	font-style: normal;
     color: white;
 }
 
-<<<<<<< HEAD
 #info font {                            /*left-text*/
-    font-size: 15px;
-=======
-#info font {                            /*Left-Text*/
     font-size: 2vh;
->>>>>>> 1c7d8450b2f6eb0ac3af5d1dc01a14789ba66695
-    font-style: italic;
+	font-style: italic;
     color: rgb(0,48,94);
 }
 
@@ -78,13 +60,8 @@ body {
     margin-bottom: 2vh;
 	max-height:28vh;
     overflow: auto;
-<<<<<<< HEAD
     /*height: specify height of each elements in index.html (all together = 90vh)
             100vh - 10vh (header) - 2 vh space between each element*/
-=======
-    /*height: Höhe der Elemente individuell im html anpassen (alle zusammen müssen auf 90vh kommen)
-              100vh - 10vh (Header) - jeweils 2vh Platz zwischen Elementen*/
->>>>>>> 1c7d8450b2f6eb0ac3af5d1dc01a14789ba66695
 }
 
 #info button, #info select{
