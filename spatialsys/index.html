@@ -2,11 +2,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <link rel="stylesheet" href="../common/style.css" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-    <script src="https://www.tu-dresden.de/++resource++iframe_integration.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://www.tu-dresden.de/++resource++iframe_integration.css">
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
     <title>Räumliche Bezugssysteme</title>
 
@@ -16,51 +14,44 @@
 <body>
     <div id="frame">
         <div id="header">
-            <h1><center><font>Räumliche Bezugssysteme</font></center></h1>
+            <h1>Räumliche Bezugssysteme</h1>
         </div>
-        <div id="right">
-            <div id="drawfield">
-            </div>
+        <div id="content">
+            <canvas id="drawfield"></canvas>
         </div>
-        <div id="left">
-            <div id="info">
-                <div style="height:24vh">
-                    <h1><font>Euklidische Metrik</font></h1>
-                    <div class="help">
-                        <font>
-                            Die Distanz zwischen zwei Punkten ist der direkte Abstand zwischen diesen Punkten. In der
-                            Beispielkarte entspricht sie somit der Luftlinie zwischen P1 und P2.
-                        </font>
-                    </div>
-                    <button name="em" id="em" style="display:none;"><font>anzeigen</font></button>
-                </div>
-                <div style="height:31vh">
-                    <h1><font>City-Block-Metrik</font></h1>
-                    <div class="help">
-                        <font>
-                            Bei der City-Block-Metrik (auch Manhattan- oder Kantenmetrik) entspricht die Distanz zweier Punkte
-                            der Summe der absoluten Differenzen ihrer Einzelkoordinaten. <br><br>
-                            Am Beispiel der Karte kann man erkennen, dass die Luftlinie oft nicht geeignet ist, physikalisch wirklich überwindbare Distanzen anzugeben.<br><br>
-                            So sind aufgrund des Straßennetzes nur Wege entlang der vier Haupthimmelsrichtungen möglich. Mit der
-                            City-Block-Metrik wird also der kürzeste Weg zwischen zwei Punkten entlang der
-                            Haupthimmelsrichtungen berechnet.<br><br> Für diesen kürzesten Weg gibt es oft mehrere Möglichkeiten, wie das Beispiel zeigt.
-                        </font>
-                    </div>
-                    <button name="cbm" id="cbm"><font>anzeigen</font></button>
-                </div>
-                <div style="height:31vh">
-                    <h1><font>Ecken-Kanten-Metrik</font></h1>
-                    <div class="help">
-                        <font>
-                            Die Ecken-Kanten-Metrik (auch Schachbrett-Metrik) ist der City-Block-Metrik ähnlich, außer dass
-                            zusätzlich zu den horizontalen und vertikalen Bewegungen auch Wege entlang der Diagonalen möglich sind.<br><br>
-                            Eine solche Diagonale stellt in der Beispielkarte die Abkürzung des Weges durch den Park dar.
-                        </font>
-                    </div>
-                    <button name="ekm" id="ekm"><font>anzeigen</font></button>
-                </div>
-            </div>
-        </div>
+		<div id="info">
+			<div style="max-height:none; flex:1;">
+				<h1>Steuerung</h1>
+				<div class="help">
+					Unten finden Sie Erläuterungen zu den verschiedenen Bezugssystemen. Rechts wird dies beispielhaft veranschaulicht.
+					Wechseln Sie zwischen den Systemen über Klick auf folgende Reiter.
+				</div>
+				<!--Buttons ohne Zeilenumbruch im Quelltext um Abstand zu verhindern-->
+				<button class="tab active" name="em" id="em" style="width:33%;">Euklidische Metrik</button><button class="tab" name="cbm" id="cbm" style="width:33%;">City-Block-Metrik</button><button class="tab"name="ekm" id="ekm" style="width:34%;">Ecken-Kanten-Metrik</button>
+				
+				<div id="infoEM" class="textOutput tabContent">
+					Die Distanz zwischen zwei Punkten ist der direkte Abstand zwischen diesen Punkten. In der
+					Beispielkarte entspricht sie somit der Luftlinie zwischen P1 und P2.
+				</div>
+				<div id="infoCBM" class="textOutput tabContent" style="display:none">
+					Bei der City-Block-Metrik (auch Manhattan- oder Kantenmetrik) entspricht die Distanz zweier Punkte
+					der Summe der absoluten Differenzen ihrer Einzelkoordinaten. <br />
+					<br />
+					Am Beispiel der Karte kann man erkennen, dass die Luftlinie oft nicht geeignet ist, physikalisch wirklich überwindbare Distanzen anzugeben.<br><br>
+					So sind aufgrund des Straßennetzes nur Wege entlang der vier Haupthimmelsrichtungen möglich. Mit der
+					City-Block-Metrik wird also der kürzeste Weg zwischen zwei Punkten entlang der
+					Haupthimmelsrichtungen berechnet.<br />
+					<br /> 
+					Für diesen kürzesten Weg gibt es oft mehrere Möglichkeiten, wie das Beispiel zeigt.
+				</div>
+				<div id="infoEKM" class="textOutput tabContent" style="display:none">
+					Die Ecken-Kanten-Metrik (auch Schachbrett-Metrik) ist der City-Block-Metrik ähnlich, außer dass
+					zusätzlich zu den horizontalen und vertikalen Bewegungen auch Wege entlang der Diagonalen möglich sind.<br />
+					<br />
+					Eine solche Diagonale stellt in der Beispielkarte die Abkürzung des Weges durch den Park dar.
+				</div>
+			</div>
+		</div>
     </div>
 </body>
 </html>

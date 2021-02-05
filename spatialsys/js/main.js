@@ -1,30 +1,41 @@
 $(function() {
 	
 	canvas = document.getElementById("drawfield");
-    ctx = canvas.getContext("2d");	
+    ctx = canvas.getContext("2d");
 	
-	canvas.height = $("#drawfield").height();
-	canvas.width = $("#drawfield").width();	
+	// resize canvas to fill parent (keep square)	
+	var minSize = Math.min($("#drawfield").parent().width(), $("#drawfield").parent().height());
+	canvas.height = minSize;
+	canvas.width = minSize;	
 	
 	em();
 	
 	$("button").click(function(){
-		$("#info > div > button").show();
 		var clicked = $(this).attr("name");
+		$("#info > div > button").removeClass("active");
 		
 		if(clicked.localeCompare("em") == 0){
 			em();
-			$("#em").hide();
+			$('#em').addClass("active");
+			$("#infoEM").show();
+			$("#infoCBM").hide();
+			$("#infoEKM").hide();
 		}
 		
 		if(clicked.localeCompare("cbm") == 0){
 			cbm();
-			$("#cbm").hide();
+			$('#cbm').addClass("active");
+			$("#infoEM").hide();
+			$("#infoCBM").show();
+			$("#infoEKM").hide();
 		}
 
 		if(clicked.localeCompare("ekm") == 0){
 			ekm();
-			$("#ekm").hide();
+			$('#ekm').addClass("active");
+			$("#infoEM").hide();
+			$("#infoCBM").hide();
+			$("#infoEKM").show();
 		}		
 	});
 });
