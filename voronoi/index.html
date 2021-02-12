@@ -1,12 +1,11 @@
-﻿<!-- Voronoi Algo by http://www.raymondhill.net/voronoi/rhill-voronoi.html !-->
+<!-- Voronoi Algo by http://www.raymondhill.net/voronoi/rhill-voronoi.html !-->
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 	<link rel="stylesheet" href="../common/style.css" type="text/css">
 
-	<script src="https://www.tu-dresden.de/++resource++iframe_integration.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="https://www.tu-dresden.de/++resource++iframe_integration.css">
 
 	<title>Voronoi-Triangulation</title>
 
@@ -16,25 +15,22 @@
 <body onload="Voronoi.init();" data-gr-c-s-loaded="true">
 	<div id="frame">
 		<div id="header">
-			<h1><center><font>Voronoi-Triangulation</font></center></h1>
+			<h1>Voronoi-Triangulation</h1>
 		</div>
-		<div id="right" style="border-color:rgb(0,48,94); border-width:2px; border-style:solid">
-			<div id="voronoiCanvas" style="cursor:crosshair">
+		<div id="content">
+			<canvas id="voronoiCanvas" style="cursor:crosshair"></canvas>
+		</div>
+		<div id="info">
+			<div style="max-height:fit-content;">
+				<h1><font>Steuerung</font></h1>
+				<button id="voronoiClearSites" value="Zeichenfläche leeren" onclick="Voronoi.clearSites();"><font>Zeichenfläche leeren</font></button>
 			</div>
-		</div>
-		<div id="left">
-			<div id="info">
-				<div style="height:20vh">
-					<h1><font>Steuerung</font></h1>
-					<button id="voronoiClearSites" value="Zeichenfläche leeren" onclick="Voronoi.clearSites();"><font>Zeichenfläche leeren</font></button>
-				</div>
-				<div style="height:21vh">
-					<h1><font>Hilfe zum Programm</font></h1>
-					<div class="help">
-						<font>
-							Klicken Sie die Zeichenfläche an einer beliebigen Stelle an um einen neuen Punkt für die Triangulation festzulegen.
-						</font>
-					</div>
+			<div style="max-height:none; flex:1;">
+				<h1><font>Hilfe zum Programm</font></h1>
+				<div class="help">
+					<font>
+						Klicken Sie die Zeichenfläche an einer beliebigen Stelle an um einen neuen Punkt für die Triangulation festzulegen.
+					</font>
 				</div>
 			</div>
 		</div>

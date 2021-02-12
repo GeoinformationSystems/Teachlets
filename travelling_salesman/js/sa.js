@@ -19,7 +19,7 @@ SA.prototype.createDistancesMatrix = function(){
 			if(r == c){
 				matrix[r][c] = null;
 			} else {
-				matrix[r][c] = parseInt(calculateDifferance(this.pointlist[r],this.pointlist[c])*1000);
+				matrix[r][c] = parseInt(calculateDifference(this.pointlist[r],this.pointlist[c])*1000);
 			}
 		}
 	}
