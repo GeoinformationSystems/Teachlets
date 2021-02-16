@@ -1,0 +1,31 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.12582299858332,
+          39.825396108956696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "P2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.10252264887094,
+          39.80342415439272
+        ]
+      }
+    }
+  ]
+}

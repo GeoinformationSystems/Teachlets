@@ -1,132 +1,223 @@
-$(function() {
-	
-	canvas = document.getElementById("drawfield");
-    ctx = canvas.getContext("2d");
-	
-	// resize canvas to fill parent (keep square)	
-	var minSize = Math.min($("#drawfield").parent().width(), $("#drawfield").parent().height());
-	canvas.height = minSize;
-	canvas.width = minSize;	
-	
-	em();
-	
+require([
+		"esri/Map", 
+		"esri/views/MapView", 
+		"esri/Graphic", 
+		"esri/layers/GraphicsLayer",
+		"esri/geometry/geometryEngine",
+		"esri/geometry/Polyline",
+		"esri/layers/GeoJSONLayer",
+
+	], function (
+		Map, 
+		MapView, 
+		Graphic, 
+		GraphicsLayer, 
+		geometryEngine,
+		Polyline,
+		GeoJSONLayer,
+	) {
+
+	// switch between spatial system examples
 	$("button").click(function(){
 		var clicked = $(this).attr("name");
 		$("#info > div > button").removeClass("active");
 		
-		if(clicked.localeCompare("em") == 0){
+		if(clicked == "em"){
 			em();
-			$('#em').addClass("active");
-			$("#infoEM").show();
-			$("#infoCBM").hide();
-			$("#infoEKM").hide();
+		}		
+		if(clicked == "cbm"){
+			cbm();			
 		}
-		
-		if(clicked.localeCompare("cbm") == 0){
-			cbm();
-			$('#cbm').addClass("active");
-			$("#infoEM").hide();
-			$("#infoCBM").show();
-			$("#infoEKM").hide();
-		}
-
-		if(clicked.localeCompare("ekm") == 0){
-			ekm();
-			$('#ekm').addClass("active");
-			$("#infoEM").hide();
-			$("#infoCBM").hide();
-			$("#infoEKM").show();
+		if(clicked == "ekm"){
+			ekm();			
 		}		
 	});
+	
+	// load ESRI map and mapview
+	this.esriMap = new Map({
+		basemap: "streets-relief-vector",
+	});
+	this.esriView = new MapView({
+		container: "content",
+		map: this.esriMap,
+		center: [-86.1152991330356,39.81453897084121],
+		zoom: 15,
+	});
+	
+	// define color scheme
+	var fillColor = [0, 158, 224];		// points inner color
+	var outlineColor = [0, 37, 87];		// points outer color	
+	var textColor = [0, 37, 87];		// all text
+	var haloColor = [255, 255, 255];	// all text
+	var pathColor = [0, 37, 87];		// polylines
+	
+	// define styling classes for points and lines
+	var point = {						
+		type: "simple-marker",
+		color: fillColor,
+		size: "10px",
+		outline: {
+			color: outlineColor,
+			width: 1
+		}
+	};
+	var path = {						
+		type: "simple-line",
+		color: pathColor,
+		width: 3
+	};
+	
+	// define label classes for points and lines
+	var pointLabelClass = {
+		labelPlacement: "above-right",
+		labelExpressionInfo: {
+			expression: "$feature.name"
+		},
+		symbol: {
+			type: "text",
+			color: textColor,
+			haloColor: haloColor,
+			haloSize: "2px",
+			font: {
+				size: 14,
+				family: "Arial Unicode MS",
+				weight: "bold"
+			}
+		}
+	}; 
+	var lineLabelClass = {
+		labelPlacement: "center-along",
+		labelExpressionInfo: {
+			expression: "$feature.length + 'm'"
+		},
+		deconflictionStrategy: "none",
+		symbol: {
+			type: "text",
+			color: textColor,
+			haloColor: haloColor,
+			haloSize: "2px",
+			font: {
+				size: 14,
+				family: "Arial Unicode MS",
+			}
+		}		
+	};
+	
+	// create layers from geojson:
+	// - baseLayer: with start/end point
+	// - emLayer: example Euklidische Metrik
+	// - cbmLayer: example City-Block-Metrik
+	// - ekmLayer: example Ecken-Kanten-Metrik
+	this.baseLayer = new GeoJSONLayer({
+        url: "data/base.geojson?nocache=" + (new Date()).getTime(),
+		geometryType: "point",
+		renderer: {
+            type: "simple",
+            symbol: point
+        },
+		fields: [{
+			name: "name",
+			alias: "Name",
+			type: "string"
+		  }
+		],
+		labelingInfo: [pointLabelClass]
+      });
+	
+	this.emLineLayer = new GeoJSONLayer({
+        url: "data/em.geojson?nocache=" + (new Date()).getTime(),
+		geometryType: "polyline",
+		renderer: {
+            type: "simple",
+            symbol: path
+        },
+		fields: [{
+			name: "length",
+			alias: "Length",
+			type: "string"
+		  }
+		],
+		labelingInfo: [lineLabelClass]
+    });
+	
+	this.cbmLineLayer = new GeoJSONLayer({
+        url: "data/cbm.geojson?nocache=" + (new Date()).getTime(),
+		geometryType: "polyline",
+		renderer: {
+            type: "simple",
+            symbol: path
+        },
+		fields: [{
+			name: "length",
+			alias: "Length",
+			type: "string"
+		  }
+		],
+		labelingInfo: [lineLabelClass]
+    });
+	
+	this.ekmLineLayer = new GeoJSONLayer({
+        url: "data/ekm.geojson?nocache=" + (new Date()).getTime(),
+		geometryType: "polyline",
+		renderer: {
+            type: "simple",
+            symbol: path
+        },
+		fields: [{
+			name: "length",
+			alias: "Length",
+			type: "string"
+		  }
+		],
+		labelingInfo: [lineLabelClass]
+    });
+	
+	// add all Layers to mapview
+	this.esriMap.addMany([this.emLineLayer, this.cbmLineLayer, this.ekmLineLayer, this.baseLayer]);
+	
+	// configuration on load
+	this.emLineLayer.visible = true;
+	this.cbmLineLayer.visible = false;
+	this.ekmLineLayer.visible = false;
+	
 });
 
-function resetCanvas(){
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	//P1(70,250) //P2(350,50)
-	ctx.fillStyle="#000";
-	ctx.beginPath();	
-	ctx.arc(10, 250, 5, 0, Math.PI*2, true);
-	ctx.fillText("P1",5,265);
-	ctx.closePath();
-	ctx.fill();		
-	ctx.beginPath();	
-	ctx.arc(290, 50, 5, 0, Math.PI*2, true);
-	ctx.fillText("P2",290-20,50+4);	
-	ctx.closePath();
-	ctx.fill();		
-}
-
+// manage visibility for each spatial system example
 function em(){
-	resetCanvas();
-	ctx.strokeStyle = "red";
-	ctx.beginPath();
-	ctx.moveTo(10,250);
-	ctx.lineTo(290,50);
-	ctx.closePath();
-	ctx.stroke();		
+	// info view changes
+	$('#em').addClass("active");
+	$("#infoEM").show();
+	$("#infoCBM").hide();
+	$("#infoEKM").hide();
+	
+	// map view changes
+	this.emLineLayer.visible = true;
+	this.cbmLineLayer.visible = false;
+	this.ekmLineLayer.visible = false;		
 }
 
 function cbm(){
-	resetCanvas();
-	ctx.strokeStyle = "red";
-	ctx.beginPath();
-	ctx.moveTo(10,250);
-	ctx.lineTo(10,50); ctx.moveTo(10,50);
-	ctx.lineTo(290,50); 
-	ctx.closePath();
-	ctx.stroke();	
+	// info view changes
+	$('#cbm').addClass("active");
+	$("#infoEM").hide();
+	$("#infoCBM").show();
+	$("#infoEKM").hide();
 	
-	ctx.strokeStyle = "green";
-	ctx.beginPath();
-	ctx.moveTo(10,250);
-	ctx.lineTo(30,250); ctx.moveTo(30,250);
-	ctx.lineTo(30,230); ctx.moveTo(30,230);
-	ctx.lineTo(50,230); ctx.moveTo(50,230);
-	ctx.lineTo(50,210); ctx.moveTo(50,210);
-	ctx.lineTo(70,210); ctx.moveTo(70,210);
-	ctx.lineTo(70,190); ctx.moveTo(70,190);
-	ctx.lineTo(90,190); ctx.moveTo(90,190);
-	ctx.lineTo(90,170); ctx.moveTo(90,170);
-	ctx.lineTo(110,170); ctx.moveTo(110,170);
-	ctx.lineTo(110,150); ctx.moveTo(110,150);
-	ctx.lineTo(190,150); ctx.moveTo(190,150);
-	ctx.lineTo(190,100); ctx.moveTo(190,100);
-	ctx.lineTo(240,100); ctx.moveTo(240,100);
-	ctx.lineTo(240,80); ctx.moveTo(240,80);
-	ctx.lineTo(290,80); ctx.moveTo(290,80);
-	ctx.lineTo(290,50);
-	ctx.closePath();
-	ctx.stroke();		
-	
-	ctx.strokeStyle = "blue";
-	ctx.beginPath();
-	ctx.moveTo(10,251);
-	ctx.lineTo(240,251); ctx.moveTo(240,251);
-	ctx.lineTo(240,150); ctx.moveTo(240,150);
-	ctx.lineTo(240,150); ctx.moveTo(240,150);
-	ctx.lineTo(291,150); ctx.moveTo(291,150);
-	ctx.lineTo(291,50);
-	ctx.closePath();
-	ctx.stroke();			
+	// map view changes
+	this.emLineLayer.visible = false;
+	this.cbmLineLayer.visible = true;
+	this.ekmLineLayer.visible = false;			
 }
 
 function ekm(){
-	resetCanvas();
-	ctx.strokeStyle = "red";
-	ctx.beginPath();
-	ctx.moveTo(10,250);
-	ctx.lineTo(30,250); ctx.moveTo(30,250);
-	ctx.lineTo(30,230); ctx.moveTo(30,230);
-	ctx.lineTo(50,230); ctx.moveTo(50,230);
-	ctx.lineTo(50,210); ctx.moveTo(50,210);
-	ctx.lineTo(70,210); ctx.moveTo(70,210);
-	ctx.lineTo(70,190); ctx.moveTo(70,190);
-	ctx.lineTo(90,190); ctx.moveTo(90,190);
-	ctx.lineTo(90,170); ctx.moveTo(90,170);
-	ctx.lineTo(240,100); ctx.moveTo(240,100);
-	ctx.lineTo(240,80); ctx.moveTo(240,80);
-	ctx.lineTo(290,80); ctx.moveTo(290,80);
-	ctx.lineTo(290,50);
-	ctx.closePath();
-	ctx.stroke();			
+	// info view changes
+	$('#ekm').addClass("active");
+	$("#infoEM").hide();
+	$("#infoCBM").hide();
+	$("#infoEKM").show();
+	
+	// map view changes
+	this.emLineLayer.visible = false;
+	this.cbmLineLayer.visible = false;
+	this.ekmLineLayer.visible = true;					
 }
