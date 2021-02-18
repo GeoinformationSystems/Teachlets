@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+	<script>
+	document.addEventListener('DOMContentLoaded', (event) => {
+	  document.querySelectorAll('pre code').forEach((block) => {
+		hljs.highlightBlock(block);
+	  });
+	});
+	</script>
+	<style>
+	*{ 
+		padding: 0px;
+		margin: 0px;	
+	}
+	p, h1 {
+		font-family: sans-serif;
+		padding-top:5px;
+	}
+	.label {
+		color: gray;
+		font-size: 0.8em;
+		margin-bottom:-1em;
+	}
+	.hint {
+		color: gray;
+		font-size: 0.8em;
+		padding:1em;
+		text-align:center;
+	}
+	</style>
+</head>
+
+<body style="padding:1em">
+<h1>Styling Guide for Teachlets</h1>
+<p>1. Basic structure of each teachlets <code>index.html</code>. Can be copied from here and used as skeleton structure for new teachlets.</p>
+<div style="float:left; width:60%">
+<pre>
+	<code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta http-equiv="Content-Type" content="text/html" charset="UTF-8"&gt;
+	&lt;link rel="stylesheet" href="../common/style.css" type="text/css"&gt;
+	
+	&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"&gt;&lt;/script&gt;
+	&lt;link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"&gt;
+	
+	&lt;title&gt;...&lt;/title&gt;
+
+	&lt;!-- include individual javascript files for specific teachlet functionality  --&gt;
+	&lt;script src="js/app.js"&gt;&lt;/script&gt;
+	&lt;script src="js/main.js"&gt;&lt;/script&gt;
+	
+	&lt;!-- include ESRI libraries and styling if a map is used --&gt;
+	&lt;link rel="stylesheet" href="https://js.arcgis.com/4.17/esri/css/main.css"&gt;
+	&lt;script src="https://js.arcgis.com/4.17/"&gt;&lt;/script&gt;
+	
+	&lt;!-- include d3 library if needed for drawing --&gt;
+	&lt;script src="https://d3js.org/d3.v3.min.js"&gt;&lt;/script&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div id="frame"&gt;
+		&lt;div id="header"&gt;
+			&lt;h1&gt;...&lt;/h1&gt;
+		&lt;/div&gt;
+		&lt;div id="info"&gt;
+			&lt;!-- up to 3 divs with following possible sizing options --&gt;
+			&lt;div style="max-height:fit-content;"&gt;
+				&lt;!-- size of div will fit its contents --&gt;
+			&lt;/div&gt;
+			&lt;div style="max-height:none; flex:1 1 0%;"&gt;
+				&lt;!-- div will fill out the leftover space --&gt;
+			&lt;/div&gt;
+			&lt;div style="max-height:28vh"&gt;
+				&lt;!-- fixed maximum size, will fit its contents if smaller  --&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div id="content"&gt;
+			&lt;!-- remove canvas if map is used, map container id will be "content" --&gt;
+			&lt;canvas id="drawfield"&gt;&lt;/canvas&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/body&gt;	
+&lt;/html&gt;
+	</code>
+</pre>
+</div>
+<div style="float:right; width:40%; padding-top:1em">
+	<img src="img/LayoutConcept_main.png" style="width:100%; border: 1px solid gray; margin:5px;" />
+	<img src="img/LayoutConcept_detail.png" style="width:100%; border: 1px solid gray; margin:5px;" />
+</div>
+
+<div style="clear:both;"></div>
+
+<p>2. <code>id=header</code> block should include <code>&lt;h1&gt;</code> with the title of the teachlet. A simple border at the bottom will be added through CSS to separate from application content. Uses full width of the viewport.</p>
+<div style="float:left; width:60%">
+<pre>
+	<code class="html">
+&lt;h1&gt;...&lt;/h1&gt;
+	</code>
+</pre>
+</div>
+<div style="float:right; width:40%; padding-top:1em">
+</div>
+
+<div style="clear:both;"></div>
+
+<p>3. <code>id=info</code> block includes up to three <code>&lt;div&gt;</code>s with different height options depending on significance of the content.</p>
+<p class="label">Example 1: three blocks (two containig important content like 'Steuerung' and 'Ausgabe' | center one will fill the leftover space)</p>
+<div style="float:left; width:60%">
+<pre>
+	<code class="html">
+&lt;div style="max-height:fit-content;"&gt;
+	&lt;!-- size of div will fit its contents --&gt;
+&lt;/div&gt;
+&lt;div style="max-height:none; flex:1 1 0%;"&gt;
+	&lt;!-- div will fill out the leftover space --&gt;
+&lt;/div&gt;
+&lt;div style="max-height:fit-content;"&gt;
+	&lt;!-- size of div will fit its contents --&gt;
+&lt;/div&gt;
+	</code>
+</pre>
+</div>
+<div style="float:right; width:40%; padding-top:1em">
+	<img src="img/LayoutConcept_info1.png" style="width:100%; border: 1px solid gray; margin:5px;" />
+</div>
+
+<div style="clear:both;"></div>
+
+<p class="label">Example 2: two blocks (first one will fill the leftover space | second one containig important content like 'Steuerung' )</p>
+<div style="float:left; width:60%">
+<pre>
+	<code class="html">
+&lt;div style="max-height:none; flex:1 1 0%;"&gt;
+	&lt;!-- div will fill out the leftover space --&gt;
+&lt;/div&gt;
+&lt;div style="max-height:fit-content;"&gt;
+	&lt;!-- size of div will fit its contents --&gt;
+&lt;/div&gt;
+	</code>
+</pre>
+</div>
+<div style="float:right; width:40%; padding-top:1em">
+	<img src="img/LayoutConcept_info2.png" style="width:100%; border: 1px solid gray; margin:5px;" />
+</div>
+
+<div style="clear:both;"></div>
+
+<p class="label">Example 3: two blocks (one with a fixed maximum height of 30vh | second one will fill the leftover space)</p>
+<div style="float:left; width:60%">
+<pre>
+	<code class="html">
+&lt;div style="max-height:max-height:30vh;"&gt;
+	&lt;!-- size of div will fit its contents --&gt;
+&lt;/div&gt;
+&lt;div style="max-height:none; flex:1 1 0%;"&gt;
+	&lt;!-- div will fill out the leftover space --&gt;
+&lt;/div&gt;
+	</code>
+</pre>
+</div>
+<div style="float:right; width:40%; padding-top:2em">
+<p class="hint">no screenshot, currently not used in existing teachlets</p>
+</div>
+
+<div style="clear:both;"></div>
+
+<p>4. Blocks inside of the <code>id=info</code> block should include a <code>&lt;h1&gt;</code> and another <code>&lt;div&gt;</code> for text content. Other used elements are: <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code> or further elements needed for functionality.</p>
+<div style="float:left; width:60%">
+<pre>
+	<code class="html">
+&lt;div style="max-height:none; flex:1 1 0%;"&gt;
+	&lt;h1&gt;...&lt;/h1&gt;
+	&lt;div&gt;explanation&lt;/div&gt;
+	&lt;button name="..."&gt;...&lt;/button&gt;
+	&lt;input type="text" placeholder="..." id="..."&gt;
+	&lt;input type="range" min="1" max="20" step="1" value="..." id="..."&gt;
+&lt;/div&gt;
+	</code>
+</pre>
+</div>
+<div style="float:right; width:40%; padding-top:2em">
+</div>
+
+<div style="clear:both;"></div>
+
+<p>5. <code>id=content</code> block can include a <code>&lt;canvas&gt;</code> if drawing will be necessary. Leave this blank if you want to include a map. Resizing the canvas or map should be done on loading via javascript</p>
+<div style="float:left; width:60%">
+<pre>
+	<code class="html">
+&lt;div id="content"&gt;
+	&lt;!-- remove canvas if map is used, map container id will be "content" --&gt;
+	&lt;canvas id="drawfield"&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+	</code>
+</pre>
+</div>
+<div style="float:right; width:40%; padding-top:2em">
+</div>
+
+<div style="clear:both;"></div>
+
+</body>	
+</html>
