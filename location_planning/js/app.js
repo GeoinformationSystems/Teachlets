@@ -72,9 +72,9 @@ APP.prototype.onClickEvent = function (event) {								//edit is finished
 // -----------------------------------------------------------
 // Calculate the smallest surrounding circle 
 // -----------------------------------------------------------
-APP.prototype.simAnnealing = function () {											//edit not finished 
+APP.prototype.simAnnealing = function () {											
 	// create simulation instance
-	var instance = new SA(this.networkLocations, 1000, 0.000001, 1000);				//sa still needs to implement
+	var instance = new BOUNDINGCIRCLE(c,r);													//?
 	// run the simulation and get connection for smallest surrounding circle		
 	var connections = instance.run();
 	// draw the result on the map
@@ -83,8 +83,8 @@ APP.prototype.simAnnealing = function () {											//edit not finished
 
 // ToDo: show reasonable steps to demonstrate the process				 
 // might need some math to figure that out
-APP.prototype.simAnnealingAnimated = function (ms) {						//not sure if we need this
-	var instance = new SA(this.networkLocations, 10, 0.000001, 2);
+APP.prototype.simAnnealingAnimated = function (ms) {								//not sure if we need this
+	var instance = new BOUNDINGCIRCLE(this.networkLocations, 10, 0.000001, 2);
 
 	var id = setInterval(function () {
 		var result = instance.runOneStep();
@@ -100,7 +100,7 @@ APP.prototype.simAnnealingAnimated = function (ms) {						//not sure if we need 
 };
 
 // -----------------------------------------------------------
-// Redraw connections of circle							
+// Redraw connections between netwirkLocations							
 // Parameters:
 // - calculatedConnections: array of identifier pairs (IDs of points in networkLocations)		
 // -----------------------------------------------------------
@@ -112,15 +112,17 @@ APP.prototype.redrawConnections = function (calculatedConnections) {
 	myLayer.removeAll();
 
 	// draw the circle for each calculated connection
-	$.each(calculatedConnections, function (index, connection) {					//edit not finished
+	$.each(calculatedConnections, function (index, connection) {					
 		require(["esri/geometry/Circle", "esri/symbols/SimpleFillSymbol","esri/graphic"], function (Circle,SimpleFillSymbol,Graphic) {			
 			// get points for the current connection 
-			var currentPoint = allPoints[i];						//?
+			var currentPoint = allPoints[connection[i]];											//?
 			// create the circle as ESRI Graphic
-			var circle = new Circle({
-				center: ,										//?		
-				numberOfPoints: {/*clicked points*/ },			//?
-				ring: [[currentPoint.getX(), pointa.getY()],[pointb.getX(), pointb.getY()]],		//?
+			var circle = new Circle({																//?	
+				numberOfPoints: currentPoint,														//?
+				ring: [[currentPoint.getX(), currentPoint.getY()],									//?
+					[currentPoint.getX(), currentPoint.getY()]],
+				center:
+				radius:
 			});
 
 			var symbol = new SimpleFillSymbol().setColor(null).outline.setColor("blue");

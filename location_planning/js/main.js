@@ -7,12 +7,12 @@ function calculateDifferance(p1, p2) {
 	);
 }
 
-/*function getMiddlePoint(p1,p2){						//not necessary?
+function getMiddlePoint(p1,p2){								//not sure if we need this	
 	return new POINT(
 		(p1.getX() + p2.getX())/2,
 		(p1.getY() + p2.getY())/2
 	);
-}*/
+}
 
 // -----------------------------------------------------------
 // Main functionality
