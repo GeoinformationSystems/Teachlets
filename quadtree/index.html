@@ -32,18 +32,17 @@
 			<div style="max-height:none; flex:1;">
 				<h1>Erklärung der Funktionsweise</h1>
 				<div class="help">
-					Der Quadtree - Algorithmus ermittelt die Anzahl von markierten (schwarzen) Feldern
+					Der Quadtree - Algorithmus ermittelt die Anzahl von markierten (blauen) Feldern
 					auf der Zeichenfläche. Ist diese Anzahl kleiner 1 oder beinhaltet die Fläche nur
 					markierte Felder so wird ausschließlich ein Wurzelknoten in einem Baum erzeugt. <br>
 					<br>
-					Dieser Knoten ist weiß, wenn die Felder weiß sind bzw. schwarz, wenn alle Felder der Zeichenfläche
-					schwarz sind. Ist auf der Zeichenfläche eine Anzahl von Feldern größer bzw. gleich 1 und kleiner als die
+					Dieser Knoten ist weiß, wenn die Felder weiß sind bzw. blau, wenn alle Felder der Zeichenfläche
+					blau sind. Ist auf der Zeichenfläche eine Anzahl von Feldern größer bzw. gleich 1 und kleiner als die
 					Gesamtmenge alle Felder markiert so wird die Zeichenfläche in vier gleichgroße Quadranten unterteilt. <br>
 					<br>
 					Diese neuen Teilflächen werden unter einen Wurzelknoten sortiert angeordnet. Der Quadrant links oben
 					wird im Baum ganz links dargestellt, der Quadrant rechts oben daneben. Es folgen die Flächen rechts
-					unten und links unten.<br>
-					(Quadranten im Uhrzeigersinn, links oben beginnend)<br>
+					unten und links unten. (Quadranten im Uhrzeigersinn, links oben beginnend)<br>
 					<br>
 					Die neuen Quadranten werden wieder bezüglich der Anzahl der markierten Felder überprüft.
 					Und nach obiger Regel unterteilt oder nicht.
