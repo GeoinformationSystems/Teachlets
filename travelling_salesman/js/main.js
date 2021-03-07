@@ -6,6 +6,7 @@ function calculateDifference(p1,p2){
 		Math.pow((p2.getY() - p1.getY()),2)
 	);
 }
+
 // -----------------------------------------------------------
 // Main functionality
 // (depending on the esri JS libraries)

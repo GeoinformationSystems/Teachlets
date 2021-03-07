@@ -1,4 +1,5 @@
-function calculateDifferance(p1,p2){
+// should be moved to the calculation
+function calculateDifferance(p1, p2) {
 	return Math.sqrt(
 		Math.pow((p2.getX() - p1.getX()),2)
 		+
@@ -13,8 +14,13 @@ function getMiddlePoint(p1,p2){
 	);
 }
 
+// -----------------------------------------------------------
+// Main functionality
+// (depending on the esri JS libraries)
+// -----------------------------------------------------------	
 require(["esri/Map","esri/views/MapView","esri/Graphic","esri/layers/GraphicsLayer"], function(Map, MapView, Graphic, GraphicsLayer) {		
 	//source: https://www.laengengrad-breitengrad.de/adresse-zu-laengengrad-breitengrad-gps-koordinaten
+	//array of the stations
 	var stations = [
 		["Dresden",13.7372621,51.0504088],
 		["Berlin",13.404954,52.520007],
@@ -41,6 +47,7 @@ require(["esri/Map","esri/views/MapView","esri/Graphic","esri/layers/GraphicsLay
 		["Osnabrück",8.045769, 52.277490],
 		["Bremen",8.800843, 53.076725]
 	];
+	//array of the grid of stations
 	var network = [
 		["Dresden","Berlin"],
 		["Dresden","Leipzig"],

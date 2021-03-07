@@ -1,4 +1,11 @@
-function CONNECTION(cityA,cityB,distance){
+// -----------------------------------------------------------
+// Constructor
+// Parameters:
+// - cityA: a station
+// - cityB: a station
+// - distance: distance between citys
+// -----------------------------------------------------------
+function CONNECTION(cityA, cityB, distance) {
 	this.a = cityA; //object
 	this.b = cityB;
 	this.distance = distance;
@@ -6,14 +13,23 @@ function CONNECTION(cityA,cityB,distance){
 	this.visited = false;
 }
 
+// -----------------------------------------------------------
+// Get a city
+// -----------------------------------------------------------
 CONNECTION.prototype.getA = function(){
 	return this.a; //returns station object
 }
 
+// -----------------------------------------------------------
+// Get another city
+// -----------------------------------------------------------
 CONNECTION.prototype.getB = function(){
 	return this.b;
 }
 
+// -----------------------------------------------------------
+// Get distance between the two citys
+// -----------------------------------------------------------
 CONNECTION.prototype.getDistance = function(){
 	return this.distance;
 }

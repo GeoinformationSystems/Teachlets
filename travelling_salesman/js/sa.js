@@ -1,4 +1,12 @@
-function SA(points, sigma, rv, to){
+// -----------------------------------------------------------
+// Constructor
+// Parameters:
+// - points: list of clicked points
+// - sigma:
+// - rv:
+// - to: 
+// -----------------------------------------------------------
+function SA(points, sigma, rv, to) {
 	this.pointlist = points;
 	this.circle = this.createCircle();
 	this.distancesMatrix = this.createDistancesMatrix();
@@ -23,10 +31,12 @@ SA.prototype.createDistancesMatrix = function(){
 			}
 		}
 	}
-
 	return matrix;
 }
 
+// -----------------------------------------------------------
+// Create polyline between clicked points
+// -----------------------------------------------------------
 SA.prototype.createCircle = function(){
 	var connections = [];
 	
@@ -88,6 +98,9 @@ SA.prototype.runOneStep = function(){
 	}
 }
 
+// -----------------------------------------------------------
+// create shortest polyline
+// -----------------------------------------------------------
 SA.prototype.optimizeCircle = function(){
 	var cityA = null, cityB = null;
 	

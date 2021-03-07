@@ -1,4 +1,11 @@
-function runDijkstra(network,start,stop){
+// -----------------------------------------------------------
+// Constructor
+// Parameters:
+// - network: grid of stations
+// - start:
+// - stop:
+// -----------------------------------------------------------
+function runDijkstra(network, start, stop) {
 	this.network = network;
 	this.start = start;
 	this.stop = stop;
@@ -6,6 +13,9 @@ function runDijkstra(network,start,stop){
 	return this.calculate();
 }
 
+// -----------------------------------------------------------
+// Calculation of the algorithm: line between two citys
+// -----------------------------------------------------------
 runDijkstra.prototype.calculate = function(){
 	var origin = this.start,
 		i=0,
@@ -47,6 +57,9 @@ runDijkstra.prototype.getResult = function(){
 	return this.result;
 }
 
+// -----------------------------------------------------------
+// Delete the line
+// -----------------------------------------------------------
 runDijkstra.prototype.deleteConnection = function(index){
 	this.network.splice(index,1);
 }
