@@ -1,12 +1,12 @@
 * {
     margin: 0px;
     padding: 0px;
-    font-weight: normal;      
-    font-family: 'Open Sans';      /*type of font*/
+    font-weight: normal;                        /*weight of font for whole text*/
+    font-family: 'Open Sans';                   /*type of font for the whole text*/
 }
 
 body {
-    background-color: #fff;
+    background-color: #fff;                     /*background color: white*/
 }
 
 #frame {
@@ -18,16 +18,16 @@ body {
     height:7vh;
 }
 
-#header > h1 {
+#header > h1 {                                  /*here changes for headline*/
     display: block;
     border-bottom: 2px solid #00305e;
-	color: rgb(0,48,94);                /*TUD Corporate Design: dark blue*/
+	color: rgb(0,48,94);                        /*color of TUD Corporate Design dark blue*/
     font-size: 4vh;
 	font-style: normal;
 	text-align: center;
 }
 
-#info {                            		/*info-text*/
+#info {                            		        /*here changes for left block*/
     float: left;
     width: 38vw;
     height: 93vh;
@@ -39,7 +39,7 @@ body {
     color: rgb(0,48,94);
 }
 
-#info h1 {								/*info-headline*/
+#info h1 {								        /*here changes for headline of left block*/
     background-color: rgb(0,48,94);
     border-top-left-radius: 3px;
     padding: 5px;
@@ -49,7 +49,7 @@ body {
     color: white;
 }
 
-#info > div {
+#info > div {                                   /*here changes for left block*/
     background-color: #f2f3f3;
     margin-bottom: 2vh;
 	/*
@@ -67,7 +67,7 @@ body {
     width: calc(100% - 40px);
 }
 
-#info button {
+#info button {                                  /*here changes for buttons*/
 	display: inline-block;
     text-align: center;
     line-height: 1;
@@ -88,7 +88,7 @@ body {
     padding: 5px 20px;
 }
 
-#content {
+#content {                                      /*here changes for right block*/
     float: right;
     width: 60vw;
     height: 92vh;
@@ -98,7 +98,7 @@ body {
 	padding: 0vh 2vw;
 }
 
-#drawfield {
+#drawfield {                                    /*here changes for drawfield*/
     background-color: #f2f3f3;
 }
 
