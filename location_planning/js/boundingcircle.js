@@ -1,5 +1,7 @@
 /*This contains computes the smallest bounding circle for a set of points*/
-function BOUNDINGCIRCLE(x, y) {
+function BOUNDINGCIRCLE(c, r) {
+	this.c = c;						//center
+	this.r = r;						//radius
 	this.p1 = new POINT(x, y);
 	this.p2 = new POINT(x, y);
 	this.p3 = new POINT(x, y);

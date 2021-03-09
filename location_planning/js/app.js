@@ -33,7 +33,7 @@ APP.prototype.reset = function () {									//edit is finished
 // Parameters:
 // - event: data regarding event (like clicked position)
 // -----------------------------------------------------------
-APP.prototype.onClickEvent = function (event) {								//edit is finished
+APP.prototype.onClickEvent = function (event) {								//edit not finished
 	// create a point from clicked map coordinates
 	var point = new POINT(event.mapPoint.longitude, event.mapPoint.latitude);
 	// get the ESRI Graphics layer to draw points
@@ -64,7 +64,7 @@ APP.prototype.onClickEvent = function (event) {								//edit is finished
 				}
 			}
 		});
-		// add point to layer 'clickPoint'
+		// add point to layer
 		myLayer.add(graphic);
 	});
 };
@@ -74,7 +74,7 @@ APP.prototype.onClickEvent = function (event) {								//edit is finished
 // -----------------------------------------------------------
 APP.prototype.simAnnealing = function () {											
 	// create simulation instance
-	var instance = new BOUNDINGCIRCLE(c,r);													//?
+	var instance = new SA(this.networkLocations, 1000, 0.000001, 1000);				//?
 	// run the simulation and get connection for smallest surrounding circle		
 	var connections = instance.run();
 	// draw the result on the map
@@ -83,8 +83,8 @@ APP.prototype.simAnnealing = function () {
 
 // ToDo: show reasonable steps to demonstrate the process				 
 // might need some math to figure that out
-APP.prototype.simAnnealingAnimated = function (ms) {								//not sure if we need this
-	var instance = new BOUNDINGCIRCLE(this.networkLocations, 10, 0.000001, 2);
+APP.prototype.simAnnealingAnimated = function (ms) {								//not finish
+	var instance = new SA(this.networkLocations, 10, 0.000001, 2);
 
 	var id = setInterval(function () {
 		var result = instance.runOneStep();
@@ -120,9 +120,9 @@ APP.prototype.redrawConnections = function (calculatedConnections) {
 			var circle = new Circle({																//?	
 				numberOfPoints: currentPoint,														//?
 				ring: [[currentPoint.getX(), currentPoint.getY()],									//?
-					[currentPoint.getX(), currentPoint.getY()]],
-				center:
-				radius:
+				[currentPoint.getX(), currentPoint.getY()]],
+				//center:
+				//radius:
 			});
 
 			var symbol = new SimpleFillSymbol().setColor(null).outline.setColor("blue");

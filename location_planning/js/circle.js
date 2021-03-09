@@ -1,7 +1,7 @@
 /*This class manages a circle consisting of middle point and radius*/
-function CIRCLE(p, r) {
-    this.p = p;
-    this.r = r;
+function CIRCLE(p, r) {                                     
+    this.p = p;             //middle point > in boundingcircle c (center)
+    this.r = r;             //radius
 }
 
 CIRCLE.prototype.Circle = function () {                         //not sure if we need this

@@ -46,7 +46,7 @@ require(["esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/Graphics
 		id:"clickPoint"
 	});
 	var circleLayer = new GraphicsLayer({
-		id:"cirlce"
+		id:"circle"
 	});
 	
 	esriMap.addMany([clickPointLayer, circleLayer]);
