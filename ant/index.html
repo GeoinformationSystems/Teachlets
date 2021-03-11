@@ -1,34 +1,34 @@
 ﻿<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-    <link rel="stylesheet" href="../common/style.css" type="text/css">
-    
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<link rel="stylesheet" href="../common/style.css" type="text/css">
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-    <title>Turingmaschine Ameise</title>
+	<title>Turingmaschine Ameise</title>	<!-- turing machine ant -->
 
-    <script src="js/appobject.js"></script>
-    <script src="js/pointobject.js"></script>
-    <script src="js/antsobject.js"></script>
-    <script src="js/main.js"></script>
+	<script src="js/appobject.js"></script>
+	<script src="js/pointobject.js"></script>
+	<script src="js/antsobject.js"></script>
+	<script src="js/main.js"></script>
 </head>
 
 <body>
     <div id="frame">
-        <div id="header">
-            <h1>Turingmaschine Ameise</h1>
-        </div>
+		<div id="header">
+			<h1>Turingmaschine Ameise</h1>	<!-- turing machine ant -->
+		</div>
         <div id="content">
 			<canvas id="drawfield"></canvas>
         </div>
 		<div id="info">
 			<div style="max-height:fit-content;">
-				<h1>Steuerung</h1>
-				<button name="resetRaster">Zeichenfläche leeren</button>
-				<button name="run">Einen Schritt simulieren</button>
-				<button id="autorun_button" name="runAuto">Auto-Simulation start</button>
-				<div>Bilder pro Sekunde: <span id="fps">10</span></div>
+				<h1>Steuerung</h1>	<!-- control -->
+				<button name="resetRaster">Zeichenfläche leeren</button>	<!-- Clean drawing field -->
+				<button name="run">Einen Schritt simulieren</button>	<!-- Simulate a step -->
+				<button id="autorun_button" name="runAuto">Auto-Simulation start</button>	<!-- start auto simulation -->
+				<div>Bilder pro Sekunde: <span id="fps">10</span></div>	<!-- Frames per second: -->
 				<div>
 					<input type="range" min="1" max="20" step="1" value="10" id="fpsswitcher">
 					<div style="float:left">1 </div>
@@ -36,20 +36,34 @@
 				</div>
 			</div>
 			<div style="max-height:none; flex:1;">
-				<h1>Hilfe zum Programm</h1>
+				<h1>Hilfe zum Programm</h1>	<!-- Help with the program -->
 				<div class="help">
 					Tragen Sie auf der großen grauen Fläche durch Klicken mit der Maus Punkte ein.<br>
 					<br>
 					Starten Sie anschließend die automatische Simulation oder simulieren Sie nur den nächsten Schritt
 					indem Sie auf die jeweiligen Button klicken.<br>
 					<br>
-					Im Anschluss wird gemäß den folgenden Regeln der Automat durchgeführt: 
+					Im Anschluss wird gemäß den folgenden Regeln der Automat durchgeführt:
 					<ul>
 						<li>Eine Ameise schaut zu Beginn in eine beliebige Richtung.</li>
-						<li>Ist das Feld weiß: so färbt sie es schwarz und dreht sich um 90° nach rechts.</li>
-						<li>Ist das Feld schwarz: so färbt sie es weiß und dreht sich um 90° nach links.</li>
+						<li>Ist das Feld grau: so färbt sie es blau und dreht sich um 90° nach rechts.</li>
+						<li>Ist das Feld blau: so färbt sie es grau und dreht sich um 90° nach links.</li>
 						<li>Danach läuft sie ein Feld in die neue Blickrichtung.</li>
 					</ul>
+					<!--
+						Register points on the large gray field by clicking with the mouse.<br>
+						<br>
+						Then start the automatic simulation or simulate the next step by clicking on the respective
+						buttons.<br>
+						<br>
+						Now the machine is carried out according to the following rules:
+						<ul>
+							<li>At the beginning an ant looks in any direction.</li>
+							<li>If the field is gray: it turns blue and rotates 90° to the right.</li>
+							<li>If the field is blue: it turns gray and rotates 90 ° to the left.</li>
+							<li>Then it goes one field in the new viewing direction.</li>
+						</ul>
+					-->
 				</div>
 			</div>
 		</div>
