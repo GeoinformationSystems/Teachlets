@@ -7,12 +7,12 @@ function calculateDifferance(p1, p2) {
 	);
 }
 
-function getMiddlePoint(p1,p2){								//not sure if we need this	
+/*function getMiddlePoint(p1,p2){								//not sure if we need this	
 	return new POINT(
 		(p1.getX() + p2.getX())/2,
 		(p1.getY() + p2.getY())/2
 	);
-}
+}*/
 
 // -----------------------------------------------------------
 // Main functionality
@@ -23,7 +23,7 @@ require(["esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/Graphics
 	$("button").click(function () {
 		var clicked = $(this).attr("name");
 
-		if (clicked.localeCompare("run") == 0) {
+		if (clicked.localeCompare("run") == 0) {					//not finish
 			myApp.simAnnealing();					
 		}
 
