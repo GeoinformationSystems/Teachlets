@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-    <title>Standortplanung</title>
+    <title>Standortplanung</title>  <!-- location planning -->
 
     <link rel="stylesheet" href="https://js.arcgis.com/4.17/esri/css/main.css">
     <script src="https://js.arcgis.com/4.17/"></script>
@@ -23,34 +23,47 @@
 <body>
     <div id="frame">
         <div id="header">
-            <h1>Standortplanung</h1>
+            <h1>Standortplanung</h1> <!-- location planning -->
         </div>
         <div id="content"></div>
         <div id="info">
             <div style="max-height:none; flex:1">
-                <h1>Erklärung der Funktionsweise</h1>
+                <h1>Erklärung der Funktionsweise</h1>   <!-- explanation of functionality -->
                 <div class="help">
                     Bei der Standortplanung wird der optimale Standort gesucht, von dem aus n viele Städte mit minimalen
                     Wegekosten erreicht werden können.<br>
                     <br>
                     Dafür wird die Methode des kleinsten umschließenden Kreises angewendet, bei der ein Kreis mit
-                    minimalem Radius ermittelt wird, der alle n Städte einschließt. Der Mittelpunkt dieses Kreises bildet 
+                    minimalem Radius ermittelt wird, der alle n Städte einschließt. Der Mittelpunkt dieses Kreises bildet
                     den optimalen Standort, da von diesem Punkt aus die Distanz zu den am weitesten entfernten
                     Städten minimal ist.<br>
                     <br>
-                    Standortplanung bzw. die Suche nach dem optimalen Standort findet z.B. Anwendung bei der Planung 
-                    von Feuerwehren, Schulen usw. 
+                    Standortplanung bzw. die Suche nach dem optimalen Standort findet z.B. Anwendung bei der Planung
+                    von Feuerwehren, Schulen usw.
+                    <!--
+                        During location planning the optimal location is searched from which n many cities can be
+                        reached with minimal travel costs. <br>
+                        <br>
+                        Therefor the method of the smallest surrounding circle is used, in which a circle with a minimum
+                        radius is determined that includes all n cities. The center of this circle forms the optimal
+                        location, because from this point the distance to the most distant cities is minimal.<br>
+                        <br>
+                        Location planning or rather the search for the optimal location is used for example in the 
+                        planning of fire departments, schools, etc.
+                    -->
                 </div>
             </div>
-            <div style="max-height:fit-content"">
-                <h1>Steuerung</h1>
+            <div style="max-height:fit-content" ">
+                <h1>Steuerung</h1>  <!-- control -->
                 <div class="help">
                     Der optimale Standort und der umschließende Kreis werden angezeigt.
+                    <!-- The optimal location and the surrounding circle are displayed.  -->
                 </div>
-                <button name="run">Algorithmus starten</button>
-                <button name="reset">Karte säubern</button>
+                <button name="run">Algorithmus starten</button> <!-- Start algorithm  -->
+                <button name="reset">Karte säubern</button> <!-- Clean map -->
                 <div class="help">
                     Um neue Städte zu setzen, den obersten Button klicken!
+                    <!-- To set new cities, click the top button!  -->
                 </div>
             </div>
         </div>

@@ -1,44 +1,44 @@
 ﻿<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-    <link rel="stylesheet" href="../common/style.css" type="text/css">
-	
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<link rel="stylesheet" href="../common/style.css" type="text/css">
 
-    <title>Quadtree-Algorithmus</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-    <script src="js/appobject.js"></script>
-    <script src="js/pointobject.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/helpwindow.js"></script>
-    <script src="https://d3js.org/d3.v3.min.js"></script>
+	<title>Quadtree-Algorithmus</title>	<!-- Quadtree-Algorithm -->
+
+	<script src="js/appobject.js"></script>
+	<script src="js/pointobject.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/helpwindow.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
 </head>
 
 <body>
     <div id="frame">
-        <div id="header">
-            <h1>Quadtree-Algorithmus</h1>
-        </div>
+		<div id="header">
+			<h1>Quadtree-Algorithmus</h1>	<!-- Quadtree-Algorithm -->
+		</div>
         <div id="content">
             <canvas id="drawfield"></canvas>
         </div>
 		<div id="info">
 			<div style="max-height:fit-content;">
-				<h1>Steuerung</h1>
-				<button name="runQuad">Kodierung berechnen</button>
-				<button name="resetRaster">Zeichenfläche leeren</button>
+				<h1>Steuerung</h1>	<!-- Control -->
+				<button name="runQuad">Kodierung berechnen</button>	<!-- Calculate coordination -->
+				<button name="resetRaster">Zeichenfläche leeren</button>	<!-- Clean drawing field -->
 			</div>
 			<div style="max-height:none; flex:1;">
-				<h1>Erklärung der Funktionsweise</h1>
+				<h1>Erklärung der Funktionsweise</h1>	<!-- Explanation of functionality -->
 				<div class="help">
 					Der Quadtree - Algorithmus ermittelt die Anzahl von markierten (blauen) Feldern
 					auf der Zeichenfläche. Ist diese Anzahl kleiner 1 oder beinhaltet die Fläche nur
-					markierte Felder so wird ausschließlich ein Wurzelknoten in einem Baum erzeugt. <br>
+					markierte Felder, so wird ausschließlich ein Wurzelknoten in einem Baum erzeugt. <br>
 					<br>
 					Dieser Knoten ist weiß, wenn die Felder weiß sind bzw. blau, wenn alle Felder der Zeichenfläche
 					blau sind. Ist auf der Zeichenfläche eine Anzahl von Feldern größer bzw. gleich 1 und kleiner als die
-					Gesamtmenge alle Felder markiert so wird die Zeichenfläche in vier gleichgroße Quadranten unterteilt. <br>
+					Gesamtmenge alle Felder markiert, so wird die Zeichenfläche in vier gleichgroße Quadranten unterteilt. <br>
 					<br>
 					Diese neuen Teilflächen werden unter einen Wurzelknoten sortiert angeordnet. Der Quadrant links oben
 					wird im Baum ganz links dargestellt, der Quadrant rechts oben daneben. Es folgen die Flächen rechts
@@ -46,10 +46,26 @@
 					<br>
 					Die neuen Quadranten werden wieder bezüglich der Anzahl der markierten Felder überprüft.
 					Und nach obiger Regel unterteilt oder nicht.
+					<!--
+						The quadtree algorithm determines the number of marked (blue) fields on the drawing field. If this
+						number is less than 1 or if the area only contains marked fields, only a root node is created in
+						the tree.<br>
+						<br>
+						This node is white if the fields are white or rather blue if all fields in the drawing field are
+						blue. The drawing area is divided into four equal-sized quadrants if a number of fields greater
+						than or equal to 1 and less than the total number of all fields are marked on the drawing area.<br>
+						<br>
+						These new partial fields are sorted and arranged under a root node. The top left quadrant is shown
+						on the left in the tree, the top right quadrant next to it. This is followed by the fields at the
+						bottom right and bottom left. (Clockwise quadrant, starting at the top left)<br>
+						<br>
+						Again the new quadrants are checked regarding to the number of marked fields. And divided or not
+						according to the above rule.
+					-->
 				</div>
 			</div>
 			<div style="max-height:fit-content;">
-				<h1>Ausgabe des Baumes</h1>
+				<h1>Ausgabe des Baumes</h1>	<!-- Output of the tree -->
 				<div id="resultChart"></div>
 			</div>
 		</div>

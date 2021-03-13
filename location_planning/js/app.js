@@ -71,7 +71,7 @@ APP.prototype.onClickEvent = function (event) {								//finish
 APP.prototype.simAnnealing = function () {											
 	// 0 points on map => throw error and cancel calculation			//finish
 	if (this.networkLocations.length == 0) {
-		alert("[ERROR] Es wird mindestens 1 Punkt benötigt.");
+		alert("[ERROR] Es wird mindestens 1 Punkt benötigt.");		//[ERROR] At least one point is required.
 		return false;
 	}
 	// create simulation instance
@@ -82,11 +82,11 @@ APP.prototype.simAnnealing = function () {
 	this.redrawConnections(connections);											//finish
 };
 
-// ToDo: show reasonable steps to demonstrate the process				 
+// ToDo: show reasonable steps to demonstrate the process				//not working  
 // might need some math to figure that out
 APP.prototype.simAnnealingAnimated = function (ms) {								
 	if (this.networkLocations.length == 0) {										//finish
-		alert("[ERROR] Es wird mindestens 1 Punkt benötigt.");
+		alert("[ERROR] Es wird mindestens 1 Punkt benötigt.");		//[ERROR] At least one point is required.
 		return false;
 	}
 	var instance = new SA(this.networkLocations, 10, 0.000001, 2);				//?

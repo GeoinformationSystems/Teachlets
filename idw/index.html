@@ -26,15 +26,15 @@
         </div>
 		<div id="info">
 			<div style="max-height:fit-content;">
-				<h1>Steuerung</h1>
+				<h1>Steuerung</h1>	<!-- control -->
 				<button name="runIdw">Run IDW</button>
-				<button name="resetAll">Zeichenfläche leeren</button>
+				<button name="resetAll">Zeichenfläche leeren</button>	<!-- clean drawing field -->
 				<input type="text" placeholder="Anzahl genutzter Stationen" id="limiter">
 			</div>
 			<div style="max-height:none; flex:1;">
-				<h1>Hilfe zum Programm</h1>
+				<h1>Hilfe zum Programm</h1>	<!-- Help with the program -->
 				<div class="help">
-					Klicken Sie auf die graue Rasterfläche, um eine Stationen zu erstellen. Sie werden aufgefordert einen Wert 
+					Klicken Sie auf die graue Rasterfläche, um eine Stationen zu erstellen. Sie werden aufgefordert einen Wert
 					für diese Station einzugeben. Wiederholen Sie dies für eine beliebige Anzahl an Stationen.<br />
 					<br />
 					Starten Sie den IDW-Algorithmus mittels dem Button "Run IDW".<br />
@@ -43,6 +43,18 @@
 					Stationen bestimmt. Sie haben die Möglichkeit die Anzahl dieser Station zu limitieren.<br />
 					<br />
 					Niedrige Werte werden mit Blau dargestellt. Hohe Werte mit Rot. Der Mittelpunkt der Zelle wird zur Berechnung der Distanz genutzt.
+					<!--
+						Click on the gray grid area to create a station. You will be asked to enter a value for this
+						station. Repeat this for any number of stations.<br />
+						<br />
+						Start the IDW algorithm using the button "Run IDW".<br />
+						<br />
+						The value of each cell in the grid is determined as the spatially weighted mean of the values
+						of the surrounding stations. You have the option to limit the number of these stations.<br />
+						<br />
+						Low values are shown in blue. High values with red. The center of the cell is used to calculate
+						the distance.
+					-->
 				</div>
 			</div>
 		</div>

@@ -32,7 +32,7 @@ $(function() {
 	$("#drawfield").click(function(e){
 		var x = e.pageX - this.offsetLeft;
 		var y = e.pageY - this.offsetTop;
-		var value = prompt("Bitte geben Sie einen Wert für diese Station ein.", "0");
+		var value = prompt("Bitte geben Sie einen Wert für diese Station ein.", "0");	//Please enter a value for this station. 
 		if(value != null && isNumber(value)) myModel.addStation(x,y,value);
 	});
 	
