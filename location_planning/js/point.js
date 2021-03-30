@@ -1,9 +1,11 @@
-function POINT(x,y){
+/* This class manages a point consinsting of coordinates x, y */
+
+function POINT(x, y) {
 	this.x = x;
 	this.y = y;
 }
 
-POINT.prototype.setX = function(x){
+POINT.prototype.setX = function (x) {
 	this.x = x;
 }
 

@@ -75,9 +75,9 @@ APP.prototype.simAnnealing = function () {
 		return false;
 	}
 	// create simulation instance
-	var instance = new SA(this.networkLocations, 1000, 0.000001, 1000);				//?
+	var instance = new BOUNDINGCIRCLE(this.c, this.r, mapPoint.longitude, mapPoint.latitude);				//?
 	// run the simulation and get connection for smallest surrounding circle		
-	var connections = instance.run();												//finish
+	var connections = instance.calculateAlgo();												//?
 	// draw the result on the map
 	this.redrawConnections(connections);											//finish
 };
