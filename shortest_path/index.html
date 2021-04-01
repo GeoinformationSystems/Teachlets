@@ -6,7 +6,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-	<title>Shortest-Path-Problem</title>	
+	<title>Shortest-Path-Problem</title>
 
 	<link rel="stylesheet" href="https://js.arcgis.com/4.17/esri/css/main.css">
 	<script src="https://js.arcgis.com/4.17/"></script>
@@ -17,6 +17,7 @@
 	<script src="js/connection.js"></script>
 	<script src="js/runDijkstra.js"></script>
 	<script src="js/transform.js"></script>
+	<script src="js/openLanguage.js"></script>
 </head>
 
 <body>
@@ -27,47 +28,21 @@
         <div id="content"></div>
 		<div id="info">
 			<div style="max-height:none; flex:1">
-				<h1>Erklärung der Funktionsweise</h1>	<!-- Explanation of functionality -->
-				<div class="help">
-					Beim Shortest-Path-Problem wird der geometrisch kürzeste Weg zwischen einem Start- und Zielknoten
-					gesucht.<br>
-					<br>
-					Nach dem Starten des Beispiels ist in der Karte rechts das Eisenbahnnetz für die größten Städte
-					Deutschlands schematisch dargestellt. Die Zahlen geben die Entfernung (Luftlinie) zwischen zwei
-					Städten in 10 km an.<br>
-					<br>
-					Die kürzeste Entfernung zwischen zwei beliebigen Punkten wird hier mit dem Dijkstra-Algorithmus
-					berechnet, bei dem vom Startknoten aus iterativ die jeweiligen Nachbarknoten mit minimaler Distanz
-					zum Startknoten besucht werden, bis der Zielknoten bzw. alle Knoten besucht sind.<br>
-					<br>
-					Dieser Algorithmus findet z.B. bei Routenplanern und Navigationssystemen Anwendung.
-					<!--
-						In the case of the shortest path problem, the geometrically shortest path between a start and
-						destination node is sought.<br>
-						<br>
-						The rail network for the largest cities in Germany is shown schematically on the map on the right
-						after starting the example. The numbers indicate the distance (as the crow flies) between two
-						cities in 10 km.<br>
-						<br>
-						The shortest distance between any two points is calculated with the Dijkstra algorithm, in which
-						the respective neighboring nodes are visited iteratively from the starting node with the minimum
-						distance to the starting node until the destination node or rather all nodes are visited.<br>
-						<br>
-						This algorithm is used for example in route planners and navigation systems.
-					-->
-				</div>
+				<h1>Erklärung der Funktionsweise / Explanation of functionality</h1>	
+				<button class="tab links" id="defaultOpen" name="deutsch" onclick="openLanguage(event, 'deutsch')" style="width:33%;">Deutsch</button><button class="tab links" name="englisch" onclick="openLanguage(event, 'englisch')" style="width:33%;">English</button>
+					<div id="deutsch" class="tabcontent"></div>				
+					<div id="englisch" class="tabcontent"></div>
 			</div>
 			<div style="max-height:fit-content">
-				<h1>Steuerung</h1>	<!-- Control -->
+				<h1>Steuerung / Control</h1>
 				<div class="help">
 					Klicken Sie in der Karte auf die 2 Städte, für welche Sie den kürzesten Weg ermitteln möchten. Das
-					kann wiederholt werden so oft Sie möchten.
-					<!--
-						Click on the 2 cities on the map for which you want to determine the shortest route. 
-						This can be repeated as often as you like.
-					-->
+					kann wiederholt werden so oft Sie möchten.<br>
+					<br>
+					Click on the 2 cities on the map for which you want to determine the shortest route.
+					This can be repeated as often as you like.
 				</div>
-				<button name="reset">Karte säubern</button>	<!-- Clean map -->
+				<button name="reset">Karte säubern / Clean map</button>
 			</div>
         </div>
     </div>
