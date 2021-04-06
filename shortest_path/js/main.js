@@ -107,24 +107,24 @@ require(["esri/Map","esri/views/MapView","esri/Graphic","esri/layers/GraphicsLay
 			$('#body').tab('show');
 		});
 
-		$('#deutsch').html("Beim Shortest-Path-Problem wird der geometrisch kürzeste Weg zwischen einem Start- und"+ 
+		$('#deutsch').html("Beim Shortest-Path-Problem wird der geometrisch kürzeste Weg zwischen einem Start- und "+ 
 			"Zielknoten gesucht.<br><br>" +
-			"Nach dem Starten des Beispiels ist in der Karte rechts das Eisenbahnnetz für die größten Städte"+
-			"Deutschlands schematisch dargestellt. Die Zahlen geben die Entfernung (Luftlinie) zwischen zwei"+
+			"Nach dem Starten des Beispiels ist in der Karte rechts das Eisenbahnnetz für die größten Städte "+
+			"Deutschlands schematisch dargestellt. Die Zahlen geben die Entfernung (Luftlinie) zwischen zwei "+
 			"Städten in 10 km an.<br>"+
 			"<br>"+
-			"Die kürzeste Entfernung zwischen zwei beliebigen Punkten wird hier mit dem Dijkstra-Algorithmus"+
-			"berechnet, bei dem vom Startknoten aus iterativ die jeweiligen Nachbarknoten mit minimaler Distanz"+
+			"Die kürzeste Entfernung zwischen zwei beliebigen Punkten wird hier mit dem Dijkstra-Algorithmus "+
+			"berechnet, bei dem vom Startknoten aus iterativ die jeweiligen Nachbarknoten mit minimaler Distanz "+
 			"zum Startknoten besucht werden, bis der Zielknoten bzw. alle Knoten besucht sind.<br>"+
 			"<br>"+
 			"Dieser Algorithmus findet z.B. bei Routenplanern und Navigationssystemen Anwendung.");
-		$('#englisch').html("In the case of the shortest path problem, the geometrically shortest path between a start"+ 
+		$('#englisch').html("In the case of the shortest path problem, the geometrically shortest path between a start "+ 
 			"and destination node is sought.<br><br>"+
-			"The rail network for the largest cities in Germany is shown schematically on the map on the right"+
-			"after starting the example. The numbers indicate the distance (as the crow flies) between two"+
+			"The rail network for the largest cities in Germany is shown schematically on the map on the right "+
+			"after starting the example. The numbers indicate the distance (as the crow flies) between two "+
 			"cities in 10 km.<br><br>"+
-			"The shortest distance between any two points is calculated with the Dijkstra algorithm, in which"+
-			"the respective neighboring nodes are visited iteratively from the starting node with the minimum"+
+			"The shortest distance between any two points is calculated with the Dijkstra algorithm, in which "+
+			"the respective neighboring nodes are visited iteratively from the starting node with the minimum "+
 			"distance to the starting node until the destination node or rather all nodes are visited.<br><br>"+
 			"This algorithm is used for example in route planners and navigation systems.");
 	});
