@@ -8,7 +8,7 @@ require(["esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/Graphics
 		var clicked = $(this).attr("name");
 
 		if (clicked.localeCompare("run") == 0) {					//not finish
-			myApp.simAnnealing();					
+			myApp.run();					
 		}
 
 		if (clicked.localeCompare("reset") == 0) {

@@ -35,7 +35,9 @@ APP.prototype.reset = function () {									//finish
 // -----------------------------------------------------------
 APP.prototype.onClickEvent = function (event) {								//finish
 	// create a point from clicked map coordinates
-	var point = new POINT(event.mapPoint.longitude, event.mapPoint.latitude);
+	// use Web Mercator units since calculation doesn't work with distortion in WGS84 
+	var point = new POINT(event.mapPoint.x, event.mapPoint.y);
+
 	// get the ESRI Graphics layer to draw points
 	var myLayer = myApp.myMap.findLayerById("clickPoint");
 
@@ -47,8 +49,9 @@ APP.prototype.onClickEvent = function (event) {								//finish
 		var graphic = new Graphic({
 			geometry: {
 				type: "point",
-				latitude: point.getY(),
-				longitude: point.getX(),
+				x: point.getX(),
+				y: point.getY(),
+				spatialReference: {"wkid":102100},		// geometry is given as Web Mercator units
 			},
 			symbol: {
 				type: "simple-marker",
@@ -68,40 +71,20 @@ APP.prototype.onClickEvent = function (event) {								//finish
 // -----------------------------------------------------------
 // Calculate the smallest surrounding circle 
 // -----------------------------------------------------------
-APP.prototype.simAnnealing = function () {											
+APP.prototype.run = function () {											
 	// 0 points on map => throw error and cancel calculation			//finish
 	if (this.networkLocations.length == 0) {
-		alert("[ERROR] Es wird mindestens 1 Punkt benötigt.");		//[ERROR] At least one point is required.
+		alert("[ERROR] Es wird mindestens 1 Punkt benÃ¶tigt.");		//[ERROR] At least one point is required.
 		return false;
 	}
 	// create simulation instance
-	var instance = new BOUNDINGCIRCLE(this.c, this.r, mapPoint.longitude, mapPoint.latitude);				//?
-	// run the simulation and get connection for smallest surrounding circle		
-	var connections = instance.calculateAlgo();												//?
+	var instance = new BOUNDINGCIRCLE();				//?
+	
+	// run the simulation and get connection for smallest surrounding circle
+	var circle = instance.minCircle(this.networkLocations.length, this.networkLocations, 0, [3]);											//?
+
 	// draw the result on the map
-	this.redrawConnections(connections);											//finish
-};
-
-// ToDo: show reasonable steps to demonstrate the process				//not working  
-// might need some math to figure that out
-APP.prototype.simAnnealingAnimated = function (ms) {								
-	if (this.networkLocations.length == 0) {										//finish
-		alert("[ERROR] Es wird mindestens 1 Punkt benötigt.");		//[ERROR] At least one point is required.
-		return false;
-	}
-	var instance = new SA(this.networkLocations, 10, 0.000001, 2);				//?
-
-	var id = setInterval(function () {											//?
-		var result = instance.runOneStep();
-
-		if (result) {
-			myApp.redrawConnections(result);
-		} else {
-			clearInterval(id);
-		}
-	}, ms);
-
-	return id;
+	this.redrawCircle(circle);											//finish
 };
 
 // -----------------------------------------------------------
@@ -109,28 +92,32 @@ APP.prototype.simAnnealingAnimated = function (ms) {
 // Parameters:
 // - calculatedConnections: array of identifier pairs (IDs of points in networkLocations)		
 // -----------------------------------------------------------
-APP.prototype.redrawConnections = function (calculatedConnections) {					
-	var allPoints = this.networkLocations;									//finish
+APP.prototype.redrawCircle = function (circle) {					
+	
 	var myLayer = this.myMap.findLayerById("circle");						//finish
 
 	// clear points and drawn circle from layer	
 	myLayer.removeAll();													//finish
-
-	// draw the circle for each calculated connection
-	$.each(calculatedConnections, function (index) {						//not sure if correct		
-		require(["esri/geometry/Circle", "esri/symbols/SimpleFillSymbol", "esri/graphic"], function (Circle, SimpleFillSymbol,Graphic) {			
-			// create the circle as ESRI Graphic
-			var circle = new Circle({
-				ring: allPoints,
-				//center:
-				//radius:
-				numberOfPoints: allPoints
-			});
-			var symbol = new SimpleFillSymbol().setColor(null).outline.setColor("blue");
-			var graphic = new Graphic(circle, symbol);
-			// add circle to layer 'circle'
-			myLayer.add(graphic);
+	
+	require(["esri/geometry/Circle", "esri/Graphic"], function (Circle, Graphic) {			
+		// create the circle as ESRI Graphic
+		var circleGraph = new Circle({
+			center: {
+				x: circle.getMiddlePoint().getX(),
+				y: circle.getMiddlePoint().getY(),
+				spatialReference: {"wkid":102100},
+			},
+			radius: circle.getRadius(),							
 		});
-		// repeat for all calculated connections given
+		var symbol = { 		
+			type: "simple-line",
+			width: 2,
+			color: "blue"
+		};
+		var graphic = new Graphic(circleGraph, symbol);
+		
+		// add circleGraph to layer 'circle'
+		myLayer.add(graphic);
 	});
+	
 };
