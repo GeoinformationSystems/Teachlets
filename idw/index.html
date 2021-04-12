@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-    <title>Inverse Distance Weighting</title>
+	<title>Inverse Distanzwichtung</title>
 
     <script src="js/model.js"></script>
     <script src="js/pointobject.js"></script>
@@ -17,47 +17,54 @@
 </head>
 
 <body>
-    <div id="frame">
-        <div id="header">
-            <h1>Inverse Distance Weighting</h1>
-        </div>
-        <div id="content">
-            <canvas id="drawfield"></canvas>
-        </div>
+	<div id="frame">
+		<div id="language"><button class="lang-switch" name="de">DE</button><button class="lang-switch" name="en">ENG</button></div>
+		<div id="header">
+			<h1 lang="de">Inverse Distanzwichtung</h1>
+			<h1 lang="en">Inverse Distance Weighting</h1>
+		</div>
+		<div id="content">
+			<canvas id="drawfield"></canvas>
+		</div>
 		<div id="info">
 			<div style="max-height:fit-content;">
-				<h1>Steuerung</h1>	<!-- control -->
-				<button name="runIdw">Run IDW</button>
-				<button name="resetAll">Zeichenfläche leeren</button>	<!-- clean drawing field -->
-				<input type="text" placeholder="Anzahl genutzter Stationen" id="limiter">
+				<h1 lang="de">Steuerung</h1>
+				<h1 lang="en">Control</h1>
+				<button name="runIdw" lang="de">IDW ausführen</button>
+				<button name="runIdw" lang="en">Run IDW</button>
+				<button name="resetAll" lang="de">Zeichenfläche leeren</button>
+				<button name="resetAll" lang="en">Clean drawing field</button>
+				<input type="text" placeholder="Anzahl genutzter Stationen" id="limiter" lang="de">
+				<input type="text" placeholder="Number of used stations" id="limiter" lang="en">
 			</div>
 			<div style="max-height:none; flex:1;">
-				<h1>Hilfe zum Programm</h1>	<!-- Help with the program -->
-				<div class="help">
+				<h1 lang="de">Hilfe zum Programm</h1>
+				<h1 lang="en">Help with the program</h1>
+				<div class="help" lang="de">
 					Klicken Sie auf die graue Rasterfläche, um eine Stationen zu erstellen. Sie werden aufgefordert einen Wert
-					für diese Station einzugeben. Wiederholen Sie dies für eine beliebige Anzahl an Stationen.<br />
-					<br />
-					Starten Sie den IDW-Algorithmus mittels dem Button "Run IDW".<br />
-					<br />
+					für diese Station einzugeben. Wiederholen Sie dies für eine beliebige Anzahl an Stationen.<br/>
+					<br/>
+					Starten Sie den IDW-Algorithmus mittels dem Button "Run IDW".<br/>
+					<br/>
 					In dem Raster wird der Wert jeder Zelle als räumlich gewichtetes Mittel der Werte der umliegenden
-					Stationen bestimmt. Sie haben die Möglichkeit die Anzahl dieser Station zu limitieren.<br />
-					<br />
+					Stationen bestimmt. Sie haben die Möglichkeit die Anzahl dieser Station zu limitieren.<br/>
+					<br/>
 					Niedrige Werte werden mit Blau dargestellt. Hohe Werte mit Rot. Der Mittelpunkt der Zelle wird zur Berechnung der Distanz genutzt.
-					<!--
-						Click on the gray grid area to create a station. You will be asked to enter a value for this
-						station. Repeat this for any number of stations.<br />
-						<br />
-						Start the IDW algorithm using the button "Run IDW".<br />
-						<br />
-						The value of each cell in the grid is determined as the spatially weighted mean of the values
-						of the surrounding stations. You have the option to limit the number of these stations.<br />
-						<br />
-						Low values are shown in blue. High values with red. The center of the cell is used to calculate
-						the distance.
-					-->
+				</div>
+				<div class="help" lang="en">
+					Click on the gray grid area to create a station. You will be asked to enter a value for this
+					station. Repeat this for any number of stations.<br/>
+					<br/>
+					Start the IDW algorithm using the button "Run IDW".<br/>
+					<br/>
+					The value of each cell in the grid is determined as the spatially weighted mean of the values
+					of the surrounding stations. You have the option to limit the number of these stations.<br/>
+					<br/>
+					Low values are shown in blue. High values with red. The center of the cell is used to calculate
+					the distance.
 				</div>
 			</div>
 		</div>
-    </div>
+	</div>
 </body>
 </html>

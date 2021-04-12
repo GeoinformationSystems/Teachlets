@@ -6,7 +6,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-	<title>Shortest-Path-Problem</title>
+	<title>Dijkstra-Alorithmus</title>
 
 	<link rel="stylesheet" href="https://js.arcgis.com/4.17/esri/css/main.css">
 	<script src="https://js.arcgis.com/4.17/"></script>
@@ -17,23 +17,22 @@
 	<script src="js/connection.js"></script>
 	<script src="js/runDijkstra.js"></script>
 	<script src="js/transform.js"></script>
-	<!-- <script src="js/openLanguage.js"></script> -->
 </head>
 
 <body>
     <div id="frame">
 		<div id="language"><button class="lang-switch" name="de">DE</button><button class="lang-switch" name="en">ENG</button></div>
 		<div id="header">
-			<h1>Shortest-Path-Problem</h1>	
+			<h1 lang="de">Dijkstra-Alorithmus</h1>
+			<h1 lang="en">Shortest Path Algorithm</h1>
 		</div>
         <div id="content"></div>
 		<div id="info">
 			<div style="max-height:none; flex:1">
 				<h1 lang="de">Erklärung der Funktionsweise</h1>
 				<h1 lang="en">Explanation of functionality</h1>
-
 				<div class="help" lang="de">
-					Beim Shortest-Path-Problem wird der geometrisch kürzeste Weg zwischen einem Start- und Zielknoten
+					Beim Dijkstra-Alorithmus wird der geometrisch kürzeste Weg zwischen einem Start- und Zielknoten
 					gesucht.<br>
 					<br>
 					Nach dem Starten des Beispiels ist in der Karte rechts das Eisenbahnnetz für die größten Städte
@@ -46,8 +45,8 @@
 					<br>
 					Dieser Algorithmus findet z.B. bei Routenplanern und Navigationssystemen Anwendung.
 				</div>
-				<div class="help" lang="en">				
-					In the case of the shortest path problem, the geometrically shortest path between a start and
+				<div class="help" lang="en">
+					In the case of the Shortest Path Algorithm, the geometrically shortest path between a start and
 					destination node is sought.<br>
 					<br>
 					The rail network for the largest cities in Germany is shown schematically on the map on the right
@@ -60,12 +59,6 @@
 					<br>
 					This algorithm is used for example in route planners and navigation systems.
 				</div>
-				
-				<!--
-				<button class="tab links" id="defaultOpen" name="deutsch" onclick="openLanguage(event, 'deutsch')" style="width:33%;">Deutsch</button><button class="tab links" name="englisch" onclick="openLanguage(event, 'englisch')" style="width:33%;">English</button>
-					<div id="deutsch" class="tabcontent"></div>				
-					<div id="englisch" class="tabcontent"></div>
-				-->
 			</div>
 			<div style="max-height:fit-content">
 				<h1 lang="de">Steuerung</h1>

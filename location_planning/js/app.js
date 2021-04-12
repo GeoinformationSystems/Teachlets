@@ -17,7 +17,7 @@ function APP(myMap, myView) {
 // -----------------------------------------------------------
 // Reset everything
 // -----------------------------------------------------------
-APP.prototype.reset = function () {									//finish
+APP.prototype.reset = function () {									
 	// clear the array of networkLocations (clicked points)
 	this.networkLocations = [];
 	// clear both used drawing layers
@@ -33,7 +33,7 @@ APP.prototype.reset = function () {									//finish
 // Parameters:
 // - event: data regarding event (like clicked position)
 // -----------------------------------------------------------
-APP.prototype.onClickEvent = function (event) {								//finish
+APP.prototype.onClickEvent = function (event) {								
 	// create a point from clicked map coordinates
 	// use Web Mercator units since calculation doesn't work with distortion in WGS84 
 	var point = new POINT(event.mapPoint.x, event.mapPoint.y);
@@ -72,19 +72,19 @@ APP.prototype.onClickEvent = function (event) {								//finish
 // Calculate the smallest surrounding circle 
 // -----------------------------------------------------------
 APP.prototype.run = function () {											
-	// 0 points on map => throw error and cancel calculation			//finish
-	if (this.networkLocations.length == 0) {
-		alert("[ERROR] Es wird mindestens 1 Punkt benötigt.");		//[ERROR] At least one point is required.
+	// less than 2 points on map => throw error and cancel calculation			
+	if (this.networkLocations.length < 2) {
+		alert("[ERROR] Es werden mindestens 2 Punkte benötigt. / At least two points are required.");		
 		return false;
 	}
 	// create simulation instance
-	var instance = new BOUNDINGCIRCLE();				//?
+	var instance = new BOUNDINGCIRCLE();				
 	
 	// run the simulation and get connection for smallest surrounding circle
 	var circle = instance.minCircle(this.networkLocations.length, this.networkLocations, 0, [3]);											//?
 
 	// draw the result on the map
-	this.redrawCircle(circle);											//finish
+	this.redrawCircle(circle);											
 };
 
 // -----------------------------------------------------------
@@ -94,10 +94,10 @@ APP.prototype.run = function () {
 // -----------------------------------------------------------
 APP.prototype.redrawCircle = function (circle) {					
 	
-	var myLayer = this.myMap.findLayerById("circle");						//finish
+	var myLayer = this.myMap.findLayerById("circle");						
 
 	// clear points and drawn circle from layer	
-	myLayer.removeAll();													//finish
+	myLayer.removeAll();													
 	
 	require(["esri/geometry/Circle", "esri/Graphic"], function (Circle, Graphic) {			
 		// create the circle as ESRI Graphic
@@ -112,7 +112,7 @@ APP.prototype.redrawCircle = function (circle) {
 		var symbol = { 		
 			type: "simple-line",
 			width: 2,
-			color: "blue"
+			color: [0, 37, 87]									//here change color of boundingcircle
 		};
 		var graphic = new Graphic(circleGraph, symbol);
 		

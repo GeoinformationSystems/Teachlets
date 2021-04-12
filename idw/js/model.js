@@ -42,8 +42,7 @@ MODEL.prototype.getCleanStationList = function(center){
 
 MODEL.prototype.runIDW = function(){
 	if(this.stationList.length < 2){
-		alert("[FEHLER] Es müssen mindestens 2 Stationen vorhanden sein für eine IDW Interpolation.");
-		//[ERROR] There must be at least 2 stations for an IDW interpolation. 
+		alert("[ERROR] Es müssen mindestens 2 Stationen vorhanden sein für eine IDW Interpolation. / There must be at least 2 stations for an IDW interpolation."); 
 		return;
 	}
 	var r,c;

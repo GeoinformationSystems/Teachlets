@@ -76,7 +76,7 @@ APP.prototype.onClickEvent = function (event) {
 APP.prototype.simAnnealing = function(){
 	// less than 3 points on map => throw error and cancel calculation
 	if(this.networkLocations.length < 3){
-		alert("[ERROR] Es werden mindestens 3 Punkte benötigt.");	//[ERROR] At least 3 points are required. 
+		alert("[ERROR] Es werden mindestens 3 Punkte benötigt / At least 3 points are required.");
 		return false;
 	}
 	// create simulation instance
@@ -91,7 +91,7 @@ APP.prototype.simAnnealing = function(){
 // might need some math to figure that out
 APP.prototype.simAnnealingAnimated = function(ms){
 	if(this.networkLocations.length < 3){
-		alert("[ERROR] Es werden mindestens 3 Punkte benötigt.");	//[ERROR] At least 3 points are required. 
+		alert("[ERROR] Es werden mindestens 3 Punkte benötigt / At least 3 points are required."); 
 		return false;
 	}
 	var instance = new SA(this.networkLocations, 10, 0.000001, 2);

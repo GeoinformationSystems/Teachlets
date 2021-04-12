@@ -228,7 +228,27 @@ var Voronoi = {
 		// reset id generators
 		this.Site.prototype.idgenerator = 1;
 		this.Edge.prototype.idgenerator = 1;
-		},
+	},
+
+	showDe: function () {
+		this.show();
+		/*$('button[name="de"]').click(function () {
+			$('[lang="de"]').show();
+			$('[lang="en"]').hide();
+			$('button[name="de"]').prop("disabled", true);
+			$('button[name="en"]').prop("disabled", false);
+		});*/
+	},
+
+	showEng: function () {
+		this.show();
+		/*$('button[name="en"]').click(function () {
+			$('[lang="en"]').show();
+			$('[lang="de"]').hide();
+			$('button[name="en"]').prop("disabled", true);
+			$('button[name="de"]').prop("disabled", false);
+		});*/
+    },
 
 	addSite: function(x,y) {
 		this.sites.push(new this.Site(x,y));

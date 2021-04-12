@@ -32,19 +32,37 @@ $(function() {
 	$("#drawfield").click(function(e){
 		var x = e.pageX - this.offsetLeft;
 		var y = e.pageY - this.offsetTop;
-		var value = prompt("Bitte geben Sie einen Wert für diese Station ein.", "0");	//Please enter a value for this station. 
+		var value = prompt("Bitte geben Sie einen Wert für diese Station ein. / Please enter a value for this station.", "0"); 
 		if(value != null && isNumber(value)) myModel.addStation(x,y,value);
 	});
-	
-	$("button").click(function(){
+
+	// default lang is German => hide all English elements
+	$('[lang="en"]').hide();
+	$('button[name="de"]').prop("disabled", true);
+
+	// add click handler to all elements of type button
+	$("button").click(function () {
+		// get name of button
 		var clicked = $(this).attr("name");
-		
+
+		// determine which button is clicked based on "name" attribute
 		if(clicked.localeCompare("runIdw") == 0){
 			myModel.runIDW();
 		}
-		
 		if(clicked.localeCompare("resetAll") == 0){
 			myModel.resetAll();
+		}
+		else if (clicked.localeCompare("en") == 0) {
+			$('[lang="en"]').show();
+			$('[lang="de"]').hide();
+			$('button[name="en"]').prop("disabled", true);
+			$('button[name="de"]').prop("disabled", false);
+		}
+		else if (clicked.localeCompare("de") == 0) {
+			$('[lang="de"]').show();
+			$('[lang="en"]').hide();
+			$('button[name="de"]').prop("disabled", true);
+			$('button[name="en"]').prop("disabled", false);
 		}
 	});
 });

@@ -7,32 +7,37 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-	<title>Voronoi-Triangulation</title>
+	<title>Voronoi-Triangulierung</title>
 
 	<script type="text/javascript" src="js/rhill-voronoi.js"></script>
 </head>
 
 <body onload="Voronoi.init();" data-gr-c-s-loaded="true">
 	<div id="frame">
+		<div id="language"><button class="lang-switch" name="de" onclick="Voronoi.showDe();">DE</button><button class="lang-switch" name="en" onclick="Voronoi.showEng();">ENG</button></div>
 		<div id="header">
-			<h1>Voronoi-Triangulation</h1>
+			<h1 lang="de">Voronoi-Triangulierung</h1>
+			<h1 lang="en">Voronoi Triangulation</h1>
 		</div>
 		<div id="content">
 			<canvas id="voronoiCanvas" style="cursor:crosshair"></canvas>
 		</div>
 		<div id="info">
 			<div style="max-height:fit-content;">
-				<h1>Steuerung</h1> <!-- control -->
-				<button id="voronoiClearSites" value="Zeichenfläche leeren" onclick="Voronoi.clearSites();">Zeichenfläche leeren</button>	<!-- Clean drawing field -->
+				<h1 lang="de">Steuerung</h1>
+				<h1 lang="en">Control</h1>
+				<button lang="de" id="voronoiClearSites" value="Zeichenfläche leeren" onclick="Voronoi.clearSites();">Zeichenfläche leeren</button>
+				<button lang="en" id="voronoiClearSites" value="Zeichenfläche leeren" onclick="Voronoi.clearSites();">Clean drawing field</button>
 			</div>
 			<div style="max-height:none; flex:1;">
-				<h1>Hilfe zum Programm</h1>	<!-- Explanation of functionality -->
-				<div class="help">
-						Klicken Sie die Zeichenfläche an einer beliebigen Stelle an, um einen neuen Punkt für die
-						Triangulation festzulegen.
-						<!--
-							Click anywhere on the drawing field to define a new point for the triangulation.
-						-->
+				<h1 lang="de">Hilfe zum Programm</h1>
+				<h1 lang="en">Help with the program</h1>
+				<div class="help" lang="de">
+					Klicken Sie die Zeichenfläche an einer beliebigen Stelle an, um einen neuen Punkt für die
+					Triangulierung festzulegen.
+				</div>
+				<div class="help" lang="en">
+					Click anywhere on the drawing field to define a new point for the triangulation.
 				</div>
 			</div>
 		</div>

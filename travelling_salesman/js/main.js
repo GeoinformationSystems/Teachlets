@@ -13,9 +13,18 @@ function calculateDifference(p1,p2){
 // -----------------------------------------------------------	
 require(["esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/GraphicsLayer"], function (Map, MapView, Graphic, GraphicsLayer) {	
 
+	// start configuration on load
+	// default lang is German => hide all English elements
+	$('[lang="en"]').hide();
+	$('button[name="de"]').prop("disabled", true);
+
+	// add click handler to all elements of type button
 	$("button").click(function () {
+
+		// get name of button
 		var clicked = $(this).attr("name");
-		
+
+		// determine which button is clicked based on "name" attribute
 		if (clicked.localeCompare("run") == 0) {
 			myApp.simAnnealing();
 		}
@@ -23,9 +32,20 @@ require(["esri/Map", "esri/views/MapView", "esri/Graphic", "esri/layers/Graphics
 		if (clicked.localeCompare("runAnimated") == 0) {
 			intervalId = myApp.simAnnealingAnimated(2000);
 		}
-
 		if (clicked.localeCompare("reset") == 0) {
 			myApp.reset();
+		}
+		else if (clicked.localeCompare("en") == 0) {
+			$('[lang="en"]').show();
+			$('[lang="de"]').hide();
+			$('button[name="en"]').prop("disabled", true);
+			$('button[name="de"]').prop("disabled", false);
+		}
+		else if (clicked.localeCompare("de") == 0) {
+			$('[lang="de"]').show();
+			$('[lang="en"]').hide();
+			$('button[name="de"]').prop("disabled", true);
+			$('button[name="en"]').prop("disabled", false);
 		}
 	});
 
