@@ -6,7 +6,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-	<title>Räumliche Bezugssysteme</title>	<!-- Spatial reference systems -->
+	<title>Räumliche Bezugssysteme</title>
 
 	<link rel="stylesheet" href="https://js.arcgis.com/4.17/esri/css/main.css">
 	<script src="https://js.arcgis.com/4.17/"></script>
@@ -14,73 +14,81 @@
 </head>
 
 <body>
-    <div id="frame">
+	<div id="frame">
+		<div id="language"><button class="lang-switch" name="de">DE</button><button class="lang-switch" name="en">ENG</button></div>
 		<div id="header">
-			<h1>Räumliche Bezugssysteme</h1>	<!-- Spatial reference systems -->
+			<h1 lang="de">Räumliche Bezugssysteme</h1>	
+			<h1 lang="en">Spatial Reference Systems</h1>
 		</div>
-        <div id="content"></div>
+		<div id="content"></div>
 		<div id="info">
 			<div style="max-height:none; flex:1;">
-				<h1>Steuerung</h1>	<!-- Control -->
-				<div class="help">
-					Unten finden Sie Erläuterungen zu den verschiedenen Bezugssystemen. Rechts wird dies beispielhaft 
+				<h1 lang="de">Steuerung</h1>
+				<h1 lang="en">Control</h1>
+				<div class="help" lang="de">
+					Unten finden Sie Erläuterungen zu den verschiedenen Bezugssystemen. Rechts wird dies beispielhaft
 					veranschaulicht. Wechseln Sie zwischen den Systemen über Klick auf folgende Reiter.
-					<!--
-						Below you will find explanations of the various reference systems. This is exemplified on the
-						right. Switch between the systems by clicking on the following tabs.
-					-->
+				</div>
+				<div class="help" lang="en">
+					Below you will find explanations of the various reference systems. This is exemplified on the
+					right. Switch between the systems by clicking on the following tabs.
 				</div>
 				<!--Buttons ohne Zeilenumbruch im Quelltext um Abstand zu verhindern-->
-				<button class="tab active" name="em" id="em" style="width:33%;">Euklidische Metrik</button><button class="tab" name="cbm" id="cbm" style="width:33%;">City-Block-Metrik</button><button class="tab" name="ekm" id="ekm" style="width:34%;">Ecken-Kanten-Metrik</button>
-				<!-- euclidean metric	city block metric	corner-edge metric -->
-
+				<button class="tab active" name="em" id="em" style="width:33%;" lang="de"><br/>Euklidische Metrik</button><button class="tab" name="cbm" id="cbm" style="width:33%;" lang="de"><br/>City-Block-Metrik</button><button class="tab" name="ekm" id="ekm" style="width:34%;" lang="de">Ecken-Kanten-Metrik</button>
+				<button class="tab active" name="em" id="em" style="width:33%;" lang="en">Euclidean Metric</button><button class="tab" name="cbm" id="cbm" style="width:33%;" lang="en">City Block Metric</button><button class="tab" name="ekm" id="ekm" style="width:34%;" lang="en">Corner Edge Metric</button>
 				<div id="infoEM" class="tabContent">
-					Die Distanz zwischen zwei Punkten ist der direkte Abstand zwischen diesen Punkten. In der
-					Beispielkarte entspricht sie somit der Luftlinie zwischen P1 und P2.
-					<!--
-						The distance between two points is the direct distance between those points. In the example map, 
-						the distance equates to the air line between P1 and P2. 
-					-->
+					<p lang="de">
+						Die Distanz zwischen zwei Punkten ist der direkte Abstand zwischen diesen Punkten. In der
+						Beispielkarte entspricht sie somit der Luftlinie zwischen P1 und P2.
+					</p>
+					<p lang="en">
+						The distance between two points is the direct distance between those points. In the example map,
+						the distance equates to the air line between P1 and P2.
+					</p>
 				</div>
 				<div id="infoCBM" class="tabContent" style="display:none">
-					Bei der City-Block-Metrik (auch Manhattan- oder Kantenmetrik) entspricht die Distanz zweier Punkte
-					der Summe der absoluten Differenzen ihrer Einzelkoordinaten. <br />
-					<br />
-					Am Beispiel der Karte kann man erkennen, dass die Luftlinie oft nicht geeignet ist, physikalisch 
-					wirklich überwindbare Distanzen anzugeben.<br><br>
-					So sind aufgrund des Straßennetzes nur Wege entlang der vier Haupthimmelsrichtungen möglich. Mit der
-					City-Block-Metrik wird also der kürzeste Weg zwischen zwei Punkten entlang der
-					Haupthimmelsrichtungen berechnet.<br />
-					<br />
-					Für diesen kürzesten Weg gibt es oft mehrere Möglichkeiten, wie das Beispiel zeigt.
-					<!--
-						In case of the city block metric (also Manhattan or edge metric), the distance between two points
+					<p lang="de">
+						Bei der City-Block-Metrik (auch Manhattan- oder Kantenmetrik) entspricht die Distanz zweier Punkte
+						der Summe der absoluten Differenzen ihrer Einzelkoordinaten. <br />
+						<br />
+						Am Beispiel der Karte kann man erkennen, dass die Luftlinie oft nicht geeignet ist, physikalisch
+						wirklich überwindbare Distanzen anzugeben.<br><br>
+						So sind aufgrund des Straßennetzes nur Wege entlang der vier Haupthimmelsrichtungen möglich. Mit der
+						City-Block-Metrik wird also der kürzeste Weg zwischen zwei Punkten entlang der
+						Haupthimmelsrichtungen berechnet.<br />
+						<br />
+						Für diesen kürzesten Weg gibt es oft mehrere Möglichkeiten, wie das Beispiel zeigt.
+					</p>
+					<p lang="en">
+						In case of the City Block Metric (also Manhattan or Edge Metric), the distance between two points
 						equates to the sum of the absolute differences between their individual coordinates.<br>
 						<br>
 						The example of the map shows that the air line is often not suitable for specifying physically
 						superable distances.<br><br>
 						Due to the road network, only routes along the four main cardinal directions are possible. The
-						city block metric is used to calculate the shortest path between two points along the main cardinal
+						City Block Metric is used to calculate the shortest path between two points along the main cardinal
 						directions.<br>
 						<br>
 						The example shows that there are often several options for this shortest route.
-					-->
+					</p>
 				</div>
 				<div id="infoEKM" class="tabContent" style="display:none">
-					Die Ecken-Kanten-Metrik (auch Schachbrett-Metrik) ist der City-Block-Metrik ähnlich, außer dass
-					zusätzlich zu den horizontalen und vertikalen Bewegungen auch Wege entlang der Diagonalen möglich sind.<br />
-					<br />
-					Eine solche Diagonale stellt in der Beispielkarte die Abkürzung des Weges durch den Park dar.
-					<!--
-						The corner-edge metric (also known as the chessboard metric) is similar to the city block metric,
+					<p lang="de">
+						Die Ecken-Kanten-Metrik (auch Schachbrett-Metrik) ist der City-Block-Metrik ähnlich, außer dass
+						zusätzlich zu den horizontalen und vertikalen Bewegungen auch Wege entlang der Diagonalen möglich sind.<br />
+						<br />
+						Eine solche Diagonale stellt in der Beispielkarte die Abkürzung des Weges durch den Park dar.
+					</p>
+					<p lang="en">
+						The Corner Edge Metric (also known as the Chessboard Metric) is similar to the City Block Metric,
 						except that in addition to the horizontal and vertical movements also paths along the diagonals
 						are possible.<br>
 						<br>
 						The diagonal represents the shortcut of the path through the park in the example map.
-					-->
+					</p>
 				</div>
 			</div>
 		</div>
-    </div>
+	</div>
 </body>
 </html>

@@ -9,8 +9,9 @@ $(function() {
 	var block;
 	
 	//start config
-	$('#rlc_fest').addClass("active");
-	$('#resultRLCv').hide();
+	$('#rlc_festDe').addClass("active");
+	$('#resultRLCvDe').hide();
+	$('#resultRLCvEng').hide();
 
 	$("#drawfield").mousedown(function(e){
 		var x = e.pageX - this.offsetLeft;
@@ -47,41 +48,128 @@ $(function() {
 		myAppInstance.refresh();
 	});	
 	
-	
-	$("button").click(function(){
+	// default lang is German => hide all English elements
+	$('[lang="en"]').hide();
+	$('button[name="de"]').prop("disabled", true);
+
+	// add click handler to all elements of type button
+	$("button").click(function () {
+		// get name of button
 		var clicked = $(this).attr("name");
-		
+
+		// determine which button is clicked based on "name" attribute
 		if(clicked.localeCompare("resetRaster") == 0){
-			$('#resultRLCf').html("");
-			$('#resultRLCv').html("");
-			$('#resultNotComp').html("");
+			$('#resultRLCfDe').html("");
+			$('#resultRLCfEng').html("");
+			$('#resultRLCvDe').html("");
+			$('#resultRLCvEng').html("");
+			$('#resultNotCompDe').html("");
+			$('#resultNotCompEng').html("");
 			myAppInstance.resetRaster();
 			myAppInstance.clearRaster();
+		} 
+		if(clicked.localeCompare("rlc_festDe") == 0){
+			//$('#resultRLCfDe').show();
+			//$('#resultRLCfEng').show();
+			//$('#resultRLCvDe').hide();
+			//$('#resultRLCvEng').hide();
+			//$('#rlc_fest').addClass("active");
+			//$('#rlc_var').removeClass("active");
+			$('#info > div > div > p[id="resultRLCfDe"]').show();
+			$('#info > div > div > p[id="resultRLCfEng"]').hide();
+			$('#info > div > div > p[id="resultRLCvDe"]').hide();
+			$('#info > div > div > p[id="resultRLCvEng"]').hide();
+			$('#rlc_festDe').addClass("active");
+			$('#rlc_festEng').removeClass("active");
+			$('#rlc_varDe').removeClass("active");
+			$('#rlc_varEng').removeClass("active");
 		}
-		
-		if(clicked.localeCompare("rlc_fest") == 0){
-			$('#resultRLCf').show();
-			$('#resultRLCv').hide();
-			$('#rlc_fest').addClass("active");
-			$('#rlc_var').removeClass("active");
-			// $('#rlc_var').css("background","#dd2727");
-			// $('#rlc_fest').css("background","#b41c1c");
+		if (clicked.localeCompare("rlc_festEng") == 0) {
+			//$('#resultRLCfEng').show();
+			//$('#resultRLCfDe').show();
+			//$('#resultRLCvDe').hide();
+			//$('#resultRLCvEng').hide();
+			//$('#rlc_fest').addClass("active");
+			//$('#rlc_var').removeClass("active");
+			$('#info > div > div > p[id="resultRLCfEng"]').show();
+			$('#info > div > div > p[id="resultRLCfDe"]').hide();
+			$('#info > div > div > p[id="resultRLCvDe"]').hide();
+			$('#info > div > div > p[id="resultRLCvEng"]').hide();
+			$('#rlc_festEng').addClass("active");
+			$('#rlc_festDe').removeClass("active");
+			$('#rlc_varDe').removeClass("active");
+			$('#rlc_varEng').removeClass("active");
 		}
-		
-		if(clicked.localeCompare("rlc_var") == 0){
-			$('#resultRLCv').show();
-			$('#resultRLCf').hide();
-			$('#rlc_fest').removeClass("active");
-			$('#rlc_var').addClass("active");
-			// $('#rlc_fest').css("background","#dd2727");
-			// $('#rlc_var').css("background","#b41c1c");
+		if(clicked.localeCompare("rlc_varDe") == 0){
+			//$('#resultRLCvDe').show();
+			//$('#resultRLCvEng').show();
+			//$('#resultRLCfDe').hide();
+			//$('#resultRLCfEng').hide();
+			//$('#rlc_fest').removeClass("active");
+			//$('#rlc_var').addClass("active");
+			$('#info > div > div > p[id="resultRLCvDe"]').show();
+			$('#info > div > div > p[id="resultRLCvEng"]').hide();
+			$('#info > div > div > p[id="resultRLCfEng"]').hide();
+			$('#info > div > div > p[id="resultRLCfDe"]').hide();
+			$('#rlc_varDe').addClass("active");
+			$('#rlc_varEng').removeClass("active");
+			$('#rlc_festEng').removeClass("active");
+			$('#rlc_festDe').removeClass("active");
 		}
-		
-		if(clicked.localeCompare("run") == 0){
-			$('#resultRLCf').html("");
-			$('#resultNotComp').html("");
+		if (clicked.localeCompare("rlc_varEng") == 0) {
+			//$('#resultRLCvDe').show();
+			//$('#resultRLCvEng').show();
+			//$('#resultRLCfDe').hide();
+			//$('#resultRLCfEng').hide();
+			//$('#rlc_fest').removeClass("active");
+			//$('#rlc_var').addClass("active");
+			$('#info > div > div > p[id="resultRLCvEng"]').show();
+			$('#info > div > div > p[id="resultRLCvDe"]').hide();
+			$('#info > div > div > p[id="resultRLCfEng"]').hide();
+			$('#info > div > div > p[id="resultRLCfDe"]').hide();
+			$('#rlc_varEng').addClass("active");
+			$('#rlc_varDe').removeClass("active");
+			$('#rlc_festEng').removeClass("active");
+			$('#rlc_festDe').removeClass("active");
+		}
+		if(clicked.localeCompare("runDe") == 0){
+			//$('#resultRLCfDe').html("");
+			//$('#resultRLCfEng').html("");
+			//$('#resultNotCompDe').html("");
+			//$('#resultNotCompEng').html("");
+			$('#resultNotCompDe').show();
+			$('#resultNotCompEng').hide();
+			$('#info > div > div > p[id="resultRLCfDe"]').show();
+			$('#info > div > div > p[id="resultRLCfEng"]').hide();
+			$('#info > div > div > p[id="resultRLCvDe"]').hide();
+			$('#info > div > div > p[id="resultRLCvEng"]').hide();
 			myAppInstance.proceed();
 		}	
+		if (clicked.localeCompare("runEng") == 0) {
+			//$('#resultRLCfDe').html("");
+			//$('#resultRLCfEng').html("");
+			//$('#resultNotCompDe').html("");
+			//$('#resultNotCompEng').html("");
+			$('#resultNotCompDe').hide();
+			$('#resultNotCompEng').show();
+			$('#info > div > div > p[id="resultRLCfDe"]').hide();
+			$('#info > div > div > p[id="resultRLCfEng"]').show();
+			$('#info > div > div > p[id="resultRLCvDe"]').hide();
+			$('#info > div > div > p[id="resultRLCvEng"]').hide();
+			myAppInstance.proceed();
+		}	
+		else if (clicked.localeCompare("en") == 0) {
+			$('[lang="en"]').show();
+			$('[lang="de"]').hide();
+			$('button[name="en"]').prop("disabled", true);
+			$('button[name="de"]').prop("disabled", false);
+		}
+		else if (clicked.localeCompare("de") == 0) {
+			$('[lang="de"]').show();
+			$('[lang="en"]').hide();
+			$('button[name="de"]').prop("disabled", true);
+			$('button[name="en"]').prop("disabled", false);
+		}
 	});
 	
 	$('#examplesSelect').on('change', function(){

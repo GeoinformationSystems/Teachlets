@@ -6,7 +6,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-    <title>Turingmaschine "Game of Life"</title>	<!-- turing machine "Game of Life" -->
+	<title>Zellulärer Automat "Game of Life"</title>
 
     <script src="js/appobject.js"></script>
     <script src="js/pointobject.js"></script>
@@ -15,29 +15,35 @@
 </head>
 
 <body>
-    <div id="frame">
+	<div id="frame">
+		<div id="language"><button class="lang-switch" name="de">DE</button><button class="lang-switch" name="en">ENG</button></div>
 		<div id="header">
-			<h1>Turingmaschine "Game of Life"</h1>	<!-- turing machine "Game of Life" -->
+			<h1 lang="de">Zellulärer Automat "Game of Life"</h1>
+			<h1 lang="en">Turing Machine "Game of Life"</h1>
 		</div>
-        <div id="content">
-            <canvas id="drawfield"></canvas>
-        </div>
+		<div id="content">
+			<canvas id="drawfield"></canvas>
+		</div>
 		<div id="info">
 			<div style="max-height:fit-content;">
-				<h1>Steuerung</h1>	<!-- control -->
-				<button name="resetRaster">Zeichenfläche leeren</button>	<!-- clean drawing field -->
-				<button name="run">Einen Schritt simulieren</button>	<!-- simulate one step -->
-				<button name="runAuto" id="autorun_button">Auto-Simulation start</button>	<!-- start auto silumlation -->
-				<div>Bilder pro Sekunde: <span id="fps">10</span></div>	<!-- Frames per second: -->
-				<div>
-					<input type="range" min="1" max="20" step="1" value="10" id="fpsswitcher">
-					<div style="float:left">1</div>
-					<div style="float:right">20</div>
-				</div>
+				<h1 lang="de">Steuerung</h1>
+				<h1 lang="en">Control</h1>
+				<button name="resetRaster" lang="de">Zeichenfläche leeren</button>
+				<button name="resetRaster" lang="en">Clean drawing field</button>
+				<button name="run" lang="de">Einen Schritt simulieren</button>
+				<button name="run" lang="en">Simulate one step</button>
+				<button name="runAuto" id="autorun_button" lang="de">Auto-Simulation starten / stoppen</button>
+				<button name="runAuto" id="autorun_button" lang="en">Start / Stop Auto-Simulation</button>
+				<div lang="de">Bilder pro Sekunde: <span id="fps">10</span></div>	
+				<div lang="en">Frames per second: <span id="fps">10</span></div>	
+				<input type="range" min="1" max="20" step="1" value="10" id="fpsswitcher">
+				<div style="float:left">1</div>
+				<div style="float:right">20</div>
 			</div>
 			<div style="max-height:none; flex:1;">
-				<h1>Hilfe zum Programm</h1>	<!-- Help with the program -->
-				<div class="help">
+				<h1 lang="de">Hilfe zum Programm</h1>
+				<h1 lang="en">Help with the program</h1>
+				<div class="help" lang="de">
 					Tragen Sie auf der großen grauen Fläche durch Klicken mit der Maus Punkte ein.<br>
 					<br>
 					Starten Sie anschließend die automatische Simulation oder simulieren Sie nur den nächsten Schritt,
@@ -50,23 +56,23 @@
 						<li>Die Zelle der Folgegeneration wird lebendig, wenn in ihren direkten Umgebungszellen genau 3 Zellen lebendig sind.</li>
 						<li>In allen anderen Fällen stirbt die Zelle oder bleibt tot.</li>
 					</ul>
-					<!--
-						Register points on the large gray field by clicking with the mouse.<br>
-						<br>
-						Then start the automatic simulation or simulate the next step by clicking on the respective
-						buttons.<br>
-						<br>
-						Now the machine is carried out according to the following rules:
-						<ul>
-							<li>Each cell can be either alive or dead.</li>
-							<li>The cell of the next generation stays alive if 2 or 3 cells are alive in its immediate surrounding cells.</li>
-							<li>The cell of the next generation comes alive when exactly 3 cells are alive in their immediate surrounding cells.</li>
-							<li>In all other cases the cell dies or stays dead.</li>
-						</ul>
-					-->
+				</div>
+				<div class="help" lang="en">
+					Register points on the large gray field by clicking with the mouse.<br>
+					<br>
+					Then start the automatic simulation or simulate the next step by clicking on the respective
+					buttons.<br>
+					<br>
+					Now the machine is carried out according to the following rules:
+					<ul>
+						<li>Each cell can be either alive or dead.</li>
+						<li>The cell of the next generation stays alive if 2 or 3 cells are alive in its immediate surrounding cells.</li>
+						<li>The cell of the next generation comes alive when exactly 3 cells are alive in their immediate surrounding cells.</li>
+						<li>In all other cases the cell dies or stays dead.</li>
+					</ul>
 				</div>
 			</div>
 		</div>
-    </div>
+	</div>
 </body>
 </html>

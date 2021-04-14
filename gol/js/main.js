@@ -18,13 +18,11 @@ $(function() {
 			timeoutInstance = setInterval(function(){
 				myAppInstance.proceedGrid();
 			}, timout);
-            $('#autorun_button').html('Auto-Simulation stop');
-			// $('#indicator').css("background-color", "#D0FA58");
+            //$('#autorun_button').html('Stop Auto-Simulation');
 		} else {
 			clearInterval(timeoutInstance);
 			timeoutInstance = null;
-            $('#autorun_button').html('Auto-Simulation start');
-			// $('#indicator').css("background-color", "#FA5858");
+            //$('#autorun_button').html('Start Auto-Simulation');
 		}
 		
 		if(force === true) resetInterval();
@@ -69,22 +67,39 @@ $(function() {
 		myAppInstance.invertRasterDataValue(x,y);
 		myAppInstance.refresh();
 	});
-	
-	$("button").click(function(){
+
+	// default lang is German => hide all English elements
+	$('[lang="en"]').hide();
+	$('button[name="de"]').prop("disabled", true);
+
+	// add click handler to all elements of type button	
+	$("button").click(function () {
+		// get name of button
 		var clicked = $(this).attr("name");
-		
+
+		// determine which button is clicked based on "name" attribute
 		if(clicked.localeCompare("resetRaster") == 0){
 			myAppInstance.resetRaster();
 			myAppInstance.refresh();
 		}
-		
 		if(clicked.localeCompare("run") == 0){
 			if(timeoutInstance !== null) resetInterval(); // stops
 			myAppInstance.proceedGrid();
 		}
-
 		if(clicked.localeCompare("runAuto") == 0){
 			resetInterval();
+		}
+		else if (clicked.localeCompare("en") == 0) {
+			$('[lang="en"]').show();
+			$('[lang="de"]').hide();
+			$('button[name="en"]').prop("disabled", true);
+			$('button[name="de"]').prop("disabled", false);
+		}
+		else if (clicked.localeCompare("de") == 0) {
+			$('[lang="de"]').show();
+			$('[lang="en"]').hide();
+			$('button[name="de"]').prop("disabled", true);
+			$('button[name="en"]').prop("disabled", false);
 		}
 	});
 });

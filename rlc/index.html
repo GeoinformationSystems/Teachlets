@@ -6,7 +6,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-	<title>Lauflängenkodierung</title>	<!-- Run length coding -->
+	<title>Lauflängenkodierung</title>
 
 	<script src="js/appobject.js"></script>
 	<script src="js/pointobject.js"></script>
@@ -15,34 +15,49 @@
 </head>
 <body>	
 	<div id="frame">
+		<div id="language"><button class="lang-switch" name="de">DE</button><button class="lang-switch" name="en">ENG</button></div>
 		<div id="header">
-			<h1>Lauflängenkodierung</h1>	<!-- Run length coding -->
+			<h1 lang="de">Lauflängenkodierung</h1>
+			<h1 lang="en">Run Length Encoding</h1>
 		</div>
 		<div id="content">
 			<canvas id="drawfield"></canvas>
 		</div>
 		<div id="info">
 			<div style="max-height:fit-content;">
-				<h1>Steuerung</h1>	<!-- Control -->
+				<h1 lang="de">Steuerung</h1>
+				<h1 lang="en">Control</h1>
 				<select id="examplesSelect">
-					<option value="0" selected>Beispiel laden</option>	<!-- load example -->
-					<option value="1">Beispiel 1</option>	<!-- Example 1 -->
-					<option value="2">Beispiel 2</option>	<!-- Example 2 -->
-					<option value="3">Beispiel 3</option>	<!-- Example 3 -->
+					<option value="0" >Beispiel laden / Load example</option>
+					<option value="1" lang="de">Beispiel 1</option>
+					<option value="1" lang="en">Example 1</option>
+					<option value="2" lang="de">Beispiel 2</option>
+					<option value="2" lang="en">Example 2</option>
+					<option value="3" lang="de">Beispiel 3</option>
+					<option value="3" lang="en">Example 3</option>
 				</select>
-				<button name="run">Kodierung berechnen</button>	<!-- Calculate coding -->
-				<button name="resetRaster">Zeichenfläche leeren</button>	<!-- Clean drawing field -->
+				<button name="runDe" lang="de">Kodierung berechnen</button>
+				<button name="runEng" lang="en">Calculate coding</button>
+				<button name="resetRaster" lang="de">Zeichenfläche leeren</button>
+				<button name="resetRaster" lang="en">Clean drawing field</button>
 			</div>
 			<div style="max-height:fit-content;">
-				<h1>Ausgabe ohne Komprimierung</h1>	<!-- Outout without compression -->
-				<div id="resultNotComp" class="textOutput"></div>
+				<h1 lang="de">Ausgabe ohne Komprimierung</h1>
+				<h1 lang="en">Outout without compression</h1>
+				<div id="resultNotCompDe" class="textOutput" lang="de"></div>
+				<div id="resultNotCompEng" class="textOutput" lang="en"></div>
 			</div>
 			<div style="max-height:none; flex:1;">
-				<h1>Ausgabe mit Komprimierung</h1>	<!-- Outout with compression -->
-				<button class="tab" name="rlc_fest" id="rlc_fest">RLC - fest</button><button class="tab" name="rlc_var" id="rlc_var">RLC - variabel</button>
-				<!-- RLC - fixed	RLC - variable -->
-				<div id="resultRLCf" class="textOutput tabContent"> </div>
-				<div id="resultRLCv" class="textOutput tabContent"> </div>
+				<h1 lang="de">Ausgabe mit Komprimierung</h1>
+				<h1 lang="en">Outout with compression</h1>
+				<button class="tab" name="rlc_festDe" id="rlc_festDe" lang="de">RLC - fest</button><button class="tab" name="rlc_varDe" id="rlc_varDe" lang="de">RLC - variabel</button>
+				<button class="tab" name="rlc_festEng" id="rlc_festEng" lang="en">RLC - fixed</button><button class="tab" name="rlc_varEng" id="rlc_varEng" lang="en">RLC - variable</button>
+				<div class="textOutput tabContent">
+					<p id="resultRLCfDe"></p>
+					<p id="resultRLCfEng"></p>
+					<p id="resultRLCvDe"></p>
+					<p id="resultRLCvEng"></p>
+				</div>
 			</div>
 		</div>
 	</div>		

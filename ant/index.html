@@ -6,7 +6,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
-	<title>Turingmaschine Ameise</title>	<!-- turing machine ant -->
+	<title>Zellulärer Automat "Ameise"</title>
 
 	<script src="js/appobject.js"></script>
 	<script src="js/pointobject.js"></script>
@@ -15,42 +15,49 @@
 </head>
 
 <body>
-    <div id="frame">
+	<div id="frame">
+		<div id="language"><button class="lang-switch" name="de">DE</button><button class="lang-switch" name="en">ENG</button></div>
 		<div id="header">
-			<h1>Turingmaschine Ameise</h1>	<!-- turing machine ant -->
-		</div>
-        <div id="content">
-			<canvas id="drawfield"></canvas>
-        </div>
-		<div id="info">
-			<div style="max-height:fit-content;">
-				<h1>Steuerung</h1>	<!-- control -->
-				<button name="resetRaster">Zeichenfläche leeren</button>	<!-- Clean drawing field -->
-				<button name="run">Einen Schritt simulieren</button>	<!-- Simulate a step -->
-				<button id="autorun_button" name="runAuto">Auto-Simulation start</button>	<!-- start auto simulation -->
-				<div>Bilder pro Sekunde: <span id="fps">10</span></div>	<!-- Frames per second: -->
-				<div>
+			<h1 lang="de">Zellulärer Automat "Ameise"</h1>
+			<h1 lang="en">Turing Machine "Langton's Ant"</h1>
+			</div>
+			<div id="content">
+				<canvas id="drawfield"></canvas>
+			</div>
+			<div id="info">
+				<div style="max-height:fit-content;">
+					<h1 lang="de">Steuerung</h1>
+					<h1 lang="en">Control</h1>
+					<button name="resetRaster" lang="de">Zeichenfläche leeren</button>
+					<button name="resetRaster" lang="en">Clean drawing field</button>
+					<button name="run" lang="de">Einen Schritt simulieren</button>
+					<button name="run" lang="en">Simulate a step</button>
+					<button id="autorun_button" name="runAuto" lang="de">Auto-Simulation starten / stoppen</button>
+					<button id="autorun_button" name="runAuto" lang="en">Start / Stop Auto-Simulation</button>
+					<div lang="de">Bilder pro Sekunde: <span id="fps">10</span></div>
+					<div lang="en">Frames per second: <span id="fps">10</span></div>
 					<input type="range" min="1" max="20" step="1" value="10" id="fpsswitcher">
 					<div style="float:left">1 </div>
 					<div style="float:right">20 </div>
 				</div>
-			</div>
-			<div style="max-height:none; flex:1;">
-				<h1>Hilfe zum Programm</h1>	<!-- Help with the program -->
-				<div class="help">
-					Tragen Sie auf der großen grauen Fläche durch Klicken mit der Maus Punkte ein.<br>
-					<br>
-					Starten Sie anschließend die automatische Simulation oder simulieren Sie nur den nächsten Schritt,
-					indem Sie auf die jeweiligen Button klicken.<br>
-					<br>
-					Im Anschluss wird gemäß den folgenden Regeln der Automat durchgeführt:
-					<ul>
-						<li>Eine Ameise schaut zu Beginn in eine beliebige Richtung.</li>
-						<li>Ist das Feld grau: so färbt sie es blau und dreht sich um 90° nach rechts.</li>
-						<li>Ist das Feld blau: so färbt sie es grau und dreht sich um 90° nach links.</li>
-						<li>Danach läuft sie ein Feld in die neue Blickrichtung.</li>
-					</ul>
-					<!--
+				<div style="max-height:none; flex:1;">
+					<h1 lang="de">Hilfe zum Programm</h1>
+					<h1 lang="en">Help with the program</h1>
+					<div class="help" lang="de">
+						Tragen Sie auf der großen grauen Fläche durch Klicken mit der Maus Punkte ein.<br>
+						<br>
+						Starten Sie anschließend die automatische Simulation oder simulieren Sie nur den nächsten Schritt,
+						indem Sie auf die jeweiligen Button klicken.<br>
+						<br>
+						Im Anschluss wird gemäß den folgenden Regeln der Automat durchgeführt:
+						<ul>
+							<li>Eine Ameise schaut zu Beginn in eine beliebige Richtung.</li>
+							<li>Ist das Feld grau: so färbt sie es blau und dreht sich um 90° nach rechts.</li>
+							<li>Ist das Feld blau: so färbt sie es grau und dreht sich um 90° nach links.</li>
+							<li>Danach läuft sie ein Feld in die neue Blickrichtung.</li>
+						</ul>
+					</div>
+					<div class="help" lang="en">
 						Register points on the large gray field by clicking with the mouse.<br>
 						<br>
 						Then start the automatic simulation or simulate the next step by clicking on the respective
@@ -60,13 +67,12 @@
 						<ul>
 							<li>At the beginning an ant looks in any direction.</li>
 							<li>If the field is gray: it turns blue and rotates 90° to the right.</li>
-							<li>If the field is blue: it turns gray and rotates 90 ° to the left.</li>
+							<li>If the field is blue: it turns gray and rotates 90° to the left.</li>
 							<li>Then it goes one field in the new viewing direction.</li>
 						</ul>
-					-->
+					</div>
 				</div>
 			</div>
 		</div>
-    </div>
-</body>
-</html>
+	</body>
+	</html>

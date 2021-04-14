@@ -17,21 +17,40 @@ require([
 		GeoJSONLayer,
 	) {
 
+	// default lang is German => hide all English elements
+	$('[lang="en"]').hide();
+	$('button[name="de"]').prop("disabled", true);
+
+	// add click handler to all elements of type button
 	// switch between spatial system examples
-	$("button").click(function(){
-		var clicked = $(this).attr("name");
-		$("#info > div > button").removeClass("active");
-		
-		if(clicked == "em"){
-			em();
-		}		
-		if(clicked == "cbm"){
-			cbm();			
-		}
-		if(clicked == "ekm"){
-			ekm();			
-		}		
-	});
+	$("button").click(function () {
+	// get name of button
+	var clicked = $(this).attr("name");
+	$("#info > div > button").removeClass("active");
+
+	// determine which button is clicked based on "name" attribute
+	if(clicked == "em"){
+		em();
+	}		
+	if(clicked == "cbm"){
+		cbm();			
+	}
+	if(clicked == "ekm"){
+		ekm();			
+	}		
+	else if (clicked.localeCompare("en") == 0) {
+		$('[lang="en"]').show();
+		$('[lang="de"]').hide();
+		$('button[name="en"]').prop("disabled", true);
+		$('button[name="de"]').prop("disabled", false);
+	}
+	else if (clicked.localeCompare("de") == 0) {
+		$('[lang="de"]').show();
+		$('[lang="en"]').hide();
+		$('button[name="de"]').prop("disabled", true);
+		$('button[name="en"]').prop("disabled", false);
+	}
+});
 	
 	// load ESRI map and mapview
 	this.esriMap = new Map({
