@@ -60,7 +60,7 @@ require([
 		container: "content",
 		map: this.esriMap,
 		center: [-86.1152991330356,39.81453897084121],
-		zoom: 15,
+		zoom: 14,	//TODO: define zoom level by available space
 	});
 	
 	// define color scheme
