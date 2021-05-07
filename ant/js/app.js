@@ -6,6 +6,8 @@ function APP(size,defaultValue,id){
 	this.cellSize = $(id).width() / size;
 	this.defaultValue = defaultValue;
 	this.data = this.createRaster(this.rows, this.cols, this.defaultValue);
+	this.imgAnts = new Image();
+	this.imgAnts.src = "img/ants.png";
 }
 
 APP.prototype.createRaster = function(rows, cols, defaultval){
@@ -25,8 +27,8 @@ APP.prototype.createRaster = function(rows, cols, defaultval){
 
 APP.prototype.getRasterlocationObject = function(x,y){
 	var result = {
-		row : Math.floor((y-5) / this.cellSize),
-		col : Math.floor((x-5) / this.cellSize)
+		row : Math.floor(y / this.cellSize),
+		col : Math.floor(x / this.cellSize)
 	}
 	
 	return result;
@@ -62,6 +64,16 @@ APP.prototype.refresh = function(){
 			}
 		}
 	}
+	this.drawAnts();
+}
+APP.prototype.drawAnts = function() {
+	var ctx = $(this.elemId).get(0).getContext("2d");
+	for(var i = 0; i < this.ants.length; i++){
+		var c = this.ants[i].loc.col;
+		var r = this.ants[i].loc.row;
+		ctx.drawImage(this.imgAnts,this.ants[i].direction*32, 0, 32, 32, c*this.cellSize, r*this.cellSize, this.cellSize, this.cellSize);
+	}
+	
 }
 
 APP.prototype.resetRaster = function(){
@@ -75,23 +87,30 @@ APP.prototype.proceedGrid = function(){
 	this.refresh();
 }
 
+
+APP.prototype.checkIfAnt = function(x,y){
+	var loc = this.getRasterlocationObject(x,y);
+	for(var i = 0; i < this.ants.length; i++){
+		var ant = this.ants[i];
+		if(ant.isAnt(loc)){	
+			return true;
+		}
+	}
+	return false;
+}
+
 APP.prototype.killAnt = function(x,y){
 	var loc = this.getRasterlocationObject(x,y);
 	
 	for(var i = 0; i < this.ants.length; i++){
 		var ant = this.ants[i];
-		if(ant.isAnt(loc) == true){
+		if(ant.isAnt(loc)){
 			this.ants.splice(i,1);
-			this.setRasterDataValue(loc,0);
-			break;
 		}
 	}
-	
-	return true;
 }
 
 APP.prototype.createAnt = function(x,y){
 	var loc = this.getRasterlocationObject(x,y);
 	this.ants.push(new ANT(loc));
-	this.setRasterDataValue(loc,2);
 }

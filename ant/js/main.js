@@ -20,36 +20,30 @@ $(function() {
 			timeoutInstance = setInterval(function () {
 				myAppInstance.proceedGrid();
 			}, timout);
-			//$('#autorun_button').html('Auto-Simulation stoppen');
+
 		} else {
 			clearInterval(timeoutInstance);
 			timeoutInstance = null;
-			//$('#autorun_button').html('Auto-Simulation starten');
 		}
 
 		if (force === true) resetInterval();
 	}
 
-	$("#fpsswitcher").on('input',function() {
+	$("#fpsswitcher").on('input', function() {
 		$("#fps").html(parseInt($("#fpsswitcher").val()));
 		resetInterval(true);
 	});
 	
-	$("#drawfield").click(function(e){
+	$("#drawfield").on('click', function(e){
 		var x = e.pageX - this.offsetLeft;
 		var y = e.pageY - this.offsetTop;
 		
-		switch(myAppInstance.getValue(x,y)) {
-			case 0:
-				myAppInstance.createAnt(x,y);
-				break;
-			case 1:
-				myAppInstance.setValue(x,y,0);
-				break;
-			case 2:
-				myAppInstance.killAnt(x,y);
-				break;
-		} 		
+		if(myAppInstance.checkIfAnt(x,y)){
+			myAppInstance.killAnt(x,y);
+		}
+		else {
+			myAppInstance.createAnt(x,y);
+		}
 		
 		myAppInstance.refresh();
 	});
@@ -70,9 +64,10 @@ $(function() {
 			myAppInstance.refresh();
 		}
 		if(clicked.localeCompare("run") == 0){
-			if(timeoutInstance !== null) resetInterval(); // stops
+			// if(timeoutInstance !== null) resetInterval();
+			// console.log("blubb");
 			myAppInstance.proceedGrid();
-			myAppInstance.refresh();
+			
 		}
 		if(clicked.localeCompare("runAuto") == 0){
 			resetInterval();

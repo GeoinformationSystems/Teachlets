@@ -61,13 +61,11 @@ ANT.prototype.isValidDirection = function(maxrows,maxcols){
 
 ANT.prototype.goAnt = function(app){
 	if(app.getRasterDataValue(this.loc) == 0){
-		//weis
 		app.setRasterDataValue(this.loc,1);
 		this.direction+=1;
 		if(this.direction > 3)
 			this.direction = 0;
 	} else {
-		//schwarz
 		app.setRasterDataValue(this.loc,0);
 		this.direction-=1;
 		if(this.direction < 0) 
