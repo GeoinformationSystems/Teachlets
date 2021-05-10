@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 	<link rel="stylesheet" href="../common/style.css" type="text/css">
@@ -21,6 +21,8 @@
 			<h1 lang="en">Turing Machine "Langton's Ant"</h1>
 			</div>
 			<div id="content">
+				<div id="overlay-info" lang="de"><span>Schritt:&nbsp;</span><span id="steps-count">0</span></div>
+				<div id="overlay-info" lang="en"><span>step:&nbsp;</span><span id="steps-count">0</span></div>
 				<canvas id="drawfield"></canvas>
 			</div>
 			<div id="info">
@@ -33,11 +35,11 @@
 					<button name="run" lang="en">Simulate a step</button>
 					<button id="autorun_button" name="runAuto" lang="de">Auto-Simulation starten / stoppen</button>
 					<button id="autorun_button" name="runAuto" lang="en">Start / Stop Auto-Simulation</button>
-					<div lang="de">Bilder pro Sekunde: <span id="fps">10</span></div>
-					<div lang="en">Frames per second: <span id="fps">10</span></div>
+					<div class="input-caption" lang="de">Bilder pro Sekunde: <span id="fps">10</span></div>
+					<div class="input-caption" lang="en">Frames per second: <span id="fps">10</span></div>
 					<input type="range" min="1" max="20" step="1" value="10" id="fpsswitcher">
-					<div style="float:left">1 </div>
-					<div style="float:right">20 </div>
+					<div class="input-label" style="float:left">1</div>
+					<div class="input-label" style="float:right">20</div>
 				</div>
 				<div style="max-height:none; flex:1;">
 					<h1 lang="de">Hilfe zum Programm</h1>

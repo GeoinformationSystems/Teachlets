@@ -94,6 +94,14 @@ body {
     height: 92vh;
 }
 
+#overlay-info {
+	position: absolute;
+	margin: 5px 5px;
+	padding: 5px 10px;
+	background: rgba(255, 255, 255, 0.75);
+	border-radius: 5px;
+}
+
 #info ul {
 	padding: 0vh 2vw;
 }
@@ -103,13 +111,23 @@ body {
 }
 
 #info input {
-    margin: 5px 20px;
+    margin: 0px 20px;
     width: calc(100% - 40px);
     display: inherit;
     border: none;
-    padding: 5px;
     cursor: pointer;
 }
+
+#info .input-label {
+	padding: 0px 20px 5px 20px;
+	font-size: 1.5vh;
+	font-style: normal;
+}
+#info .input-caption {
+	font-size: 1.5vh;
+	font-style: normal;
+}
+
 #info .tab {
 	padding: 5px 0px;
 	margin: 0px;

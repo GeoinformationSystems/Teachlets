@@ -5,9 +5,7 @@ $(function() {
 	canvas[0].width=minSize;
 	canvas[0].height=minSize;
 	
-	var myAppInstance = new APP(20,0,"#drawfield"); //size defaultvalue uniqueid rows = colums
-	value = false;
-	block = false;
+	var myAppInstance = new APP(20,0,"#drawfield", "#steps-count"); //size defaultvalue uniqueid rows = colums
 	timeoutInstance = null;
 	
 	
@@ -59,13 +57,9 @@ $(function() {
 
 		// determine which button is clicked based on "name" attribute
 		if(clicked.localeCompare("resetRaster") == 0){
-			myAppInstance.ants = [];
-			myAppInstance.resetRaster();
-			myAppInstance.refresh();
+			myAppInstance.resetAll();
 		}
 		if(clicked.localeCompare("run") == 0){
-			// if(timeoutInstance !== null) resetInterval();
-			// console.log("blubb");
 			myAppInstance.proceedGrid();
 			
 		}
