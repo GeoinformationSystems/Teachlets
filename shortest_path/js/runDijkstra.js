@@ -86,7 +86,8 @@ runDijkstra.prototype.updateAllConnections = function(newPossibleConnections, cu
 		if(newPoint.getName() === origin.getName()) {
 			continue;
 		}
-		tmp = new CONNECTION(newPoint, origin, (newPossibleConnections[i].getDistance() + connection.getDistance()));
+		tmp = new CONNECTION(newPoint, origin);
+		tmp.setDistance(newPossibleConnections[i].getDistance() + connection.getDistance());
 		tmp.addOver(connection.getOver());
 		tmp.addOver([currentPoint]);
 		

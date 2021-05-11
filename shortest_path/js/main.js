@@ -1,19 +1,3 @@
-// should be moved to the calculation
-function calculateDifferance(p1, p2) {
-	return Math.sqrt(
-		Math.pow((p2.getX() - p1.getX()),2)
-		+
-		Math.pow((p2.getY() - p1.getY()),2)
-	);
-}
-
-function getMiddlePoint(p1,p2){
-	return new POINT(
-		(p1.getX() + p2.getX())/2,
-		(p1.getY() + p2.getY())/2
-	);
-}
-
 // -----------------------------------------------------------
 // Main functionality
 // (depending on the esri JS libraries)

@@ -116,9 +116,8 @@ APP.prototype.getStation = function(name){
 // Connection of the two citys
 // -----------------------------------------------------------
 APP.prototype.addConnection = function(cityA,cityB){
-	var distance = calculateDifferance(this.getStation(cityA).getLocation(), this.getStation(cityB).getLocation());
 	this.stationGrid.push(
-		new CONNECTION(this.getStation(cityA),this.getStation(cityB),distance)
+		new CONNECTION(this.getStation(cityA),this.getStation(cityB))
 	);		
 }
 

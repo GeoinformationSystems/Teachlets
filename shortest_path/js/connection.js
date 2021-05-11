@@ -5,10 +5,10 @@
 // - cityB: a station
 // - distance: distance between citys
 // -----------------------------------------------------------
-function CONNECTION(cityA, cityB, distance) {
+function CONNECTION(cityA, cityB) {
 	this.a = cityA; //object
 	this.b = cityB;
-	this.distance = distance;
+	this.distance = this.calculateDistance();
 	this.over = [];
 	this.visited = false;
 }
@@ -16,35 +16,37 @@ function CONNECTION(cityA, cityB, distance) {
 // -----------------------------------------------------------
 // Get a city
 // -----------------------------------------------------------
-CONNECTION.prototype.getA = function(){
+CONNECTION.prototype.getA = function() {
 	return this.a; //returns station object
 }
 
 // -----------------------------------------------------------
 // Get another city
 // -----------------------------------------------------------
-CONNECTION.prototype.getB = function(){
+CONNECTION.prototype.getB = function() {
 	return this.b;
 }
 
 // -----------------------------------------------------------
 // Get distance between the two citys
 // -----------------------------------------------------------
-CONNECTION.prototype.getDistance = function(){
+CONNECTION.prototype.getDistance = function() {
 	return this.distance;
 }
 
-CONNECTION.prototype.update = function(cityA,cityB,distance){
-	this.a = cityA;
-	this.b = cityB;
-	this.distance = distance;
+CONNECTION.prototype.setDistance = function(dist) {
+	this.distance = dist;
 }
 
-CONNECTION.prototype.setOver = function(over){
-	this.over = over;
+CONNECTION.prototype.calculateDistance = function() {
+	return Math.sqrt(
+		Math.pow((this.b.getLocation().getX() - this.a.getLocation().getX()),2)
+		+
+		Math.pow((this.b.getLocation().getY() - this.a.getLocation().getY()),2)
+	);
 }
 
-CONNECTION.prototype.addOver = function(array){
+CONNECTION.prototype.addOver = function(array) {
 	var i,j;
 	for(i=0; i< array.length; i++){
 		var already = false;
@@ -58,11 +60,11 @@ CONNECTION.prototype.addOver = function(array){
 	}
 }
 
-CONNECTION.prototype.getOver = function (){
+CONNECTION.prototype.getOver = function () {
 	return this.over;
 }
 
-CONNECTION.prototype.isInArray = function(array){
+CONNECTION.prototype.isInArray = function(array) {
 	for(i = 0; i < array.length; i++){
 		if(array[i].getA().getName() === this.a.getName() && array[i].getB().getName() === this.b.getName()) return array[i];
 		if(array[i].getA().getName() === this.b.getName() && array[i].getB().getName() === this.a.getName()) return array[i];
@@ -70,11 +72,11 @@ CONNECTION.prototype.isInArray = function(array){
 	return false;
 }
 
-CONNECTION.prototype.setVisited = function(value){
+CONNECTION.prototype.setVisited = function(value) {
 	this.visited = value;
 }
 
-CONNECTION.prototype.getVisited = function(){
+CONNECTION.prototype.getVisited = function() {
 	return this.visited;
 }
 
