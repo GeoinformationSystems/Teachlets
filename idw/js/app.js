@@ -1,18 +1,18 @@
-function MODEL(cellsize,id){
+function APP(cellsize,id){
 	this.stationList = [];
 	this.elemId = id;
 	this.raster = new RASTER($(this.elemId).width() / cellsize,$(this.elemId).height() / cellsize, cellsize, 0);
-	this.runedIDW = false;
-}
+	this.runnedIDW = false;
+};
 
-MODEL.prototype.addStation = function(x,y,value){
+APP.prototype.addStation = function(x,y,value){
 	this.stationList.push(
 		new STATION(x,y,value)
 	);
 	this.repaint();
-}
+};
 
-MODEL.prototype.getCleanStationList = function(center){
+APP.prototype.getCleanStationList = function(center){
 	var limiter = parseInt($("#limiter").val());
 	if(limiter && limiter > 0){
 		var result = [];
@@ -21,12 +21,19 @@ MODEL.prototype.getCleanStationList = function(center){
 		
 		$.each(stationList, function(index, station){
 			distanceArray.push({
-				distance: calculateDifferance(station.getLocation(),center),
+				distance: station.getDistanceTo(center),
 				station: station
 			});
 		});
 		
-		distanceArray.sort(mycompare);
+		distanceArray.sort( function(a,b) {
+				if (a.distance < b.distance)
+					return -1;
+				if (a.distance > b.distance)
+					return 1;
+				return 0;
+			}
+		);
 		
 		$.each(distanceArray, function(index, value){
 			result.push(value.station);
@@ -38,9 +45,9 @@ MODEL.prototype.getCleanStationList = function(center){
 	} else {
 		return this.stationList;
 	}
-}
+};
 
-MODEL.prototype.runIDW = function(){
+APP.prototype.runIDW = function(){
 	if(this.stationList.length < 2){
 		alert("[ERROR] Es müssen mindestens 2 Stationen vorhanden sein für eine IDW Interpolation. / There must be at least 2 stations for an IDW interpolation."); 
 		return;
@@ -52,28 +59,28 @@ MODEL.prototype.runIDW = function(){
 			var numerator = 0, denominator = 0;
 			var stations = this.getCleanStationList(cellcenter);
 			$.each(stations, function(index, station){
-				var distance = calculateDifferance(cellcenter,station.getLocation());
+				var distance = station.getDistanceTo(cellcenter);
 				numerator += station.getValue() / distance;
 				denominator += 1 / distance;
 			});
 			this.raster.setValue(r,c,(numerator / denominator));
 		}
 	}
-	this.runedIDW = true;
+	this.runnedIDW = true;
 	this.repaint();
-}
+};
 
-MODEL.prototype.resetAll = function(){
+APP.prototype.resetAll = function(){
 	this.stationList = [];
-	this.runedIDW = false;
+	this.runnedIDW = false;
 	this.repaint();
-}
+};
 
-MODEL.prototype.repaint = function(){
+APP.prototype.repaint = function(){
 	var ctx = $(this.elemId).get(0).getContext("2d");
 	ctx.beginPath();	
 	ctx.clearRect(0, 0, $(this.elemId).width(), $(this.elemId).height());
-	if(this.runedIDW){
+	if(this.runnedIDW){
 		var r,c,minValue=false,maxValue=false;
 		
 		for(r=0; r < this.raster.getRows(); r++){
@@ -108,7 +115,7 @@ MODEL.prototype.repaint = function(){
 		ctx.closePath();
 		ctx.fill();
 	});
-}
+};
 
 
 	
