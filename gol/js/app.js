@@ -1,7 +1,9 @@
-function APP(size,defaultValue,id){
+function APP(size,defaultValue,id,counterId){
 	this.rows = size;
 	this.cols = size;
 	this.elemId = id;
+	this.counter = counterId;
+	this.steps = 0;
 	this.cellSize = $(id).width() / size;
 	this.defaultValue = defaultValue;
 	this.data = this.createRaster(this.rows, this.cols, this.defaultValue);
@@ -73,8 +75,11 @@ APP.prototype.refresh = function(){
 	}
 }
 
-APP.prototype.resetRaster = function(){
+APP.prototype.resetAll = function(){
+	this.steps = 0;
+	$(this.counter).text(this.steps);
 	this.data = this.createRaster(this.rows, this.cols, this.defaultValue);
+	this.refresh();
 }
 
 APP.prototype.getNewCellState = function(r,c){
@@ -106,5 +111,7 @@ APP.prototype.proceedGrid = function(){
 	
 	this.data = newraster;
 	
+	this.steps++;
+	$(this.counter).text(this.steps);
 	this.refresh();
 }
