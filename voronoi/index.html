@@ -9,11 +9,11 @@
 
 	<title>Voronoi-Triangulierung</title>
 
+	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript" src="js/rhill-voronoi.js"></script>
-	<script type="text/javascript" src="js/helpwindow.js"></script>
 </head>
 
-<body onload="Voronoi.init();" data-gr-c-s-loaded="true">
+<body>
 	<div id="frame">
 		<div id="language"><button class="lang-switch" name="de">DE</button><button class="lang-switch" name="en">ENG</button></div>
 		<div id="header">
@@ -21,14 +21,21 @@
 			<h1 lang="en">Voronoi Triangulation</h1>
 		</div>
 		<div id="content">
-			<canvas id="voronoiCanvas" style="cursor:crosshair"></canvas>
+			<canvas id="voronoiCanvas" style="cursor:crosshair" width="500px"></canvas>
 		</div>
 		<div id="info">
 			<div style="max-height:fit-content;">
 				<h1 lang="de">Steuerung</h1>
 				<h1 lang="en">Control</h1>
-				<button lang="de" id="voronoiClearSites" value="Zeichenfläche leeren" onclick="Voronoi.clearSites();">Zeichenfläche leeren</button>
-				<button lang="en" id="voronoiClearSites" value="Zeichenfläche leeren" onclick="Voronoi.clearSites();">Clean drawing field</button>
+				<button name="resetClear" lang="de">Zeichenfläche leeren</button>
+				<button name="resetClear" lang="en">Clean drawing field</button>
+				
+				<div class="input-caption" lang="de">Anzahl automatisch generierter Punkte: <span id="fps">100</span></div>
+				<div class="input-caption" lang="en">Number of randomly generated sites: <span id="fps">100</span></div>
+				<input type="range" min="10" max="200" step="10" value="100" id="fpsswitcher">
+				<div class="input-label" style="float:left">10</div>
+				<div class="input-label" style="float:right">200</div>
+				
 			</div>
 			<div style="max-height:none; flex:1;">
 				<h1 lang="de">Hilfe zum Programm</h1>
