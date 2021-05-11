@@ -13,7 +13,10 @@ APP.prototype.addStation = function(x,y,value){
 };
 
 APP.prototype.getCleanStationList = function(center){
-	var limiter = parseInt($("#limiter").val());
+	var activeLang="de";
+	if($('button[name="en"]').is(':disabled')) activeLang="en";
+	
+	var limiter = parseInt($("#limiter[lang='"+ activeLang +"']").val());
 	if(limiter && limiter > 0){
 		var result = [];
 		var stationList = this.stationList;

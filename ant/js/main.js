@@ -28,7 +28,8 @@ $(function() {
 	}
 
 	$("#fpsswitcher").on('input', function() {
-		$("#fps").html(parseInt($("#fpsswitcher").val()));
+		$(".input-caption[lang='de']").find("span").html(parseInt($("#fpsswitcher").val()));
+		$(".input-caption[lang='en']").find("span").html(parseInt($("#fpsswitcher").val()));
 		resetInterval(true);
 	});
 	
