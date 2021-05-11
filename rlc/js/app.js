@@ -89,23 +89,19 @@ APP.prototype.refresh = function(){
 	}
 }
 
-APP.prototype.clearRaster = function(){
-	var ctx = $(this.elemId).get(0).getContext("2d");
-	ctx.clearRect(0,0,600,600); 
-}
-
 APP.prototype.resetRaster = function(){
 	this.data = this.createRaster(this.rows, this.cols, this.defaultValue);
+	this.refresh();
 }
 
 APP.prototype.proceed = function(){
-	$('#resultNotCompDe').html("Anzahl zu speichernder Bits: " + (this.rows * this.rows) + " = (" + this.rows + "px x " + this.rows + "px)<br>" +
+	$('#resultNotComp[lang="de"]').html("Anzahl zu speichernder Bits: " + (this.rows * this.rows) + " = (" + this.rows + "px x " + this.rows + "px)<br>" +
 		"bei einer Farbtiefe von 24bit<br>" +
 		(this.rows * this.rows) + " x 24 = " + 24*(this.rows * this.rows) + " bit<br>" +
 		"= " + (24*(this.rows * this.rows))/8 + " Byte<br>" +
 		"= <u>" + (parseInt(10000 * (((24 * (this.rows * this.rows)) / 8) / 1024))) / 10000 + " KB</u>"); 
 
-	$('#resultNotCompEng').html("Number of bits to be saved: " + (this.rows * this.rows) + " = (" + this.rows + "px x " + this.rows + "px)<br>" +
+	$('#resultNotComp[lang="en"]').html("Number of bits to be saved: " + (this.rows * this.rows) + " = (" + this.rows + "px x " + this.rows + "px)<br>" +
 		"with a colour depth of 24bit<br>" +
 		(this.rows * this.rows) + " x 24 = " + 24 * (this.rows * this.rows) + " bit<br>" +
 		"= " + (24 * (this.rows * this.rows)) / 8 + " Byte<br>" +
@@ -141,8 +137,7 @@ APP.prototype.proceed = function(){
 	}
 	
 	string = string.slice(0, -2);
-
-	$('#resultRLCfDe').html("Bei einer Bildgröße von (" + this.rows + " x " + this.rows + ") sind insgesamt " + counter + " Zeichenfolgen vorhanden<br><br>" +	
+	$('#resultRLCf[lang="de"]').html("Bei einer Bildgröße von (" + this.rows + " x " + this.rows + ") sind insgesamt " + counter + " Zeichenfolgen vorhanden<br><br>" +	
 		"minimale feste Anzahl bit: " + maxticker.toString(2).length + " / Anzahl der Zeichen: " + maxticker + "<br>" +	 
 		"benötigter Speicherplatz bei " + maxticker.toString(2).length + " bit / Anzahl der Zeichen und 24 bit Farbtiefe:<br><br>" +	 
 		counter + " x ("+maxticker.toString(2).length+" + 24) = " + counter*(maxticker.toString(2).length+24) + " bit<br>"+
@@ -152,8 +147,8 @@ APP.prototype.proceed = function(){
 		counter + " x (8 + 24) = " + counter*(8+24) + " bit<br>"+
 		"= " + (counter*(8+24))/8 + " Byte<br>"+
 		"= <u>" + (parseInt(10000 * (((counter * (8 + 24)) / 8) / 1024))) / 10000 + " KB</u>");
-
-	$('#resultRLCfEng').html("With an image size of (" + this.rows + " x " + this.rows + ") are in total " + counter + " strings exist<br><br>" +	
+	
+	$('#resultRLCf[lang="en"]').html("With an image size of (" + this.rows + " x " + this.rows + ") are in total " + counter + " strings exist<br><br>" +	
 		"minimum fixed number bit: " + maxticker.toString(2).length + " / Number of characters: " + maxticker + "<br>" +	 
 		"required storage space for " + maxticker.toString(2).length + " bit / Number of characters and 24 bit color depth:<br><br>" +	 
 		counter + " x (" + maxticker.toString(2).length + " + 24) = " + counter * (maxticker.toString(2).length + 24) + " bit<br>" +
@@ -163,8 +158,8 @@ APP.prototype.proceed = function(){
 		counter + " x (8 + 24) = " + counter * (8 + 24) + " bit<br>" +
 		"= " + (counter * (8 + 24)) / 8 + " Byte<br>" +
 		"= <u>" + (parseInt(10000 * (((counter * (8 + 24)) / 8) / 1024))) / 10000 + " KB</u>");
-		
-	$('#resultRLCvDe').html("Bei einer Bildgröße von (" + this.rows + " x " + this.rows + ") sind insgesamt " + counter + " Zeichenfolgen vorhanden<br><br>" +	
+	
+	$('#resultRLCv[lang="de"]').html("Bei einer Bildgröße von (" + this.rows + " x " + this.rows + ") sind insgesamt " + counter + " Zeichenfolgen vorhanden<br><br>" +	
 		"benötigter Speicherplatz bei variabler Anzahl bit / Anzahl der Zeichen und 24 bit Farbtiefe:<br><br>" +	
 		"[nach dem Schema (minimale Anzahl bit für Anzahl der Zeichen + Farbtiefe)]<br><br>" +	 
 		string+"<br><br>"+
@@ -172,7 +167,7 @@ APP.prototype.proceed = function(){
 		"= "+ result/8 + " Byte<br>"+
 		"= <u>" + (parseInt(10000 * (result / 8) / 1024)) / 10000 + " KB</u>");
 
-	$('#resultRLCvEng').html("With an image size of (" + this.rows + " x " + this.rows + ") are in total " + counter + " strings exist<br><br>" +	
+	$('#resultRLCv[lang="en"]').html("With an image size of (" + this.rows + " x " + this.rows + ") are in total " + counter + " strings exist<br><br>" +	
 		"required storage space with variable number bit / Number of characters and 24 bit color depth:<br><br>" +	 
 		"[according to the scheme (minimum number of bits for number of characters + color depth)]<br><br>" +	 
 		string + "<br><br>" +

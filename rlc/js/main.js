@@ -9,9 +9,8 @@ $(function() {
 	var block;
 	
 	//start config
-	$('#rlc_festDe').addClass("active");
-	$('#resultRLCvDe').hide();
-	$('#resultRLCvEng').hide();
+	$('#rlc_fix').addClass("active");
+	$('#resultRLCv').hide();
 
 	$("#drawfield").mousedown(function(e){
 		var x = e.pageX - this.offsetLeft;
@@ -54,126 +53,70 @@ $(function() {
 
 	// add click handler to all elements of type button
 	$("button").click(function () {
+		
+		var activeLang="de";
+		if($('button[name="en"]').is(':disabled')) activeLang="en";
+		
 		// get name of button
 		var clicked = $(this).attr("name");
-
+	
 		// determine which button is clicked based on "name" attribute
 		if(clicked.localeCompare("resetRaster") == 0){
-			$('#resultRLCfDe').html("");
-			$('#resultRLCfEng').html("");
-			$('#resultRLCvDe').html("");
-			$('#resultRLCvEng').html("");
-			$('#resultNotCompDe').html("");
-			$('#resultNotCompEng').html("");
+			$('#resultRLCf[lang="de"],#resultRLCf[lang="en"],#resultRLCv[lang="de"],#resultRLCv[lang="en"]').html("");
+			$('#resultNotComp[lang="de"],#resultNotComp[lang="en"]').html("");		
 			myAppInstance.resetRaster();
-			myAppInstance.clearRaster();
+			// myAppInstance.clearRaster();
 		} 
-		if(clicked.localeCompare("rlc_festDe") == 0){
-			//$('#resultRLCfDe').show();
-			//$('#resultRLCfEng').show();
-			//$('#resultRLCvDe').hide();
-			//$('#resultRLCvEng').hide();
-			//$('#rlc_fest').addClass("active");
-			//$('#rlc_var').removeClass("active");
-			$('#info > div > div > p[id="resultRLCfDe"]').show();
-			$('#info > div > div > p[id="resultRLCfEng"]').hide();
-			$('#info > div > div > p[id="resultRLCvDe"]').hide();
-			$('#info > div > div > p[id="resultRLCvEng"]').hide();
-			$('#rlc_festDe').addClass("active");
-			$('#rlc_festEng').removeClass("active");
-			$('#rlc_varDe').removeClass("active");
-			$('#rlc_varEng').removeClass("active");
+		else if(clicked.localeCompare("rlc_fix") == 0){
+			$('#resultRLCf[lang="de"],#resultRLCf[lang="en"],#resultRLCv[lang="de"],#resultRLCv[lang="en"]').hide()
+			$('#resultRLCf[lang="'+ activeLang +'"]').show();
+			$('#rlc_fix[lang="'+ activeLang +'"]').addClass("active");
+			$('#rlc_var[lang="'+ activeLang +'"]').removeClass("active");
 		}
-		if (clicked.localeCompare("rlc_festEng") == 0) {
-			//$('#resultRLCfEng').show();
-			//$('#resultRLCfDe').show();
-			//$('#resultRLCvDe').hide();
-			//$('#resultRLCvEng').hide();
-			//$('#rlc_fest').addClass("active");
-			//$('#rlc_var').removeClass("active");
-			$('#info > div > div > p[id="resultRLCfEng"]').show();
-			$('#info > div > div > p[id="resultRLCfDe"]').hide();
-			$('#info > div > div > p[id="resultRLCvDe"]').hide();
-			$('#info > div > div > p[id="resultRLCvEng"]').hide();
-			$('#rlc_festEng').addClass("active");
-			$('#rlc_festDe').removeClass("active");
-			$('#rlc_varDe').removeClass("active");
-			$('#rlc_varEng').removeClass("active");
+		else if(clicked.localeCompare("rlc_var") == 0){
+			$('#resultRLCf[lang="de"],#resultRLCf[lang="en"],#resultRLCv[lang="de"],#resultRLCv[lang="en"]').hide()
+			$('#resultRLCv[lang="'+ activeLang +'"]').show();
+			$('#rlc_var[lang="'+ activeLang +'"]').addClass("active");
+			$('#rlc_fix[lang="'+ activeLang +'"]').removeClass("active");
 		}
-		if(clicked.localeCompare("rlc_varDe") == 0){
-			//$('#resultRLCvDe').show();
-			//$('#resultRLCvEng').show();
-			//$('#resultRLCfDe').hide();
-			//$('#resultRLCfEng').hide();
-			//$('#rlc_fest').removeClass("active");
-			//$('#rlc_var').addClass("active");
-			$('#info > div > div > p[id="resultRLCvDe"]').show();
-			$('#info > div > div > p[id="resultRLCvEng"]').hide();
-			$('#info > div > div > p[id="resultRLCfEng"]').hide();
-			$('#info > div > div > p[id="resultRLCfDe"]').hide();
-			$('#rlc_varDe').addClass("active");
-			$('#rlc_varEng').removeClass("active");
-			$('#rlc_festEng').removeClass("active");
-			$('#rlc_festDe').removeClass("active");
-		}
-		if (clicked.localeCompare("rlc_varEng") == 0) {
-			//$('#resultRLCvDe').show();
-			//$('#resultRLCvEng').show();
-			//$('#resultRLCfDe').hide();
-			//$('#resultRLCfEng').hide();
-			//$('#rlc_fest').removeClass("active");
-			//$('#rlc_var').addClass("active");
-			$('#info > div > div > p[id="resultRLCvEng"]').show();
-			$('#info > div > div > p[id="resultRLCvDe"]').hide();
-			$('#info > div > div > p[id="resultRLCfEng"]').hide();
-			$('#info > div > div > p[id="resultRLCfDe"]').hide();
-			$('#rlc_varEng').addClass("active");
-			$('#rlc_varDe').removeClass("active");
-			$('#rlc_festEng').removeClass("active");
-			$('#rlc_festDe').removeClass("active");
-		}
-		if(clicked.localeCompare("runDe") == 0){
-			//$('#resultRLCfDe').html("");
-			//$('#resultRLCfEng').html("");
-			//$('#resultNotCompDe').html("");
-			//$('#resultNotCompEng').html("");
-			$('#resultNotCompDe').show();
-			$('#resultNotCompEng').hide();
-			$('#info > div > div > p[id="resultRLCfDe"]').show();
-			$('#info > div > div > p[id="resultRLCfEng"]').hide();
-			$('#info > div > div > p[id="resultRLCvDe"]').hide();
-			$('#info > div > div > p[id="resultRLCvEng"]').hide();
+		else if(clicked.localeCompare("run") == 0){
+			$('#resultRLCf[lang="de"],#resultRLCf[lang="en"],#resultRLCv[lang="de"],#resultRLCv[lang="en"]').hide()
+			$('#resultNotComp[lang="de"],#resultNotComp[lang="en"]').hide();
+			
+			$('#resultNotComp[lang="'+ activeLang +'"]').show();
+			$('#resultRLCf[lang="'+ activeLang +'"]').show();			
+			$('#rlc_fix[lang="'+ activeLang +'"]').addClass("active");
+			$('#rlc_var[lang="'+ activeLang +'"]').removeClass("active");
+			
 			myAppInstance.proceed();
-		}	
-		if (clicked.localeCompare("runEng") == 0) {
-			//$('#resultRLCfDe').html("");
-			//$('#resultRLCfEng').html("");
-			//$('#resultNotCompDe').html("");
-			//$('#resultNotCompEng').html("");
-			$('#resultNotCompDe').hide();
-			$('#resultNotCompEng').show();
-			$('#info > div > div > p[id="resultRLCfDe"]').hide();
-			$('#info > div > div > p[id="resultRLCfEng"]').show();
-			$('#info > div > div > p[id="resultRLCvDe"]').hide();
-			$('#info > div > div > p[id="resultRLCvEng"]').hide();
-			myAppInstance.proceed();
-		}	
+		}
 		else if (clicked.localeCompare("en") == 0) {
 			$('[lang="en"]').show();
 			$('[lang="de"]').hide();
+			
+			//switch to fixed rlc tab
+			$('#rlc_fix[lang="en"]').addClass("active");
+			$('#rlc_var[lang="en"]').removeClass("active");
+			$('#resultRLCv[lang="en"]').hide();
+			
 			$('button[name="en"]').prop("disabled", true);
 			$('button[name="de"]').prop("disabled", false);
 		}
 		else if (clicked.localeCompare("de") == 0) {
 			$('[lang="de"]').show();
 			$('[lang="en"]').hide();
+			
+			//switch to fixed rlc tab
+			$('#rlc_fix[lang="de"]').addClass("active");
+			$('#rlc_var[lang="de"]').removeClass("active");
+			$('#resultRLCv[lang="de"]').hide();
+			
 			$('button[name="de"]').prop("disabled", true);
 			$('button[name="en"]').prop("disabled", false);
 		}
 	});
 	
 	$('#examplesSelect').on('change', function(){
-		myAppInstance.clearRaster();
 		var val = parseInt(this.value);
 		switch(val) {
 			case 0:

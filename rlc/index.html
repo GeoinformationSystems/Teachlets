@@ -8,10 +8,8 @@
 
 	<title>Lauflängenkodierung</title>
 
-	<script src="js/appobject.js"></script>
-	<script src="js/pointobject.js"></script>
+	<script src="js/app.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/helpwindow.js"></script>
 </head>
 <body>	
 	<div id="frame">
@@ -36,27 +34,27 @@
 					<option value="3" lang="de">Beispiel 3</option>
 					<option value="3" lang="en">Example 3</option>
 				</select>
-				<button name="runDe" lang="de">Kodierung berechnen</button>
-				<button name="runEng" lang="en">Calculate coding</button>
+				<button name="run" lang="de">Kodierung berechnen</button>
+				<button name="run" lang="en">Calculate coding</button>
 				<button name="resetRaster" lang="de">Zeichenfläche leeren</button>
 				<button name="resetRaster" lang="en">Clean drawing field</button>
 			</div>
 			<div style="max-height:fit-content;">
 				<h1 lang="de">Ausgabe ohne Komprimierung</h1>
 				<h1 lang="en">Output without compression</h1>
-				<div id="resultNotCompDe" class="textOutput" lang="de"></div>
-				<div id="resultNotCompEng" class="textOutput" lang="en"></div>
+				<div id="resultNotComp" class="textOutput" lang="de"></div>
+				<div id="resultNotComp" class="textOutput" lang="en"></div>
 			</div>
 			<div style="max-height:none; flex:1;">
 				<h1 lang="de">Ausgabe mit Komprimierung</h1>
 				<h1 lang="en">Output with compression</h1>
-				<button class="tab" name="rlc_festDe" id="rlc_festDe" lang="de">RLC - fest</button><button class="tab" name="rlc_varDe" id="rlc_varDe" lang="de">RLC - variabel</button>
-				<button class="tab" name="rlc_festEng" id="rlc_festEng" lang="en">RLC - fixed</button><button class="tab" name="rlc_varEng" id="rlc_varEng" lang="en">RLC - variable</button>
+				<button class="tab" name="rlc_fix" id="rlc_fix" lang="de">RLC - fest</button><button class="tab" name="rlc_var" id="rlc_var" lang="de">RLC - variabel</button>
+				<button class="tab" name="rlc_fix" id="rlc_fix" lang="en">RLC - fixed</button><button class="tab" name="rlc_var" id="rlc_var" lang="en">RLC - variable</button>
 				<div class="textOutput tabContent">
-					<p id="resultRLCfDe"></p>
-					<p id="resultRLCfEng"></p>
-					<p id="resultRLCvDe"></p>
-					<p id="resultRLCvEng"></p>
+					<p id="resultRLCf" lang="de"></p>
+					<p id="resultRLCf" lang="en"></p>
+					<p id="resultRLCv" lang="de"></p>
+					<p id="resultRLCv" lang="en"></p>
 				</div>
 			</div>
 		</div>
