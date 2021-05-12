@@ -1,0 +1,65 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <link rel="stylesheet" href="../common/style.css" type="text/css">
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+	<title>Interpolation &amp; Approximation</title>
+
+    <script src="js/app.js"></script>
+    <script src="js/point.js"></script>
+    <script src="js/main.js"></script>
+	<script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+	<div id="frame">
+		<div id="language"><button class="lang-switch" name="de">DE</button><button class="lang-switch" name="en">ENG</button></div>
+		<div id="header">
+			<h1 lang="de">Interpolation &amp; Approximation</h1>
+			<h1 lang="en">Interpolation &amp; Approximation</h1>
+		</div>
+		<div id="content">
+			<canvas id="drawfield"></canvas>
+		</div>
+		<div id="info">
+			<div style="max-height:fit-content;">
+				<h1 lang="de">Steuerung</h1>
+				<h1 lang="en">Control</h1>
+				<div class="checkbox">
+					<input type="checkbox" id="curve1" name="curves" value="0" checked>
+					<label for="curve1" lang="de">Lineare Interpolation</label>
+					<label for="curve1" lang="en">Linear Interpolation</label>
+					<span></span>
+				</div>
+				<div class="checkbox">
+					<input type="checkbox" id="curve2" name="curves" value="1">
+					<label for="curve2" lang="de">Spline Interpolation</label>
+					<label for="curve2" lang="en">Spline Interpolation</label>
+					<span></span>
+				</div>
+				<div class="checkbox">
+					<input type="checkbox" id="curve3" name="curves" value="2">
+					<label for="curve3" lang="de">Approximation mittels Basis-Spline</label>
+					<label for="curve3" lang="en">Approximation using Basis-Spline</label>
+					<span></span>
+				</div>
+			</div>
+			<div style="max-height:none; flex:1;">
+				<h1 lang="de">Hilfe zum Programm</h1>
+				<h1 lang="en">Help with the program</h1>
+				<div class="help" lang="de">
+					Punkte können verschoben werden<br/>
+					Ein- und Ausblenden der Splines über Checkboxen
+				</div>
+				<div class="help" lang="en">
+					Move points with mouse drag<br/>
+					Show or hide splines using the checkboxes
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
