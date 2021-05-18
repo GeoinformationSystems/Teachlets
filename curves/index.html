@@ -25,6 +25,24 @@
 			<canvas id="drawfield"></canvas>
 		</div>
 		<div id="info">
+			<div style="max-height:none; flex:1;">
+				<h1 lang="de">Erklärung der Funktionsweise</h1>
+				<h1 lang="en" style="display: none;">Explanation of functionality</h1>
+				<div class="help" lang="de">
+					Die Approximation bezeichnet im mathematischen Sinne eine Näherung. Die zu bestimmende Kurve muss demnach nicht vollständig durch alle Punkte verlaufen, sondern sich diesen ausschließlich annähern.<br>
+					<br>
+					Die Interpolation bezeichnet in der numerischen Mathematik eine Klasse von Problemen und Verfahren. Zu den gegebenen diskreten Daten (z.B. Messdaten) soll eine kontinuierliche Funktion ermittelt werden, die diese Daten veranschaulicht.<br>
+					<br>
+					Ein Spline ist eine Funktion, die stückweise aus Polynomen besteht. Die Stellen im Graphen, an denen zwei Polynomstücke zusammentreffen (im Beispiel die blauen Kreise) nennt man Knoten. Sind die Funktionsstücke linear, handelt es sich um einen linearen Spline (auch Polygonzug genannt). Analog dazu gibt es z.B. quadratische oder kubische Splines.
+				</div>
+				<div class="help" lang="en">
+					In a mathematical sense, the approximation denotes values that are close but not the exact same. Therefore, the curve to be determined does not have to run completely through all points, but only have to approximate them.<br>
+					<br>
+					In numerical mathematics, interpolation describes a class of problems and procedures. A continuous function is to be determined for the given discrete data (e.g. measurement data), which illustrates this data.<br>
+					<br>
+					A spline is a special function defined piecewise by polynomials. The points in the graph where two polynomials meet (in the example the blue circles) are called knots. If the polynomials are linear, it is a linear spline. Analogous to this there are e.g. square or cubic splines.
+				</div>
+			</div>
 			<div style="max-height:fit-content;">
 				<h1 lang="de">Steuerung</h1>
 				<h1 lang="en">Control</h1>
@@ -47,16 +65,18 @@
 					<span></span>
 				</div>
 			</div>
-			<div style="max-height:none; flex:1;">
+			<div style="max-height:fit-content;">
 				<h1 lang="de">Hilfe zum Programm</h1>
 				<h1 lang="en">Help with the program</h1>
 				<div class="help" lang="de">
-					Punkte können verschoben werden<br/>
-					Ein- und Ausblenden der Splines über Checkboxen
+					Wählen Sie eine beliebige Kurvenberechnungsart aus, indem Sie die entsprechende Checkbox anhaken.<br>
+					<br>
+					Verschieben Sie die Punkte beliebig auf der Zeichenfläche per Drag and Drop.
 				</div>
 				<div class="help" lang="en">
-					Move points with mouse drag<br/>
-					Show or hide splines using the checkboxes
+					Select any type of curve calculation by checking the corresponding checkbox.<br>
+					<br>
+					Move the points anywhere on the drawing area using drag and drop.
 				</div>
 			</div>
 		</div>
